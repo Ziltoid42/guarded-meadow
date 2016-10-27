@@ -28,7 +28,7 @@ app.get('/webhook/', function (req, res) {
 
 // Spin up the server
 app.listen(app.get('port'), function(){
-	console.log('running on port', app.get('port'))	
+	console.log('Express server listening on port %d in %s mode', this.address().port, appsettings.env)	
 })
 
 // to post data
