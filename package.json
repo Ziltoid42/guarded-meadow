@@ -1,7 +1,7 @@
 {
-  "name": "guarded-meadow",
+  "name": "guarded_meadow",
   "version": "1.0.0",
-  "description": "Bot project",
+  "description": "Secret project",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/Ziltoid42/guarded-meadow/issues"
   },
-  "homepage": "https://github.com/Ziltoid42/guarded-meadow#readme"
+  "homepage": "https://github.com/Ziltoid42/guarded-meadow#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "request": "^2.76.0"
+  }
 }
