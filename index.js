@@ -49,6 +49,10 @@ app.post('/webhook/', function (req, res) {
             sendButtonMessage(sender)
             continue
         }
+        if (text === 'location') {
+            sendLocationMessage(sender)
+            continue
+        }
         sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
       }
       if (event.postback) {
@@ -173,3 +177,32 @@ function sendButtonMessage(sender) {
         }
     })
 }
+
+function sendLocationMessage(sender) {
+    let messageData = {
+ "message":{
+    "text":"Please share your location:",
+    "quick_replies":[
+      {
+        "content_type":"location",
+      }
+    ]
+  }
+}
+    request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: {access_token:token},
+        method: 'POST',
+        json: {
+            recipient: {id:sender},
+            message: messageData,
+        }
+    }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
+        }
+    })
+}
+
