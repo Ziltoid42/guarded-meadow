@@ -61,6 +61,13 @@ app.post('/webhook/', function (req, res) {
             sendGenericMessage(sender)
             continue
         }
+
+        if (event.message.attachments[0].type === 'location'){
+            sendTextMessage(sender, "lat: "+attachment.payload.coordinates.lat+"\nlong: "+
+attachment.payload.coordinates.long)
+            continue
+        }
+
         sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
         continue
       }
