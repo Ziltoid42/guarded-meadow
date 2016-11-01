@@ -149,7 +149,7 @@ function sendButtonMessage(sender) {
         ]
       }
     }
-  
+  }
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
         qs: {access_token:token},
@@ -165,5 +165,4 @@ function sendButtonMessage(sender) {
             console.log('Error: ', response.body.error)
         }
     })
-}
 }
