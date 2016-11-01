@@ -43,7 +43,7 @@ app.post('/webhook/', function (req, res) {
             continue
         }
         if (text === 'Bouttons') {
-            sendGenericMessage(sender)
+            sendButtonMessage(sender)
             continue
         }
         sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
