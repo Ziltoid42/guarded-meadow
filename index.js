@@ -42,7 +42,10 @@ app.post('/webhook/', function (req, res) {
             sendGenericMessage(sender)
             continue
         }
-      
+        if (text === 'Bouttons') {
+            sendButtonMessage(sender)
+            continue
+        }
         sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
       }
       if (event.postback) {
@@ -123,7 +126,7 @@ function sendGenericMessage(sender) {
         }
     })
 }
-
+/*
 function sendButtonMessage(sender) {
     let messageData = {
         "attachment": {
@@ -164,3 +167,4 @@ function sendButtonMessage(sender) {
     })
 }
 
+*/
