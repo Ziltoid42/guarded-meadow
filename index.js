@@ -180,15 +180,13 @@ function sendButtonMessage(sender) {
 
 function sendLocationMessage(sender) {
     let messageData = {
- "message":{
-    "text":"Please share your location:",
-    "quick_replies":[
-      {
-        "content_type":"location",
-      }
-    ]
-  }
-}
+            "text":"Please share your location:",
+            "quick_replies":[
+         {
+            "content_type":"location",
+        }
+        ]
+    }
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
         qs: {access_token:token},
