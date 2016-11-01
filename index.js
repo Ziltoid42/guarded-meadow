@@ -40,6 +40,9 @@ app.post('/webhook/', function (req, res) {
         let text = event.message.text
         if (text === 'Generic') {
             sendGenericMessage(sender)
+            for (var i = 1; compteur <= 5; i++) {
+                sendTextMessage(sender, "Prout")
+            }
             continue
         }
         if (text === 'Bouttons') {
