@@ -42,6 +42,10 @@ app.post('/webhook/', function (req, res) {
             sendGenericMessage(sender)
             continue
         }
+        if (text === 'Bouttons') {
+            sendButtonMessage(sender)
+            continue
+        }
         sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
       }
       if (event.postback) {
@@ -102,6 +106,46 @@ function sendGenericMessage(sender) {
                         "title": "Postback",
                         "payload": "Payload for second element in a generic bubble",
                     }],
+                }]
+            }
+        }
+    }
+    request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: {access_token:token},
+        method: 'POST',
+        json: {
+            recipient: {id:sender},
+            message: messageData,
+        }
+    }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
+        }
+    })
+}
+
+function sendButtonMessage(sender) {
+    let messageData = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "button",
+                "text":"What do you want to do next?",
+                "buttons": [{
+                    
+                    "buttons": [{
+                        "type": "web_url",
+                        "url": "https://www.messenger.com",
+                        "title": "web url"
+                    }, {
+                        "type": "postback",
+                        "title": "Postback",
+                        "payload": "boutton1",
+                    }],
+                },
                 }]
             }
         }
