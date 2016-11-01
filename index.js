@@ -126,30 +126,30 @@ function sendGenericMessage(sender) {
         }
     })
 }
-/*
+
 function sendButtonMessage(sender) {
     let messageData = {
-        "attachment": {
-            "type": "template",
-            "payload": {
-                "template_type": "button",
-                "text":"What do you want to do next?",
-                "buttons": [{
-                    
-                    "buttons": [{
-                        "type": "web_url",
-                        "url": "https://www.messenger.com",
-                        "title": "web url"
-                    }, {
-                        "type": "postback",
-                        "title": "Postback",
-                        "payload": "boutton1",
-                    }],
-                },
-                }]
-            }
-        }
+
+    "attachment":{
+      "type":"template",
+      "payload":{
+        "template_type":"button",
+        "text":"What do you want to do next?",
+        "buttons":[
+          {
+            "type":"web_url",
+            "url":"https://petersapparel.parseapp.com",
+            "title":"Show Website"
+          },
+          {
+            "type":"postback",
+            "title":"Start Chatting",
+            "payload":"USER_DEFINED_PAYLOAD"
+          }
+        ]
+      }
     }
+  
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
         qs: {access_token:token},
@@ -166,5 +166,3 @@ function sendButtonMessage(sender) {
         }
     })
 }
-
-*/
