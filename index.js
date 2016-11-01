@@ -53,6 +53,10 @@ app.post('/webhook/', function (req, res) {
       }
       if (event.postback) {
         let text = JSON.stringify(event.postback)
+          if (event.postback.payload === 'Postback_button') {
+            sendGenericMessage(sender)
+            continue
+        }
         sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
         continue
       }
@@ -107,7 +111,7 @@ function sendGenericMessage(sender) {
                     "buttons": [{
                         "type": "postback",
                         "title": "Postback",
-                        "payload": "Payload for second element in a generic bubble",
+                        "payload": "Postback_slider",
                     }],
                 }]
             }
@@ -147,7 +151,7 @@ function sendButtonMessage(sender) {
           {
             "type":"postback",
             "title":"Start Chatting",
-            "payload":"USER_DEFINED_PAYLOAD"
+            "payload":"Postback_button"
           }
         ]
       }
