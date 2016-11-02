@@ -64,20 +64,18 @@ app.post('/webhook/', function (req, res) {
             sendGenericMessage(sender)
             continue
         }
-          }
         if (text === '28') {
              var buttons = {text:"Please tell me about your personal situation", title1:"Single", payload1:"single", title2:"Married", payload2:"married", title3:"Widow", payload3:"widow"}
             send3ButtonMessage(sender, buttons)
             continue
         }
+          }
+        
         sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
       }
       if (event.postback) {
         let text = JSON.stringify(event.postback)
-          if (event.postback.payload === 'Postback_button') {
-            sendGenericMessage(sender)
-            continue
-            }
+        
             if (event.postback.payload === 'apply') {
                 var buttons = {text:"Shall we start?", title1:"Start application", payload1:"start_app", title2:"I need more info", payload2:"more"}
                 send2ButtonMessage(sender, buttons)
@@ -149,7 +147,7 @@ app.post('/webhook/', function (req, res) {
                 sendTextMessage(sender, "How old are you Grégoire?")
                 continue
             } 
-
+    }
         if (event.message.attachments[0].type === 'location'){
             sendTextMessage(sender, "lat: "+attachment.payload.coordinates.lat+"\nlong: "+
 attachment.payload.coordinates.long)
