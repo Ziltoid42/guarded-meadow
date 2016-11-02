@@ -145,7 +145,7 @@ app.post('/webhook/', function (req, res) {
                 sendTextMessage(sender, "How old are you Grégoire?")
                 continue
             } 
-    }
+
         if (event.message.attachments[0].type === 'location'){
             sendTextMessage(sender, "lat: "+attachment.payload.coordinates.lat+"\nlong: "+
 attachment.payload.coordinates.long)
