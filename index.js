@@ -58,7 +58,7 @@ app.post('/webhook/', function (req, res) {
             sendTextMessage(sender, "My name is Creditor and I am a robot!")
             sendTextMessage(sender, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!")
             var buttons = {text:"Now what can I do for you?", title1:"I want more info", payload1:"more info", title2:"I want to apply", payload2:"apply"}
-            sendButtonMessage(sender, buttons)
+            send2ButtonMessage(sender, buttons)
             continue
         }
         sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
@@ -68,7 +68,12 @@ app.post('/webhook/', function (req, res) {
           if (event.postback.payload === 'Postback_button') {
             sendGenericMessage(sender)
             continue
-        }
+            }
+            if (event.postback.payload === 'apply') {
+                var buttons = {text:"Shall we start?", title1:"Start application", payload1:"start_app", title2:"I need more info", payload2:"more"}
+                send2ButtonMessage(sender, buttons)
+                continue
+            }   
 
         if (event.message.attachments[0].type === 'location'){
             sendTextMessage(sender, "lat: "+attachment.payload.coordinates.lat+"\nlong: "+
@@ -153,7 +158,7 @@ function sendGenericMessage(sender) {
     })
 }
 
-function sendButtonMessage(sender, buttons) {
+function send2ButtonMessage(sender, buttons) {
     let messageData = {
 
     "attachment":{
@@ -171,6 +176,51 @@ function sendButtonMessage(sender, buttons) {
             "type":"postback",
             "title":buttons.title2,
             "payload":buttons.payload2
+          }
+        ]
+      }
+    }
+  }
+    request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: {access_token:token},
+        method: 'POST',
+        json: {
+            recipient: {id:sender},
+            message: messageData,
+        }
+    }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
+        }
+    })
+}
+
+function send3ButtonMessage(sender, buttons) {
+    let messageData = {
+
+    "attachment":{
+      "type":"template",
+      "payload":{
+        "template_type":"button",
+        "text": buttons.text,
+        "buttons":[
+          {
+            "type":"postback",
+            "title":buttons.title1,
+            "payload":buttons.payload1
+          },
+          {
+            "type":"postback",
+            "title":buttons.title2,
+            "payload":buttons.payload2
+          }
+          {
+            "type":"postback",
+            "title":buttons.title3,
+            "payload":buttons.payload3
           }
         ]
       }
