@@ -64,14 +64,14 @@ app.post('/webhook/', function (req, res) {
             sendGenericMessage(sender)
             continue
         }
-    }
         if (text === '28') {
              var buttons = {text:"Please tell me about your personal situation", title1:"Single", payload1:"single", title2:"Married", payload2:"married", title3:"Widow", payload3:"widow"}
             send3ButtonMessage(sender, buttons)
             continue
         }
-          
-        
+
+    }
+
         sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
       }
       if (event.postback) {
