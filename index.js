@@ -69,14 +69,11 @@ app.post('/webhook/', function (req, res) {
             send3ButtonMessage(sender, buttons)
             continue
         }
-
+        sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
     }
 
-        sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
-      }
       if (event.postback) {
         let text = JSON.stringify(event.postback)
-        
             if (event.postback.payload === 'apply') {
                 var buttons = {text:"Shall we start?", title1:"Start application", payload1:"start_app", title2:"I need more info", payload2:"more"}
                 send2ButtonMessage(sender, buttons)
