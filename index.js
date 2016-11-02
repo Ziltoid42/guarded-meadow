@@ -101,6 +101,13 @@ app.post('/webhook/', function (req, res) {
                 send3ButtonMessage(sender, buttons)
                 continue
             }
+            if (event.postback.payload === 'validate_loan') {
+                var buttons = {text:"Is your name Grégoire?", title1:"Yes", payload1:"valid_name", title2:"No", payload2:"invalid_name"}
+                sendTextMessage(sender, "Great! Let's continue this conversation")
+                sendTextMessage(sender, "By the way, I didn't ask your name!")
+                send2ButtonMessage(sender, buttons)
+                continue
+            }   
 
         if (event.message.attachments[0].type === 'location'){
             sendTextMessage(sender, "lat: "+attachment.payload.coordinates.lat+"\nlong: "+
