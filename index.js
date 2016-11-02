@@ -60,7 +60,7 @@ app.post('/webhook/', function (req, res) {
         }
 
         if (text === '1XX1234') {
-            sendTextMessage(sender, "Ok thanks! Can you confirm the model of your motorcycle? (Images cannot display yet)")
+            sendTextMessage(sender, "Ok thanks! Can you confirm the model of your motorcycle?")
             sendGenericMessage(sender)
             continue
         }
@@ -80,6 +80,11 @@ app.post('/webhook/', function (req, res) {
             if (event.postback.payload === 'start_app') {
             sendTextMessage(sender, "Good. First, can you write down your motorcycle plate number?")
             continue
+            }
+            if (event.postback.payload === 'honda_dream') {
+                var buttons = {text:"How would you describe the overall condition of your motorcycle?", title1:"Good condition", payload1:"good", title2:"Normal condition", payload2:"normal", title3:"Poor condition", payload3:"poor"}
+                send3ButtonMessage(sender, buttons)
+                continue
             }
 
         if (event.message.attachments[0].type === 'location'){
