@@ -64,6 +64,12 @@ app.post('/webhook/', function (req, res) {
             sendGenericMessage(sender)
             continue
         }
+          }
+        if (text === '28') {
+             var buttons = {text:"Please tell me about your personal situation", title1:"Single", payload1:"single", title2:"Married", payload2:"married", title3:"Widow", payload3:"widow"}
+            send3ButtonMessage(sender, buttons)
+            continue
+        }
         sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
       }
       if (event.postback) {
@@ -107,7 +113,42 @@ app.post('/webhook/', function (req, res) {
                 sendTextMessage(sender, "By the way, I didn't ask your name!")
                 send2ButtonMessage(sender, buttons)
                 continue
-            }   
+            }  
+            if (event.postback.payload === 'single') {
+                var buttons = {text:"Do you have children?", title1:"Yes", payload1:"valid_children", title2:"No", payload2:"invalid_children"}
+                send2ButtonMessage(sender, buttons)
+                continue
+            } 
+             if (event.postback.payload === 'valid_children') {
+                var buttons = {text:"How many children do you have?", title1:"1 or 2 children", payload1:"2_children", title2:"3 or 4 children", payload2:"4_children", title3:"5 or 6 children", payload3:"6_children"}
+                send3ButtonMessage(sender, buttons)
+                continue
+            } 
+             if (event.postback.payload === '2_children') {
+                var buttons = {text:"How many children earn their lives?", title1:"none", payload1:"no_earner", title2:"1", payload2:"1_earner", title3:"2", payload3:"2_earner"}
+                send3ButtonMessage(sender, buttons)
+                continue
+            } 
+            if (event.postback.payload === 'no_earner') {
+                var buttons = {text:"Where do you live?", title1:"parents", payload1:"live_at_parents", title2:"Alone", payload2:"live_at_self", title3:"With brother or sister", payload3:"live_at_brothers"}
+                send3ButtonMessage(sender, buttons)
+                continue
+            } 
+            if (event.postback.payload === 'live_at_self') {
+                var buttons = {text:"And by the way, where are you now?", title1:"Home", payload1:"at_home", title2:"Work", payload2:"at_work", title3:"Somewhere else", payload3:"at_else"}
+                send3ButtonMessage(sender, buttons)
+                continue
+            } 
+            if (event.postback.payload === 'at_home') {
+                sendTextMessage(sender, "Ok, can you please let me know where is your home?")
+                sendTextMessage(sender, "Just click the button below to let me know!")
+                sendLocationMessage(sender)
+                continue
+            } 
+            if (event.postback.payload === 'valid_name') {
+                sendTextMessage(sender, "How old are you Grégoire?")
+                continue
+            } 
 
         if (event.message.attachments[0].type === 'location'){
             sendTextMessage(sender, "lat: "+attachment.payload.coordinates.lat+"\nlong: "+
