@@ -57,7 +57,7 @@ app.post('/webhook/', function (req, res) {
             sendTextMessage(sender, "Hello Bong")
             sendTextMessage(sender, "My name is Creditor and I am a robot!")
             sendTextMessage(sender, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!")
-            var buttons = ["text":"Now what can I do for you?", "title1":"I want more info", "payload1":"more info", "title2":"I want to apply", "payload2":"apply" ]
+            var buttons = {text:"Now what can I do for you?", title1:"I want more info", payload1:"more info", title2:"I want to apply", payload2:"apply"}
             sendButtonMessage(sender, buttons)
             continue
         }
