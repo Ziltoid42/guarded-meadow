@@ -86,6 +86,21 @@ app.post('/webhook/', function (req, res) {
                 send3ButtonMessage(sender, buttons)
                 continue
             }
+            if (event.postback.payload === 'good') {
+                var buttons = {text:"Ok, this looks good! Based on the information you gave me, you can borrow up to 1,500 USD from Barang Ktchey Microfinance! Should we continue?", title1:"Yes", payload1:"yes", title2:"I need less money", payload2:"less", title3:"I need more money", payload3:"more"}
+                send3ButtonMessage(sender, buttons)
+                continue
+            }
+            if (event.postback.payload === 'yes') {
+                var buttons = {text:"So I understand you want a loan amounting to 1,500 USD. Now tell me, how long would you like the loan for?", title1:"6 months", payload1:"6", title2:"12 months", payload2:"12", title3:"24 months", payload3:"24"}
+                send3ButtonMessage(sender, buttons)
+                continue
+            }
+            if (event.postback.payload === '6') {
+                var buttons = {text:"Ok ok. Then if you want 1,500 USD over 6 month, that means you would pay a total of 138 USD total interest including all fees", title1:"Continue", payload1:"validate_loan", title2:"Change term", payload2:"change_loan", title3:"Stop application", payload3:"quit"}
+                send3ButtonMessage(sender, buttons)
+                continue
+            }
 
         if (event.message.attachments[0].type === 'location'){
             sendTextMessage(sender, "lat: "+attachment.payload.coordinates.lat+"\nlong: "+
