@@ -160,7 +160,7 @@ attachment.payload.coordinates.long)
     res.sendStatus(200)
   })
 
-const token ="EAANk8UeY4h4BAM0g1PgJqu83DG4ciP9NACGnvZBfZAQSoaqeG9Fw6IZAZBncATKQc87ke4mZAscKhYoCIZBn5awzovZCTqdPlQqQsi1ZCD5QOHXblqEpd0rEIeCVh6bO30mfPFBR9ScN2godTTZBfg5NXQjHFZCxd74VCyBUJb4CDDUgZDZD"
+const token ="EAANr7IiG6MUBAOBTNvbAzHt1xACzYL7KZBZAHfiFK66bNDQg34uksr9KkXiKzLnyhE4XEbSpXaZAkXTDRfZAgjb4gX1ya8UA6keT7Pf8NHwIbU4wWTx46QIVLGWvJLHY5Y4u9ZA4KFgYjlniTZBH6lXBz1CwGxAiuK5675J1ffpAZDZD"
 
 function sendTextMessage(sender, text) {
     let messageData = { text:text }
