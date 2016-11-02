@@ -40,9 +40,6 @@ app.post('/webhook/', function (req, res) {
         let text = event.message.text
         if (text === 'Generic') {
             sendGenericMessage(sender)
-            for (var j = 1; j <= 5; j++) {
-                sendTextMessage(sender, "Prout")
-            }
             continue
         }
         if (text === 'Bouttons') {
@@ -64,6 +61,7 @@ app.post('/webhook/', function (req, res) {
 
         if (text === '1XX1234') {
             sendTextMessage(sender, "Ok thanks! Can you confirm the model of your motorcycle? (Images cannot display yet)")
+            sendGenericMessage(sender)
             continue
         }
         sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
