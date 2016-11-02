@@ -216,7 +216,7 @@ function send3ButtonMessage(sender, buttons) {
             "type":"postback",
             "title":buttons.title2,
             "payload":buttons.payload2
-          }
+          },
           {
             "type":"postback",
             "title":buttons.title3,
