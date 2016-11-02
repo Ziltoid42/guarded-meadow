@@ -57,7 +57,8 @@ app.post('/webhook/', function (req, res) {
             sendTextMessage(sender, "Hello Bong")
             sendTextMessage(sender, "My name is Creditor and I am a robot!")
             sendTextMessage(sender, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!")
-            sendButtonMessage(sender, "Now what can I do for you?", "I want more info", "more info", "I want to apply", "apply" )
+            var buttons = ["text":"Now what can I do for you?", "title1":"I want more info", "payload1":"more info", "text2":"I want to apply", "payload2":"apply" ]
+            sendButtonMessage(sender, buttons)
             continue
         }
         sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
@@ -152,24 +153,24 @@ function sendGenericMessage(sender) {
     })
 }
 
-function sendButtonMessage(sender, var text, var title1, var payload1, var title2, var payload2) {
+function sendButtonMessage(sender, buttons) {
     let messageData = {
 
     "attachment":{
       "type":"template",
       "payload":{
         "template_type":"button",
-        "text": text,
+        "text": buttons.text,
         "buttons":[
           {
             "type":"postback",
-            "title":title1,
-            "payload":payload1
+            "title":buttons.title1,
+            "payload":buttons.payload1
           },
           {
             "type":"postback",
-            "title":title2,
-            "payload":payload2
+            "title":buttons.title2,
+            "payload":buttons.payload2
           }
         ]
       }
