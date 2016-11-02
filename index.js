@@ -61,6 +61,11 @@ app.post('/webhook/', function (req, res) {
             send2ButtonMessage(sender, buttons)
             continue
         }
+
+        if (text === '1XX1234') {
+            sendTextMessage(sender, "Ok thanks! Can you confirm the model of your motorcycle? (Images cannot display yet)")
+            continue
+        }
         sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
       }
       if (event.postback) {
@@ -74,6 +79,10 @@ app.post('/webhook/', function (req, res) {
                 send2ButtonMessage(sender, buttons)
                 continue
             }   
+            if (event.postback.payload === 'start_app') {
+            sendTextMessage(sender, "Good. First, can you write down your motorcycle plate number?")
+            continue
+            }
 
         if (event.message.attachments[0].type === 'location'){
             sendTextMessage(sender, "lat: "+attachment.payload.coordinates.lat+"\nlong: "+
@@ -116,26 +125,20 @@ function sendGenericMessage(sender) {
             "payload": {
                 "template_type": "generic",
                 "elements": [{
-                    "title": "First card",
-                    "subtitle": "Element #1 of an hscroll",
-                    "image_url": "http://messengerdemo.parseapp.com/img/rift.png",
-                    "buttons": [{
-                        "type": "web_url",
-                        "url": "https://www.messenger.com",
-                        "title": "web url"
-                    }, {
+                    "title": "Honda dream",
+                    "image_url": "http://www.hireamotorbikechiangmai.com/wp-content/uploads/2014/01/bike_dream.jpg",
+                    "buttons": [ {
                         "type": "postback",
-                        "title": "Postback",
-                        "payload": "Payload for first element in a generic bubble",
+                        "title": "My moto is like this",
+                        "payload": "honda_dream",
                     }],
                 }, {
-                    "title": "Second card",
-                    "subtitle": "Element #2 of an hscroll",
-                    "image_url": "http://messengerdemo.parseapp.com/img/gearvr.png",
+                    "title": "Honda Wave",
+                    "image_url": "http://www.manager.co.th/asp-bin/Image.aspx?ID=808778",
                     "buttons": [{
                         "type": "postback",
                         "title": "Postback",
-                        "payload": "Postback_slider",
+                        "payload": "honda_wave",
                     }],
                 }]
             }
