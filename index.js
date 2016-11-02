@@ -53,6 +53,13 @@ app.post('/webhook/', function (req, res) {
             sendLocationMessage(sender)
             continue
         }
+        if (text === 'start') {
+            sendTextMessage(sender, "Hello Bong")
+            sendTextMessage(sender, "My name is Creditor and I am a robot!")
+            sendTextMessage(sender, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!")
+            sendButtonMessage(sender, "Now what can I do for you?", "I want more info", "more info", "I want to apply", "apply" )
+            continue
+        }
         sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
       }
       if (event.postback) {
@@ -145,24 +152,24 @@ function sendGenericMessage(sender) {
     })
 }
 
-function sendButtonMessage(sender) {
+function sendButtonMessage(sender, var text, var title1, var payload1, var title2, var payload2) {
     let messageData = {
 
     "attachment":{
       "type":"template",
       "payload":{
         "template_type":"button",
-        "text":"What do you want to do next?",
+        "text": text,
         "buttons":[
           {
-            "type":"web_url",
-            "url":"https://petersapparel.parseapp.com",
-            "title":"Show Website"
+            "type":"postback",
+            "title":title1,
+            "payload":payload1
           },
           {
             "type":"postback",
-            "title":"Start Chatting",
-            "payload":"Postback_button"
+            "title":title2,
+            "payload":payload2
           }
         ]
       }
