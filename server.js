@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const request = require('request')
 const app = express();
-var fbMessengerBot = require('./fbMessengerBot/');
+//var fbMessengerBot = require('./fbMessengerBot/');
 
 // Manual port selection
 app.set('port', (process.env.PORT || 5000));
