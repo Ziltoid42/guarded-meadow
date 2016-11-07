@@ -1,4 +1,6 @@
-'use strict'
+require('./server.js');
+
+/*'use strict'
 
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -31,7 +33,7 @@ app.get('/webhook/', function (req, res) {
 app.listen(app.get('port'), function(){
 	console.log('Running on port', app.get('port'))	
 })
-
+*/
 app.post('/webhook/', function (req, res) {
     let messaging_events = req.body.entry[0].messaging
     for (let i = 0; i < messaging_events.length; i++) {
