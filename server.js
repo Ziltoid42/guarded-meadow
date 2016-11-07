@@ -1,4 +1,4 @@
-'use strict'
+/*'use strict'
 
 const express = require('express');
 const bodyParser = require('body-parser')
@@ -35,4 +35,4 @@ app.use(function(req, res){
 // Spin up the server
 app.listen(app.get('port'), function(){
 	console.log('Running on port', app.get('port'))	
-});
+}); */
