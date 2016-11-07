@@ -1,6 +1,7 @@
 'use strict'
 
-require('./server.js');
+
+const app = require('./server.js');
 /*
 const express = require('express')
 const bodyParser = require('body-parser')
