@@ -63,10 +63,11 @@ app.get('/webhook/', function (req, res) {
 // Where the app runs
 //app.post('/webhook/', fbMessengerBot);
 
-
+/*
 app.use(function(req, res){
    res.sendStatus(400);
 });
+*/
 
 // Spin up the server
 app.listen(app.get('port'), function(){
