@@ -8,17 +8,17 @@ module.exports = function (senderId, message) {
 
 
     if (messageText.toLowerCase() === 'test') {
-        var textReply = new fbMessage
+       /* var textReply = new fbMessage
             .PlainText("[DEBUG] SenderId: " + senderId + " Message JSON: " + JSON.stringify(message))
             .compose();
 
-        sendMessage(senderId, textReply);
+        sendMessage(senderId, textReply);*/
         sendTextMessage(senderId, senderId);
     }
 
 
     //fonction pour test 
-    /*
+    
     function sendTextMessage(sender, text) {
     messageData = { text:text }
     request({
@@ -36,7 +36,7 @@ module.exports = function (senderId, message) {
             console.log('Error: ', response.body.error)
         }
     })
-}*/
+}
 
 
     //ok now here we can handle generic messages received by the bot...
