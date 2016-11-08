@@ -112,7 +112,7 @@ module.exports.Image = function (imageUrl) {
 module.exports.ButtonTemplate = function (buttons) {
     var self = this;
     
-    if (!button.text) { 
+    if (!buttons.text) { 
         throw Error('No template title provided');
     } 
 
