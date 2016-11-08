@@ -116,25 +116,41 @@ module.exports.ButtonTemplate = function (button) {
         throw Error('No template title provided');
     } 
 
-    self.message =  {'
-         "attachment": {
-             "type": "template",
-             "payload": {
-                 "template_type": "button",
-                 "text": "'.title.'",
-                 "buttons": ['};
-                 if (button.postback1){
-                  self.message += {'
-                    "type":"postback",
-                    "title": "'.button.postback1.title.'",
-                    "payload": "'.button.postback1.payload.'",
-                  "}"
-                  
-                '}
-               self.message += {"  ]
-             }
-         }"
-     }
+    self.message =  {
+
+    "attachment":{
+      "type":"template",
+      "payload":{
+        "template_type":"button",
+        "text":title,
+        "buttons":[
+        button.postback1
+          /*Contenu de postback1
+          {
+            "type":"web_url",
+            "url":"https://petersapparel.parseapp.com",
+            "title":"Show Website"
+          } */
+      //.postback2.
+         /*Contenu de postback2
+          ,
+          {
+            "type":"postback",
+            "title":"Start Chatting",
+            "payload":"USER_DEFINED_PAYLOAD"
+          }*/
+        ]
+      }
+    }
+  };
+
+    if (button.postback1 && !(button.postback2))
+    {
+
+
+    }
+
+    
 
 
 

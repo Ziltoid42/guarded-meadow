@@ -26,7 +26,11 @@ module.exports = function (senderId, message) {
         sendMessage(senderId, imgReply);*/
         var button = {
             title : "Now what can I do for you?",
-            postback1 : { title : "prop", postback : "truc" }
+            postback1 : "{
+            "type":"postback",
+            "title":"Start Chatting",
+            "payload":"USER_DEFINED_PAYLOAD"
+            }"
             };
         var buttonReply = new fbMessage
             .ButtonTemplate(button)
