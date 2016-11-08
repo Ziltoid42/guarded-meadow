@@ -116,25 +116,27 @@ module.exports.ButtonTemplate = function (button) {
         throw Error('No template title provided');
     } 
 
-    self.message =  {
+    self.message =  {'
          "attachment": {
              "type": "template",
              "payload": {
                  "template_type": "button",
-                 "text": title,
-                 "buttons": [};
+                 "text": "'.title.'",
+                 "buttons": ['};
                  if (button.postback1){
-                  self.message += {
+                  self.message += {'
                     "type":"postback",
-                    "title": button.postback1.title,
-                    "payload": button.postback1.payload,
+                    "title": "'.button.postback1.title.'",
+                    "payload": "'.button.postback1.payload.'",
                   "}"
                   
-                }
+                '}
                self.message += {"  ]
              }
          }"
      }
+
+
 
      self.addButton = function (buttonConfig) {
 
