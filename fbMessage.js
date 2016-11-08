@@ -144,7 +144,7 @@ module.exports.ButtonTemplate = function (buttons) {
     }
   };
 
- 
+ /*
      self.addButton = function (buttonConfig) {
 
         if (self.message.attachment.payload.buttons.length <= 2) {
@@ -157,12 +157,12 @@ module.exports.ButtonTemplate = function (buttons) {
 
         return self;
      };
-
+*/
     self.compose = function () {
 
-        if (self.message.attachment.payload.buttons.length === 0) {
-            throw Error('You have to add at least 1 button to ButtonTemplate message');
-        }
+        //if (self.message.attachment.payload.buttons.length === 0) {
+          //  throw Error('You have to add at least 1 button to ButtonTemplate message');
+       // }
 
 
         return self.message;
