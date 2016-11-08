@@ -26,7 +26,7 @@ module.exports = function (senderId, message) {
         sendMessage(senderId, imgReply);*/
 
         var buttonReply = new fbMessage
-            .buttonTemplate("titre")
+            .ButtonTemplate("titre")
             .compose();
 
         sendMessage(senderId, buttonReply);
