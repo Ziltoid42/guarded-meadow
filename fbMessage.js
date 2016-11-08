@@ -109,7 +109,7 @@ module.exports.Image = function (imageUrl) {
   }
 
 */
-module.exports.ButtonTemplate = function (button) {
+module.exports.ButtonTemplate = function (buttons) {
     var self = this;
     
     if (!button.text) { 
