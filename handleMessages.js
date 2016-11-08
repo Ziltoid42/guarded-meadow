@@ -24,7 +24,7 @@ module.exports = function (senderId, message) {
             .compose();
 
         sendMessage(senderId, imgReply);*/
-        var buttons = {text:"How would you describe the overall condition of your motorcycle?", title1:"Good condition", payload1:"good", title2:"Normal condition", payload2:"normal"}
+        var buttons = {text:"How would you describe the overall condition of your motorcycle?", title1:"Good condition", payload1:"good"}
 
         var buttonReply = new fbMessage
             .ButtonTemplate(buttons)

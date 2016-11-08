@@ -116,6 +116,25 @@ module.exports.ButtonTemplate = function (buttons) {
         throw Error('No template title provided');
     } 
 
+ if(buttons.payload1 && !(buttons.payload2) && !(buttons.payload3)){
+     self.message =  {
+      "attachment":{
+      "type":"template",
+      "payload":{
+        "template_type":"button",
+        "text": buttons.text,
+        "buttons":[
+          {
+            "type":"postback",
+            "title":buttons.title1,
+            "payload":buttons.payload1
+          }
+           ]
+         }
+       }
+     };
+    }
+
     if(buttons.payload1 && buttons.payload2 && !(buttons.payload3)){
      self.message =  {
       "attachment":{
