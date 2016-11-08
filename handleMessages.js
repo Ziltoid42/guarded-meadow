@@ -24,16 +24,10 @@ module.exports = function (senderId, message) {
             .compose();
 
         sendMessage(senderId, imgReply);*/
-        var button = {
-            title : "Now what can I do for you?",
-            postback1 : "{
-            "type":"postback",
-            "title":"Start Chatting",
-            "payload":"USER_DEFINED_PAYLOAD"
-            }"
-            };
+             var buttons = {text:"Please tell me about your personal situation", title1:"Single", payload1:"single", title2:"", payload2:"", title3:"", payload3:""}
+
         var buttonReply = new fbMessage
-            .ButtonTemplate(button)
+            .ButtonTemplate(buttons)
             .compose();
 
         sendMessage(senderId, buttonReply);

@@ -122,23 +122,23 @@ module.exports.ButtonTemplate = function (button) {
       "type":"template",
       "payload":{
         "template_type":"button",
-        "text":title,
+        "text": buttons.text,
         "buttons":[
-        button.postback1
-          /*Contenu de postback1
-          {
-            "type":"web_url",
-            "url":"https://petersapparel.parseapp.com",
-            "title":"Show Website"
-          } */
-      //.postback2.
-         /*Contenu de postback2
-          ,
           {
             "type":"postback",
-            "title":"Start Chatting",
-            "payload":"USER_DEFINED_PAYLOAD"
-          }*/
+            "title":buttons.title1,
+            "payload":buttons.payload1
+          },
+          {
+            "type":"postback",
+            "title":buttons.title2,
+            "payload":buttons.payload2
+          },
+          {
+            "type":"postback",
+            "title":buttons.title3,
+            "payload":buttons.payload3
+          }
         ]
       }
     }
