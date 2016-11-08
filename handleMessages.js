@@ -13,7 +13,7 @@ module.exports = function (senderId, message) {
             .compose();
 
         sendMessage(senderId, textReply);*/
-        sendTextMessage(sender, event.sender.id);
+        sendTextMessage(senderId, senderId);
     }
 
 
