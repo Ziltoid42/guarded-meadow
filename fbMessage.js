@@ -109,7 +109,7 @@ module.exports.Image = function (imageUrl) {
   }
 
 */
-module.exports.ButtonTemplate = function (title) {
+module.exports.ButtonTemplate = function (button) {
     var self = this;
     
     if (!title) { 
@@ -122,7 +122,15 @@ module.exports.ButtonTemplate = function (title) {
              "payload": {
                  "template_type": "button",
                  "text": title,
-                 "buttons": []
+                 "buttons": [
+                 if (button.postback1){
+                  self.message += {
+                    "type":"postback",
+                    "title": button.postback1.title,
+                    "payload": button.postback1.payload
+                  }
+                }
+                 ]
              }
          }
      };
