@@ -10,12 +10,19 @@ module.exports = function (senderId, message) {
 
 
     if (messageText.toLowerCase() === 'test') {
-        var textReply = new fbMessage
+        
+        //test envoi texte simple vi composeur
+        /*var textReply = new fbMessage
             .PlainText("[DEBUG] SenderId: " + senderId + " Message JSON: " + JSON.stringify(message))
             .compose();
 
-        sendMessage(senderId, textReply);
-        sendTextMessage(senderId, "et la ça marche?");
+        sendMessage(senderId, textReply);*/
+        var imgReply = new fbMessage
+            .Image("https://img1.n3rdabl3.co.uk/wp-content/images/uploads/2016/06/32461_berserk.jpg");
+            .compose();
+
+        sendMessage(senderId, imgReply);
+    
     }
 
 
