@@ -80,11 +80,11 @@ app.post('/webhook/', function (req, res) {
 
   let messaging_events = req.body.entry[0].messaging;
   
-  for (i = 0; i < messaging_events.length; i++) {
+  for (let i = 0; i < messaging_events.length; i++) {
     
-    event = req.body.entry[0].messaging[i];
-    sender = event.sender.id;
-    recipient = event.recipient.id;
+    let event = req.body.entry[0].messaging[i];
+    let sender = event.sender.id;
+    let recipient = event.recipient.id;
 
 
     //messages
