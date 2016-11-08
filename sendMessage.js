@@ -1,7 +1,7 @@
 var request = require('request');
 var token = require('./config/appToken');
 
-module.exports = function sendMessage(recipientId, messageData, notificationType) {
+module.exports = function sendMessage(senderId, messageData, notificationType) {
 
     if (!notificationType) {
         notificationType = 'REGULAR'; // alternatives: SILENT_PUSH, NO_PUSH
@@ -15,7 +15,7 @@ module.exports = function sendMessage(recipientId, messageData, notificationType
         method: 'POST',
         json: {
             recipient: {
-                id: sender
+                id: senderId
             },
             message: messageData,
             notification_type: notificationType
