@@ -19,7 +19,7 @@ module.exports = function (senderId, message) {
 
     //fonction pour test
     function sendTextMessage(sender, text) {
-    let messageData = { text:text }
+    messageData = { text:text }
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
         qs: {access_token:token},
