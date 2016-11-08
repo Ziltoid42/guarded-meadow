@@ -1,5 +1,5 @@
-var sendMessage = require('./fbMessage/sendMessage');
-var fbMessage = require('./fbMessage/fbMessage');
+var sendMessage = require('./sendMessage');
+var fbMessage = require('./fbMessage');
 
 
 module.exports = function (senderId, message) {
