@@ -14,7 +14,7 @@ module.exports = function (senderId, message) {
             .compose();
 
         sendMessage(senderId, textReply);*/
-        sendTextMessage(senderId, senderId);
+        sendTextMessage(senderId, "et la ça marche?");
     }
 
 
