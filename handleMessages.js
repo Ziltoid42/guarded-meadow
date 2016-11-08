@@ -27,7 +27,7 @@ module.exports = function (senderId, message) {
 
         var buttonReply = new fbMessage
         var button = {
-            title : {"Now what can I do for you?"},
+            title : "Now what can I do for you?",
             postback1 : { title : "prop", postback : "truc" }
             };
        
