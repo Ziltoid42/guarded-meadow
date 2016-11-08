@@ -26,8 +26,8 @@ module.exports = function (senderId, message) {
         sendMessage(senderId, imgReply);*/
 
         var buttonReply = new fbMessage
-            .ButtonTemplate(var button = {title:"Now what can I do for you?", .posback1.title:"I want more info", .postback1.payload:"more info"}
-          )
+        var button = {title:"Now what can I do for you?", .posback1.title:"I want more info", .postback1.payload:"more info"}
+            .ButtonTemplate(button)
             .compose();
 
         sendMessage(senderId, buttonReply);
