@@ -1,5 +1,5 @@
 var request = require('request');
-var token = require('../config/appToken');
+var token = require('./config/appToken');
 
 module.exports = function sendMessage(recipientId, messageData, notificationType) {
 
