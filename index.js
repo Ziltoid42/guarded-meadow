@@ -90,7 +90,12 @@ app.post('/webhook/', function (req, res) {
     //messages
     if (event.message && event.message.text) {
       
-        sendTextMessage(sender, event.sender.id);
+      //test output user.id
+       if (event.message.text === 'id') {
+            sendTextMessage(sender, event.sender.id);
+            continue
+        }
+        
         //handleMessages(sender, event.message); //fonction routing text
 
     }
