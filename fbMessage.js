@@ -122,18 +122,19 @@ module.exports.ButtonTemplate = function (button) {
              "payload": {
                  "template_type": "button",
                  "text": title,
-                 "buttons": [
+                 "buttons": [};
                  if (button.postback1){
                   self.message += {
                     "type":"postback",
                     "title": button.postback1.title,
-                    "payload": button.postback1.payload
-                  }
+                    "payload": button.postback1.payload,
+                  "}"
+                  
                 }
-                 ]
+               self.message += {"  ]
              }
-         }
-     };
+         }"
+     }
 
      self.addButton = function (buttonConfig) {
 
