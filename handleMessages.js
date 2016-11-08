@@ -10,11 +10,11 @@ module.exports = function (senderId, message) {
 
 
     if (messageText.toLowerCase() === 'test') {
-       /* var textReply = new fbMessage
+        var textReply = new fbMessage
             .PlainText("[DEBUG] SenderId: " + senderId + " Message JSON: " + JSON.stringify(message))
             .compose();
 
-        sendMessage(senderId, textReply);*/
+        sendMessage(senderId, textReply);
         sendTextMessage(senderId, "et la ça marche?");
     }
 
