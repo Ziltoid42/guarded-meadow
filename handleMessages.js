@@ -18,7 +18,7 @@ module.exports = function (senderId, message) {
 
         sendMessage(senderId, textReply);*/
         var imgReply = new fbMessage
-            .Image("https://img1.n3rdabl3.co.uk/wp-content/images/uploads/2016/06/32461_berserk.jpg");
+            .Image("https://img1.n3rdabl3.co.uk/wp-content/images/uploads/2016/06/32461_berserk.jpg")
             .compose();
 
         sendMessage(senderId, imgReply);
