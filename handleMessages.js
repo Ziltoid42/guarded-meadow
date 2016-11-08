@@ -27,13 +27,7 @@ module.exports = function (senderId, message) {
 
         var buttonReply = new fbMessage
             .ButtonTemplate("titre")
-            .addButton(
-            '{
-            "type":"postback",
-            "title":"Start Chatting",
-            "payload":"USER_DEFINED_PAYLOAD"
-            }'
-            )
+            .addButton()
             .compose();
 
         sendMessage(senderId, buttonReply);
