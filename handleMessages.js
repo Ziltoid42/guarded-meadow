@@ -11,17 +11,25 @@ module.exports = function (senderId, message) {
 
     if (messageText.toLowerCase() === 'test') {
         
-        //test envoi texte simple vi composeur
+        //Envoi texte simple via composeur
         /*var textReply = new fbMessage
             .PlainText("[DEBUG] SenderId: " + senderId + " Message JSON: " + JSON.stringify(message))
             .compose();
 
         sendMessage(senderId, textReply);*/
-        var imgReply = new fbMessage
+
+        //Envoi image via composeur
+        /*var imgReply = new fbMessage
             .Image("https://img1.n3rdabl3.co.uk/wp-content/images/uploads/2016/06/32461_berserk.jpg")
             .compose();
 
-        sendMessage(senderId, imgReply);
+        sendMessage(senderId, imgReply);*/
+
+        var buttonReply = new fbMessage
+            .buttonTemplate("titre")
+            .compose();
+
+        sendMessage(senderId, buttonReply);
     
     }
 
