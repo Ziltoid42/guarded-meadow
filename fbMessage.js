@@ -112,7 +112,7 @@ module.exports.Image = function (imageUrl) {
 module.exports.ButtonTemplate = function (button) {
     var self = this;
     
-    if (!title) { 
+    if (!button.text) { 
         throw Error('No template title provided');
     } 
 
@@ -144,16 +144,7 @@ module.exports.ButtonTemplate = function (button) {
     }
   };
 
-    if (button.postback1 && !(button.postback2))
-    {
-
-
-    }
-
-    
-
-
-
+ 
      self.addButton = function (buttonConfig) {
 
         if (self.message.attachment.payload.buttons.length <= 2) {
