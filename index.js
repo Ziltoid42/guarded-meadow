@@ -148,7 +148,7 @@ var req = http.request(options, callback).end();
       
        if (event.message.text === 'id') {
             sendTextMessage(sender, req);
-            continue
+            
         }
         
        // handleMessages(sender, event.message); //fonction routing text
