@@ -107,10 +107,37 @@ https.get(options = {
      }
  )
 }
+
+function getData(){
+  var https = require('https');
+  var str = '';
+
+  var options = {
+       method : "GET",
+         uri    : "https://graph.facebook.com/v2.6/" + sender + "?",
+         qs     : {
+            fields:"first_name,last_name,profile_pic,locale,timezone,gender",
+            access_token : token   
+         },
+         json   : true};
+callback = function(response) {
+
+  response.on('data', function (chunk) {
+    str += chunk;
+  });
+
+  response.on('end', function () {
+    //console.log(req.data);
+    //console.log(str);
+    // your code here if you want to use the results !
+  });
+}
+
+var req = http.request(options, callback).end();
   
 
 
-   var info = getUserProfile(sender);
+   //var info = getUserProfile(sender);
   
 
 
@@ -120,7 +147,7 @@ https.get(options = {
       //test output user
       
        if (event.message.text === 'id') {
-            sendTextMessage(sender, info);
+            sendTextMessage(sender, req);
             continue
         }
         
