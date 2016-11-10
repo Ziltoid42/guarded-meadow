@@ -114,7 +114,7 @@ var user = getUserProfile(sender).then(info);
       //test output user
       
        if (event.message.text === 'id') {
-            sendTextMessage(sender, toString(info.first_name));
+            sendTextMessage(sender, toString(user));
             
         }
         
