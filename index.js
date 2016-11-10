@@ -105,9 +105,8 @@ app.post('/webhook/', function (req, res) {
   
 
 
-   var info = getUserProfile(sender);
-    console.log(info);
-
+   
+var user = getUserProfile(sender).then((info);
 
     //messages
     if (event.message && event.message.text) {
@@ -115,7 +114,7 @@ app.post('/webhook/', function (req, res) {
       //test output user
       
        if (event.message.text === 'id') {
-            sendTextMessage(sender, toString(info));
+            sendTextMessage(sender, toString(user.info.first_name));
             
         }
         
