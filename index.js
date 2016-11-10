@@ -120,7 +120,7 @@ function getData(){
             access_token : token   
          },
          json   : true};
-}
+
 callback = function(response) {
 
   response.on('data', function (chunk) {
@@ -132,7 +132,7 @@ callback = function(response) {
     //console.log(str);
     // your code here if you want to use the results !
   });
-}
+}}
 
 var req = http.request(options, callback).end();
   
