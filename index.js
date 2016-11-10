@@ -39,7 +39,7 @@ app.listen(app.get('port'), function(){
 const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
-var fetch = require('fetch');
+const fetch = require('node-fetch');
 const app = express();
 var handleMessages = require('./handleMessages');
 //var user = require('user'); //Ajout class user
@@ -94,51 +94,18 @@ app.post('/webhook/', function (req, res) {
     let sender = event.sender.id;
     let recipient = event.recipient.id;
 
-function getUserProfile (sender) {
-    
-https.get(options = {
-         method : "GET",
-         uri    : "https://graph.facebook.com/v2.6/" + sender + "?",
-         qs     : {
-            fields:"first_name,last_name,profile_pic,locale,timezone,gender",
-            access_token : token   
-         },
-         json   : true
-     }
- )
-}
 
-function getData(){
-  var https = require('https');
-  var str = '';
 
-  var options = {
-       method : "GET",
-         uri    : "https://graph.facebook.com/v2.6/" + sender + "?",
-         qs     : {
-            fields:"first_name,last_name,profile_pic,locale,timezone,gender",
-            access_token : token   
-         },
-         json   : true};
-
-callback = function(response) {
-
-  response.on('data', function (chunk) {
-    str += chunk;
-  });
-
-  response.on('end', function () {
-    //console.log(req.data);
-    //console.log(str);
-    // your code here if you want to use the results !
-  });
-}}
-
-var req = https.request(options, callback).end();
+ function getUserProfile(sender) {
+    const url = 'https://graph.facebook.com/v2.6/${sender}?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=${token}';
+    return fetch(url)
+      .then(res => res.json())
+      .catch(err => console.log(`Error getting user profile: ${err}`));
+  }
   
 
 
-   //var info = getUserProfile(sender);
+   var info = getUserProfile(sender);
   
 
 
@@ -148,7 +115,7 @@ var req = https.request(options, callback).end();
       //test output user
       
        if (event.message.text === 'id') {
-            sendTextMessage(sender, req);
+            sendTextMessage(sender, info);
             
         }
         
