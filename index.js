@@ -64,6 +64,8 @@ app.get('/webhook/', function (req, res) {
 
 
 
+
+
 // Spin up the server
 app.listen(app.get('port'), function(){
     console.log('Running on port', app.get('port')) 
@@ -87,17 +89,31 @@ app.post('/webhook/', function (req, res) {
     let recipient = event.recipient.id;
 
 
+  
+
+   function getUserProfile(sender) {
+    const url = 'https://graph.facebook.com/v2.6/${sender}?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=${token}';
+    return fetch(url)
+      .then(res => res.json())
+      .catch(err => console.log(`Error getting user profile: ${err}`));
+  }
+
+   var info = getUserProfile() {
+    return getUserProfile(sender);
+  }
+
+
     //messages
     if (event.message && event.message.text) {
       
-      //test output user.id
-      /*
+      //test output user
+      
        if (event.message.text === 'id') {
-            sendTextMessage(sender, event.sender.id);
+            sendTextMessage(sender, info);
             continue
-        }*/
+        }
         
-        handleMessages(sender, event.message); //fonction routing text
+       // handleMessages(sender, event.message); //fonction routing text
 
     }
 
