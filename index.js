@@ -95,7 +95,8 @@ app.post('/webhook/', function (req, res) {
     let recipient = event.recipient.id;
 
 function getUserProfile (sender) {
-    request(options = {
+    
+https.get(options = {
          method : "GET",
          uri    : "https://graph.facebook.com/v2.6/" + sender + "?",
          qs     : {
@@ -104,7 +105,7 @@ function getUserProfile (sender) {
          },
          json   : true
      }
- );
+ )
 }
   
 
