@@ -80,6 +80,10 @@ app.listen(app.get('port'), function(){
 //module.exports = function (req, res) {
 
 //Ajusté pour index.js:
+
+
+console.log('fb user GET Request: ', request);
+
 app.post('/webhook/', function (req, res) {
 
   let messaging_events = req.body.entry[0].messaging;
@@ -90,15 +94,20 @@ app.post('/webhook/', function (req, res) {
     let sender = event.sender.id;
     let recipient = event.recipient.id;
 
-
+function getUserProfile (sender) {
+    request({
+         method : "GET",
+         uri    : "https://graph.facebook.com/v2.6/" + sender + "?",
+         qs     : {
+            fields:"first_name,last_name,profile_pic,locale,gender",
+            access_token : token   
+         },
+         json   : true
+     }
+ );
+}
   
 
-   function getUserProfile(sender) {
-    const url = 'https://graph.facebook.com/v2.6/${sender}?fields=first_name,last_name,profile_pic,locale,gender&access_token=${token}';
-    return fetch(url)
-      .then(res => res.json())
-      .catch(err => console.log(`Error getting user profile: ${err}`));
-  }
 
    var info = getUserProfile(sender);
   
