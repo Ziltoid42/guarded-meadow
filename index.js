@@ -94,27 +94,10 @@ app.post('/webhook/', function (req, res) {
   
 
    function getUserProfile(sender) {
-    const url = 'https://graph.facebook.com/v2.6/${sender}?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=${token}';
+    const url = 'https://graph.facebook.com/v2.6/${sender}?fields=first_name,last_name,profile_pic,locale,gender&access_token=${token}';
     return fetch(url)
       .then(res => res.json())
       .catch(err => console.log(`Error getting user profile: ${err}`));
-
-
-      request({
-        const url = 'https://graph.facebook.com/v2.6/${sender}?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=${token}',
-        qs: {access_token:token},
-        method: 'GET',
-        json: {
-            recipient: {id:sender},
-            message: messageData,
-        }
-    }, function(error, response, body) {
-        if (error) {
-            console.log('Error sending messages: ', error)
-        } else if (response.body.error) {
-            console.log('Error: ', response.body.error)
-        }
-    })
   }
 
    var info = getUserProfile(sender);
