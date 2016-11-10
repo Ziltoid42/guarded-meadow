@@ -110,7 +110,7 @@ app.post('/webhook/', function (req, res) {
       //test output user
       
        if (event.message.text === 'id') {
-            sendTextMessage(sender, info);
+            sendTextMessage(sender, print(info));
             continue
         }
         
