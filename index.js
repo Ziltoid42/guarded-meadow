@@ -39,7 +39,7 @@ app.listen(app.get('port'), function(){
 const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
-const fetch = require('fetch');
+var fetch = require('fetch');
 const app = express();
 var handleMessages = require('./handleMessages');
 //var user = require('user'); //Ajout class user
