@@ -119,7 +119,7 @@ function getUserProfile (sender) {
       //test output user
       
        if (event.message.text === 'id') {
-            sendTextMessage(sender, print(info));
+            sendTextMessage(sender, info);
             continue
         }
         
