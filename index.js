@@ -120,6 +120,7 @@ function getData(){
             access_token : token   
          },
          json   : true};
+}
 callback = function(response) {
 
   response.on('data', function (chunk) {
