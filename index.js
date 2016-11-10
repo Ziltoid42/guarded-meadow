@@ -98,9 +98,8 @@ app.post('/webhook/', function (req, res) {
       .catch(err => console.log(`Error getting user profile: ${err}`));
   }
 
-   var info = getUserProfile() {
-    return getUserProfile(sender);
-  }
+   var info = getUserProfile(sender);
+  
 
 
     //messages
