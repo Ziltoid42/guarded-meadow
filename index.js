@@ -37,10 +37,12 @@ app.listen(app.get('port'), function(){
 'use strict'
 
 const express = require('express');
-const bodyParser = require('body-parser')
-const request = require('request')
+const bodyParser = require('body-parser');
+const request = require('request');
+const fetch = require('fetch');
 const app = express();
 var handleMessages = require('./handleMessages');
+//var user = require('user'); //Ajout class user
 
 // Manual port selection
 app.set('port', (process.env.PORT || 5000));
@@ -96,6 +98,23 @@ app.post('/webhook/', function (req, res) {
     return fetch(url)
       .then(res => res.json())
       .catch(err => console.log(`Error getting user profile: ${err}`));
+
+
+      request({
+        const url = 'https://graph.facebook.com/v2.6/${sender}?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=${token}',
+        qs: {access_token:token},
+        method: 'GET',
+        json: {
+            recipient: {id:sender},
+            message: messageData,
+        }
+    }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
+        }
+    })
   }
 
    var info = getUserProfile(sender);
