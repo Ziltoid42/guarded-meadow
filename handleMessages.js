@@ -36,9 +36,9 @@ module.exports = function (senderId, message) {
 
 
         if (text === 'start') {
-            sendTextMessage(sender, "Hello Bong")
-            sendTextMessage(sender, "My name is Creditor and I am a robot!")
-            sendTextMessage(sender, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!")
+            sendTextMessage(senderId, "Hello Bong")
+            sendTextMessage(senderId, "My name is Creditor and I am a robot!")
+            sendTextMessage(senderId, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!")
             var buttons = {
                 text:"Now what can I do for you?", 
                 title1:"I want more info", 
@@ -54,8 +54,8 @@ module.exports = function (senderId, message) {
         }
 
         if (text === '1XX1234') {
-            sendTextMessage(sender, "Ok thanks! Can you confirm the model of your motorcycle?")
-            sendGenericMessage(sender)
+            sendTextMessage(Idsender, "Ok thanks! Can you confirm the model of your motorcycle?")
+            sendGenericMessage(Idsender)
             //continue
         }
         if (text === '28') {
@@ -75,7 +75,7 @@ module.exports = function (senderId, message) {
             //continue
         }
         if (text === 'location') {
-            sendLocationMessage(sender)
+            sendLocationMessage(senderId)
             //continue
         }
 
@@ -88,7 +88,7 @@ module.exports = function (senderId, message) {
         qs: {access_token:token},
         method: 'POST',
         json: {
-            recipient: {id:sender},
+            recipient: {id:senderId},
             message: messageData,
         }
     }, function(error, response, body) {
