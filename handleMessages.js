@@ -35,6 +35,50 @@ module.exports = function (senderId, message) {
     }
 
 
+        if (text === 'start') {
+            sendTextMessage(sender, "Hello Bong")
+            sendTextMessage(sender, "My name is Creditor and I am a robot!")
+            sendTextMessage(sender, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!")
+            var buttons = {
+                text:"Now what can I do for you?", 
+                title1:"I want more info", 
+                payload1:"more info", 
+                title2:"I want to apply", 
+                payload2:"apply"}
+            
+            var buttonReply = new fbMessage
+            .ButtonTemplate(buttons)
+            .compose();
+            sendMessage(senderId, buttonReply);
+            continue
+        }
+
+        if (text === '1XX1234') {
+            sendTextMessage(sender, "Ok thanks! Can you confirm the model of your motorcycle?")
+            sendGenericMessage(sender)
+            continue
+        }
+        if (text === '28') {
+             var buttons = {
+                text:"Please tell me about your personal situation", 
+                title1:"Single", 
+                payload1:"single", 
+                title2:"Married", 
+                payload2:"married", 
+                title3:"Widow", 
+                payload3:"widow"}
+            
+            var buttonReply = new fbMessage
+            .ButtonTemplate(buttons)
+            .compose();
+            sendMessage(senderId, buttonReply);
+            continue
+        }
+        if (text === 'location') {
+            sendLocationMessage(sender)
+            continue
+        }
+
     //fonction pour test 
     
     function sendTextMessage(sender, text) {
