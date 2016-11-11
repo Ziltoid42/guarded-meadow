@@ -6,6 +6,8 @@ const request = require('request');
 const fetch = require('node-fetch');
 const app = express();
 var handleMessages = require('./handleMessages');
+var handlePostbacks = require('./handlePostbacks');
+
 //var user = require('user'); //Ajout class user
 
 // Manual port selection
