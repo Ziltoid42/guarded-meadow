@@ -6,7 +6,7 @@ var token = require('./config/appToken');
 
 module.exports = function (senderId, message) {
     
-    var messageText = message.text;
+    var text = message.text;
 
 
     if (messageText.toLowerCase() === 'test') {
