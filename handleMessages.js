@@ -81,12 +81,13 @@ module.exports = function (senderId, message) {
             sendLocationMessage(senderId)
             //continue
         }
-
+        //demande location
+         /*
         if (message.attachments[0].type === 'location'){
-            sendTextMessage(sender, "lat: "+attachment.payload.coordinates.lat+"\nlong: "+
+            sendTextMessage(senderId, "lat: "+attachment.payload.coordinates.lat+"\nlong: "+
             attachment.payload.coordinates.long)
             //continue
-            }
+            }*/
 
     //fonction pour test 
     
