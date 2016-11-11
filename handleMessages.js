@@ -57,8 +57,8 @@ module.exports = function (senderId, message) {
         }
 
         if (text === '1XX1234') {
-            sendTextMessage(Idsender, "Ok thanks! Can you confirm the model of your motorcycle?")
-            sendGenericMessage(Idsender)
+            sendTextMessage(senderId, "Ok thanks! Can you confirm the model of your motorcycle?")
+            sendGenericMessage(senderId)
             //continue
         }
         if (text === '28') {
