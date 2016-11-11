@@ -43,7 +43,7 @@ app.listen(app.get('port'), function(){
 //Ajusté pour index.js:
 
 
-//console.log('fb user GET Request: ', request);
+console.log('fb user GET Request: ', request);
 
 app.post('/webhook/', function (req, res) {
 
