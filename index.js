@@ -1,46 +1,14 @@
-/*
-'use strict'
-
-const express = require('express')
-const bodyParser = require('body-parser')
-const request = require('request')
-const app = express()
-
-app.set('port', (process.env.PORT || 5000))
-
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({extended: false}))
-
-// parse application/json
-app.use(bodyParser.json())
-
-// index route
-app.get('/', function (req, res) {
-    res.send('hello world i am maripoza')
-})
-
-// for facebook verification
-app.get('/webhook/', function (req, res) {
-    if (req.query['hub.verify_token'] === 'my_voice_is_my_password_verify_me') {
-        res.send(req.query['hub.challenge'])
-    }
-    res.send('Error, wrong token')
-    res.sendStatus(200)
-})
-
-// Spin up the server
-app.listen(app.get('port'), function(){
-    console.log('Running on port', app.get('port')) 
-})
-*/
-
 'use strict'
 
 const express = require('express');
-const bodyParser = require('body-parser')
-const request = require('request')
+const bodyParser = require('body-parser');
+const request = require('request');
+//const fetch = require('node-fetch');
 const app = express();
-//var fbMessengerBot = require('./fbMessengerBot/');
+var handleMessages = require('./handleMessages');
+var handlePostbacks = require('./handlePostbacks');
+
+//var user = require('user'); //Ajout class user
 
 // Manual port selection
 app.set('port', (process.env.PORT || 5000));
@@ -60,21 +28,122 @@ app.get('/webhook/', function (req, res) {
   }
 });
 
-// Where the app runs
-//app.post('/webhook/', fbMessengerBot);
-
-/*
-app.use(function(req, res){
-   res.sendStatus(400);
-});
-*/
 
 // Spin up the server
 app.listen(app.get('port'), function(){
     console.log('Running on port', app.get('port')) 
 });
 
+// Where the app runs
+//app.post('/webhook/', fbMessengerBot);
+
+//A l'origine dans index plutot que server, intégré dans app.post:
+//module.exports = function (req, res) {
+
+//Ajusté pour index.js:
+
+
+app.post('/webhook/', function (req, res) {
+
+  let messaging_events = req.body.entry[0].messaging;
+  
+  for (let i = 0; i < messaging_events.length; i++) {
+    
+    let event = req.body.entry[0].messaging[i];
+    let sender = event.sender.id;
+    let recipient = event.recipient.id;
+
+/*
+
+ function getUserProfile(sender) {
+    const url = 'https://graph.facebook.com/v2.6/${sender}?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=${token}';
+    return fetch(url)
+      .then(res => res.json())
+      .catch(err => console.log(`Error getting user profile: ${err}`));
+  }
+  
+
+
+   
+var user = getUserProfile(sender).then(info);*/
+
+    //messages
+    if (event.message && event.message.text) {
+      
+      //test output user
+      
+       if (event.message.text === 'id') {
+            sendTextMessage(sender, toString(sender));
+            continue
+            
+        }
+        
+        //handleMessages(sender, event.message); //fonction routing text
+
+    }
+
+
+    //messaging_postbacks
+    if (event.postback && event.postback.payload) {
+
+        //handlePostbacks(sender, event.postback.payload); //fonction routing postbacks
+
+    }
+
+    //messaging_optins
+    /* gestion abonnements a gérer plus tard
+    if (event.optin && event.optin.ref) {
+
+        handleOptins(sender, event.optin);
+
+    }
+    */
+
+    //message_deliveries
+    /* Pas sur de l'utilité
+    if (event.delivery && event.delivery.watermark) {
+
+    }
+    */
+
+  }
+
+  res.sendStatus(200);
+
+})
+
+   //token en clair?
+    const token ="EAANr7IiG6MUBAOBTNvbAzHt1xACzYL7KZBZAHfiFK66bNDQg34uksr9KkXiKzLnyhE4XEbSpXaZAkXTDRfZAgjb4gX1ya8UA6keT7Pf8NHwIbU4wWTx46QIVLGWvJLHY5Y4u9ZA4KFgYjlniTZBH6lXBz1CwGxAiuK5675J1ffpAZDZD"
+
+
+    //fonction pour test
+    function sendTextMessage(sender, text) {
+    let messageData = { text:text }
+    request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: {access_token:token},
+        method: 'POST',
+        json: {
+            recipient: {id:sender},
+            message: messageData,
+        }
+    }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
+        }
+    })
+}
+
+
+app.use(function(req, res){
+   res.sendStatus(400);
+});
+
+
 // Debut du code a rebosser
+/*
 app.post('/webhook/', function (req, res) {
     let messaging_events = req.body.entry[0].messaging
     for (let i = 0; i < messaging_events.length; i++) {
@@ -203,7 +272,7 @@ attachment.payload.coordinates.long)
     res.sendStatus(200)
   })
 
-const token ="EAANr7IiG6MUBAA9J6PO5FjYzaq5ZChmhs6XMe0Q8OfB9oUvC6fvcGkaPbWn922aNZAuy4kASZCMDLF4J7o0veVIXhX3qXLZAvU0RQSfLO82YQwWLdeDM1hb3Ap9q2W6tiJgbvqCshfsIvFe5ZC6dBACqGUxlX1ZCzukokMs4v6qAZDZD"
+const token ="EAANr7IiG6MUBAOBTNvbAzHt1xACzYL7KZBZAHfiFK66bNDQg34uksr9KkXiKzLnyhE4XEbSpXaZAkXTDRfZAgjb4gX1ya8UA6keT7Pf8NHwIbU4wWTx46QIVLGWvJLHY5Y4u9ZA4KFgYjlniTZBH6lXBz1CwGxAiuK5675J1ffpAZDZD"
 
 function sendTextMessage(sender, text) {
     let messageData = { text:text }
@@ -378,3 +447,5 @@ function sendLocationMessage(sender) {
     })
 }
 
+*/
+//Fin du code a rebosser
