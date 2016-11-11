@@ -78,7 +78,7 @@ var user = getUserProfile(sender).then(info);*/
             
         }
         
-        handleMessages(sender, event.message); //fonction routing text
+        //handleMessages(sender, event.message); //fonction routing text
 
     }
 
@@ -86,7 +86,7 @@ var user = getUserProfile(sender).then(info);*/
     //messaging_postbacks
     if (event.postback && event.postback.payload) {
 
-        handlePostbacks(sender, event.postback.payload); //fonction routing postbacks
+        //handlePostbacks(sender, event.postback.payload); //fonction routing postbacks
 
     }
 
