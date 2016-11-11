@@ -16,6 +16,7 @@ module.exports = function (senderId, postback) {
     //}
 
             if (payload === 'apply') {
+            	sendTextMessage(sender, "Good. First, can you write down your motorcycle plate number?")
                 var buttons = {
                     text:"Shall we start?", 
                     title1:"Start application", 
