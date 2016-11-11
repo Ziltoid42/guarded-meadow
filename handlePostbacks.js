@@ -14,6 +14,9 @@ module.exports = function (senderId, postback) {
     	//envoyer la carte suivante
 
     //}
+      if (postback.payload === 'apply') {
+                sendTextMessage(sender, "Good. First, can you write down your motorcycle plate number?");
+            }
 
             if (payload === 'apply') {
             	sendTextMessage(sender, "Good. First, can you write down your motorcycle plate number?")
