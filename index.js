@@ -82,7 +82,10 @@ var user = getUserProfile(sender).then(info);*/
     //messaging_postbacks
     if (event.postback && event.postback.payload) {
 
-        handlePostbacks(sender, event.postback.payload); //fonction routing postbacks
+        if (event.postback.payload === 'apply') {
+                sendTextMessage(sender, "Good. First, can you write down your motorcycle plate number?");
+            }
+        //handlePostbacks(sender, event.postback); //fonction routing postbacks
 
     }
 
