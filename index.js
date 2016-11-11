@@ -3,7 +3,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
-const fetch = require('node-fetch');
+//const fetch = require('node-fetch');
 const app = express();
 var handleMessages = require('./handleMessages');
 var handlePostbacks = require('./handlePostbacks');
@@ -43,7 +43,7 @@ app.listen(app.get('port'), function(){
 //Ajusté pour index.js:
 
 
-console.log('fb user GET Request: ', request);
+//console.log('fb user GET Request: ', request);
 
 app.post('/webhook/', function (req, res) {
 

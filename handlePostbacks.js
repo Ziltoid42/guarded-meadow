@@ -25,7 +25,7 @@ module.exports = function (senderId, postback) {
             }   
             if (payload === 'start_app') {
             sendTextMessage(sender, "Good. First, can you write down your motorcycle plate number?")
-            continue
+            //continue
             }
             if (payload === 'honda_dream') {
                 var buttons = {
