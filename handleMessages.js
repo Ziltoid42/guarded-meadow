@@ -50,13 +50,13 @@ module.exports = function (senderId, message) {
             .ButtonTemplate(buttons)
             .compose();
             sendMessage(senderId, buttonReply);
-            continue
+            //continue
         }
 
         if (text === '1XX1234') {
             sendTextMessage(sender, "Ok thanks! Can you confirm the model of your motorcycle?")
             sendGenericMessage(sender)
-            continue
+            //continue
         }
         if (text === '28') {
              var buttons = {
@@ -72,11 +72,11 @@ module.exports = function (senderId, message) {
             .ButtonTemplate(buttons)
             .compose();
             sendMessage(senderId, buttonReply);
-            continue
+            //continue
         }
         if (text === 'location') {
             sendLocationMessage(sender)
-            continue
+            //continue
         }
 
     //fonction pour test 

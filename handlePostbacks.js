@@ -21,7 +21,7 @@ module.exports = function (senderId, postback) {
                     payload1:"start_app", 
                     title2:"I need more info", 
                     payload2:"more"}
-                continue
+                //continue
             }   
             if (payload === 'start_app') {
             sendTextMessage(sender, "Good. First, can you write down your motorcycle plate number?")
@@ -36,7 +36,7 @@ module.exports = function (senderId, postback) {
                     payload2:"normal", 
                     title3:"Poor condition", 
                     payload3:"poor"}
-                continue
+                //continue
             }
             if (payload === 'good') {
                 var buttons = {
@@ -47,7 +47,7 @@ module.exports = function (senderId, postback) {
                     payload2:"less", 
                     title3:"I need more money", 
                     payload3:"more"}
-                continue
+                //continue
             }
             if (payload === 'yes') {
                 var buttons = {
@@ -58,7 +58,7 @@ module.exports = function (senderId, postback) {
                     payload2:"12", 
                     title3:"24 months", 
                     payload3:"24"}
-                continue
+                //continue
             }
             if (payload === '6') {
                 var buttons = {
@@ -69,7 +69,7 @@ module.exports = function (senderId, postback) {
                     payload2:"change_loan", 
                     title3:"Stop application", 
                     payload3:"quit"}
-                continue
+                //continue
             }
             if (payload === 'validate_loan') {
                 var buttons = {
@@ -80,7 +80,7 @@ module.exports = function (senderId, postback) {
                     payload2:"invalid_name"}
                 sendTextMessage(sender, "Great! Let's continue this conversation")
                 sendTextMessage(sender, "By the way, I didn't ask your name!")
-                continue
+               //continue
             }  
             if (payload === 'single') {
                 var buttons = {
@@ -89,7 +89,7 @@ module.exports = function (senderId, postback) {
                     payload1:"valid_children", 
                     title2:"No", 
                     payload2:"invalid_children"}
-                continue
+                //continue
             } 
              if (payload === 'valid_children') {
                 var buttons = {
@@ -100,7 +100,7 @@ module.exports = function (senderId, postback) {
                     payload2:"4_children", 
                     title3:"5 or 6 children", 
                     payload3:"6_children"}
-                continue
+                //continue
             } 
              if (payload === '2_children') {
                 var buttons = {
@@ -111,7 +111,7 @@ module.exports = function (senderId, postback) {
                     payload2:"1_earner", 
                     title3:"2", 
                     payload3:"2_earner"}
-                continue
+                //continue
             } 
             if (payload === 'no_earner') {
                 var buttons = {
@@ -122,7 +122,7 @@ module.exports = function (senderId, postback) {
                     payload2:"live_at_self", 
                     title3:"With brother or sister", 
                     payload3:"live_at_brothers"}
-                continue
+                //continue
             } 
             if (payload === 'live_at_self') {
                 var buttons = {
@@ -133,23 +133,23 @@ module.exports = function (senderId, postback) {
                     payload2:"at_work", 
                     title3:"Somewhere else", 
                     payload3:"at_else"}
-                continue
+                //continue
             } 
             if (payload === 'at_home') {
                 sendTextMessage(sender, "Ok, can you please let me know where is your home?")
                 sendTextMessage(sender, "Just click the button below to let me know!")
                 sendLocationMessage(sender)
-                continue
+                //continue
             } 
             if (payload === 'valid_name') {
                 sendTextMessage(sender, "How old are you Grégoire?")
-                continue
+                //continue
             } 
 
             if (event.message.attachments[0].type === 'location'){
             sendTextMessage(sender, "lat: "+attachment.payload.coordinates.lat+"\nlong: "+
             attachment.payload.coordinates.long)
-            continue
+            //continue
             }
 
             if (buttons) //verifier que ça existe en javascript

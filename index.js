@@ -53,7 +53,7 @@ app.post('/webhook/', function (req, res) {
     let sender = event.sender.id;
     let recipient = event.recipient.id;
 
-
+/*
 
  function getUserProfile(sender) {
     const url = 'https://graph.facebook.com/v2.6/${sender}?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=${token}';
@@ -65,7 +65,7 @@ app.post('/webhook/', function (req, res) {
 
 
    
-var user = getUserProfile(sender).then(info);
+var user = getUserProfile(sender).then(info);*/
 
     //messages
     if (event.message && event.message.text) {
