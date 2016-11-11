@@ -22,6 +22,11 @@ module.exports = function (senderId, postback) {
                     payload1:"start_app", 
                     title2:"I need more info", 
                     payload2:"more"}
+                var buttonReply = new fbMessage
+            	.ButtonTemplate(buttons)
+            	.compose();
+
+        		sendMessage(senderId, buttonReply);
                 //continue
             }   
             if (payload === 'start_app') {
@@ -147,7 +152,7 @@ module.exports = function (senderId, postback) {
                 //continue
             } 
 
-            if (buttons) //verifier que ça existe en javascript
+            /*if (buttons) //verifier que ça existe en javascript
             {
             	var buttonReply = new fbMessage
             	.ButtonTemplate(buttons)
@@ -155,7 +160,7 @@ module.exports = function (senderId, postback) {
 
         		sendMessage(senderId, buttonReply);
         		delete buttons; //verifier que ça existe en javascript
-            }
+            }*/
 
 
 	function sendTextMessage(senderId, text) {
