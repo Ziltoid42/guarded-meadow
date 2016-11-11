@@ -110,7 +110,48 @@ module.exports = function (senderId, message) {
     })
 }
 
-
+function sendGenericMessage(sender) {
+    let messageData = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": [{
+                    "title": "Honda dream",
+                    "image_url": "http://www.hireamotorbikechiangmai.com/wp-content/uploads/2014/01/bike_dream.jpg",
+                    "buttons": [ {
+                        "type": "postback",
+                        "title": "My moto is like this",
+                        "payload": "honda_dream",
+                    }],
+                }, {
+                    "title": "Honda Wave",
+                    "image_url": "http://www.manager.co.th/asp-bin/Image.aspx?ID=808778",
+                    "buttons": [{
+                        "type": "postback",
+                        "title": "Postback",
+                        "payload": "honda_wave",
+                    }],
+                }]
+            }
+        }
+    }
+    request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: {access_token:token},
+        method: 'POST',
+        json: {
+            recipient: {id:sender},
+            message: messageData,
+        }
+    }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
+        }
+    })
+}
     //ok now here we can handle generic messages received by the bot...
 
 
