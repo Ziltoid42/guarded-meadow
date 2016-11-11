@@ -111,7 +111,7 @@ module.exports = function (senderId, message) {
 }
 
 function sendGenericMessage(sender) {
-    let messageData = {
+    messageData = {
         "attachment": {
             "type": "template",
             "payload": {
