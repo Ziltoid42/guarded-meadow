@@ -62,23 +62,19 @@ app.post('/webhook/', function (req, res) {
       .catch(err => console.log(`Error getting user profile: ${err}`));
   }
   
-
-
+//test output user
+if (event.message.text === 'id') {
+            sendTextMessage(sender, toString(event.sender.id));
+            continue
+            
+        }
    
 var user = getUserProfile(sender).then(info);*/
 
     //messages
     if (event.message && event.message.text) {
       
-      //test output user
-      
-       if (event.message.text === 'id') {
-            sendTextMessage(sender, toString(event.sender.id));
-            continue
-            
-        }
-        
-        //handleMessages(sender, event.message); //fonction routing text
+        handleMessages(sender, event.message); //fonction routing text
 
     }
 
@@ -86,7 +82,7 @@ var user = getUserProfile(sender).then(info);*/
     //messaging_postbacks
     if (event.postback && event.postback.payload) {
 
-        //handlePostbacks(sender, event.postback.payload); //fonction routing postbacks
+        handlePostbacks(sender, event.postback.payload); //fonction routing postbacks
 
     }
 
