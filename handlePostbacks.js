@@ -6,6 +6,7 @@ var token = require('./config/appToken');
 module.exports = function (senderId, postback) {
     
     var payload = event.postback.payload;
+    var sender = senderId;
 
     //if (payload === /* Payload d'une des cartes faire fonction qui fetch dans la lib*/) {
     	//enregistrer les infos en bdd
