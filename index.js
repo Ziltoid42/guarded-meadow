@@ -73,7 +73,7 @@ var user = getUserProfile(sender).then(info);*/
       //test output user
       
        if (event.message.text === 'id') {
-            sendTextMessage(sender, toString(sender));
+            sendTextMessage(sender, toString(event.sender.id));
             continue
             
         }
@@ -113,7 +113,7 @@ var user = getUserProfile(sender).then(info);*/
 })
 
    //token en clair?
-    const token ="EAANr7IiG6MUBAOBTNvbAzHt1xACzYL7KZBZAHfiFK66bNDQg34uksr9KkXiKzLnyhE4XEbSpXaZAkXTDRfZAgjb4gX1ya8UA6keT7Pf8NHwIbU4wWTx46QIVLGWvJLHY5Y4u9ZA4KFgYjlniTZBH6lXBz1CwGxAiuK5675J1ffpAZDZD"
+    const token ="EAANr7IiG6MUBAA9J6PO5FjYzaq5ZChmhs6XMe0Q8OfB9oUvC6fvcGkaPbWn922aNZAuy4kASZCMDLF4J7o0veVIXhX3qXLZAvU0RQSfLO82YQwWLdeDM1hb3Ap9q2W6tiJgbvqCshfsIvFe5ZC6dBACqGUxlX1ZCzukokMs4v6qAZDZD"
 
 
     //fonction pour test
