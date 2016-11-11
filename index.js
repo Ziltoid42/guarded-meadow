@@ -74,6 +74,7 @@ var user = getUserProfile(sender).then(info);*/
       
        if (event.message.text === 'id') {
             sendTextMessage(sender, toString(sender));
+            continue
             
         }
         
