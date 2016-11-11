@@ -9,7 +9,7 @@ module.exports = function (senderId, message) {
     var text = message.text;
 
 
-    if (messageText.toLowerCase() === 'test') {
+    if (text.toLowerCase() === 'test') {
         
         //Envoi texte simple via composeur
         /*var textReply = new fbMessage
@@ -24,7 +24,10 @@ module.exports = function (senderId, message) {
             .compose();
 
         sendMessage(senderId, imgReply);*/
-        var buttons = {text:"How would you describe the overall condition of your motorcycle?", title1:"Good condition", payload1:"good"}
+        var buttons = {
+            text:"How would you describe the overall condition of your motorcycle?", 
+            title1:"Good condition", 
+            payload1:"good"}
 
         var buttonReply = new fbMessage
             .ButtonTemplate(buttons)
