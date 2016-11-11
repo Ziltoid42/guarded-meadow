@@ -43,8 +43,6 @@ app.listen(app.get('port'), function(){
 //Ajusté pour index.js:
 
 
-console.log('fb user GET Request: ', request);
-
 app.post('/webhook/', function (req, res) {
 
   let messaging_events = req.body.entry[0].messaging;
@@ -74,10 +72,10 @@ var user = getUserProfile(sender).then(info);*/
       
       //test output user
       
-     /*  if (event.message.text === 'id') {
-            sendTextMessage(sender, toString(user));
+       if (event.message.text === 'id') {
+            sendTextMessage(sender, toString(sender));
             
-        }*/
+        }
         
         handleMessages(sender, event.message); //fonction routing text
 
