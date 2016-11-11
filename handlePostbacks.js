@@ -14,12 +14,8 @@ module.exports = function (senderId, postback) {
     	//envoyer la carte suivante
 
     //}
-      if (postback.payload === 'apply') {
-                sendTextMessage(sender, "Good. First, can you write down your motorcycle plate number?");
-            }
 
             if (payload === 'apply') {
-            	sendTextMessage(sender, "Good. First, can you write down your motorcycle plate number?")
                 var buttons = {
                     text:"Shall we start?", 
                     title1:"Start application", 
@@ -156,7 +152,7 @@ module.exports = function (senderId, postback) {
                 //continue
             } 
 
-            /*if (buttons) //verifier que ça existe en javascript
+            if (buttons) //verifier que ça existe en javascript
             {
             	var buttonReply = new fbMessage
             	.ButtonTemplate(buttons)
@@ -164,7 +160,7 @@ module.exports = function (senderId, postback) {
 
         		sendMessage(senderId, buttonReply);
         		delete buttons; //verifier que ça existe en javascript
-            }*/
+            }
 
 
 	function sendTextMessage(senderId, text) {
