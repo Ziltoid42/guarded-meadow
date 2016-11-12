@@ -1,15 +1,59 @@
-function user(name, id){
+function user(name, fbid){
 
    // Add object properties like this
    this.name = name;
-   this.id = id;
+   this.fbid = fbid;
 }
-user.prototype.showData = function () { console.log(this.name, this.id); };
+user.prototype.showData = function () { console.log(this.name, this.fbid); };
 
 user.prototype.user = function(){};
 
+user.prototype.findOrCreateSession = function(fbid){
+    var sessionId;
+    // Let's see if we already have a session for the user fbid
+    Object.keys(sessions).forEach(k => {
+      if (sessions[k].fbid === fbid) {
+         // Yep, got it!
+         sessionId = k;
+      }
+    });
+    if (!sessionId) {
+      // No session found for user fbid, let's create a new one
+      sessionId = new Date().toISOString();
+      sessions[sessionId] = {fbid: fbid, context: {}};
+    }
+
+    return sessionId;
+}  
+
+//initier une session
+/*const sessionId = findOrCreateSession(payload.sender.id)
+var session = sessions[sessionId]
+session.context.yourfield = 10*/
+
 module.exports = user;
 
+/*
+function findOrCreateSession (fbid){
+    var sessionId;
+    // Let's see if we already have a session for the user fbid
+    Object.keys(sessions).forEach(k => {
+      if (sessions[k].fbid === fbid) {
+         // Yep, got it!
+         sessionId = k;
+      }
+    });
+    if (!sessionId) {
+      // No session found for user fbid, let's create a new one
+      sessionId = new Date().toISOString();
+      sessions[sessionId] = {fbid: fbid, context: {}};
+    }
+    return sessionId;
+}  
+const sessionId = findOrCreateSession(payload.sender.id)
+var session = sessions[sessionId]
+session.context.yourfield = 10
+*/
 
 /* pour l'instant on met de coté
 var user = Object.create(user);

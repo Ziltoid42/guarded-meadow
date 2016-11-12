@@ -36,7 +36,10 @@ module.exports = function (senderId, message) {
             .ButtonTemplate(buttons)
             .compose();*/
             
-
+            const sessionId = sender.findOrCreateSession(senderId);
+        var session = sessions[sessionId];
+        session.context.yourfield = 10;
+        console.log(session);
             sender.showData();
         //sendMessage(senderId, toString(sender.name));
     
