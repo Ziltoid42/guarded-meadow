@@ -7,7 +7,7 @@ function user(name, fbid){
 user.prototype.showData = function () { console.log(this.name, this.fbid); };
 
 user.prototype.user = function(){};
-
+const sessions = {};
 user.prototype.findOrCreateSession = function(fbid){
     var sessionId;
     // Let's see if we already have a session for the user fbid
