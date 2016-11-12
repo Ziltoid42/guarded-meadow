@@ -9,7 +9,7 @@ module.exports = function (senderId, message) {
     
     var text = message.text;
 
-    var sender = new user("Greg", senderId);
+    
 
 
     if (text.toLowerCase() === 'test') {
@@ -35,8 +35,10 @@ module.exports = function (senderId, message) {
         var buttonReply = new fbMessage
             .ButtonTemplate(buttons)
             .compose();*/
+            var sender = new user("Greg", senderId);
 
-        sendMessage(senderId, toString(sender.name));
+            sender.showData();
+        //sendMessage(senderId, toString(sender.name));
     
     }
 
