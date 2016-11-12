@@ -3,7 +3,7 @@ var user = {
     // Initialise l'utilisateur
     initUser: function (nom, id) {
         this.nom = nom;  //en premier lieu prit de user facebook
-        this.id = id;// facebook user id
+        this.id = 123456;// facebook user id
         this.state = 1;//initiation de l'étape de la conversation
 
     }

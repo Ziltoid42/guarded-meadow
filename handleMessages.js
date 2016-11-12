@@ -10,10 +10,7 @@ module.exports = function (senderId, message) {
     var text = message.text;
 
     var user = Object.create(user);
-// Initialisation de l'utilisateur
-    user.initUser = function (nom, id) {
-    this.initUser("gregoire", senderId);
-    }
+    
 
     if (text.toLowerCase() === 'test') {
         
