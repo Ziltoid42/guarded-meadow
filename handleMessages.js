@@ -1,6 +1,7 @@
 var sendMessage = require('./sendMessage');
 var fbMessage = require('./fbMessage');
 var request = require('request');
+var user = require('./user');
 var token = require('./config/appToken');
 
 
@@ -8,6 +9,10 @@ module.exports = function (senderId, message) {
     
     var text = message.text;
 
+    var user = Object.create(user);
+// Initialisation de l'utilisateur
+    user.initUser = function (nom, id) {
+    this.initUser("gregoire", senderId);
 
     if (text.toLowerCase() === 'test') {
         
@@ -23,7 +28,7 @@ module.exports = function (senderId, message) {
             .Image("https://img1.n3rdabl3.co.uk/wp-content/images/uploads/2016/06/32461_berserk.jpg")
             .compose();
 
-        sendMessage(senderId, imgReply);*/
+        sendMessage(senderId, imgReply);
         var buttons = {
             text:"How would you describe the overall condition of your motorcycle?", 
             title1:"Good condition", 
@@ -31,9 +36,9 @@ module.exports = function (senderId, message) {
 
         var buttonReply = new fbMessage
             .ButtonTemplate(buttons)
-            .compose();
+            .compose();*/
 
-        sendMessage(senderId, buttonReply);
+        sendMessage(senderId, user.nom);
     
     }
 

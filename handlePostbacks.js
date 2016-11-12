@@ -1,6 +1,7 @@
 var sendMessage = require('./sendMessage');
 var fbMessage = require('./fbMessage');
 var request = require('request');
+var user = require('./user');
 var token = require('./config/appToken');
 
 module.exports = function (senderId, postback) {
@@ -12,7 +13,6 @@ module.exports = function (senderId, postback) {
     	//enregistrer les infos en bdd
     	//enregistrer le niveau de la step
     	//envoyer la carte suivante
-
     //}
 
             if (payload === 'apply') {
