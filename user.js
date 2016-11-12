@@ -1,16 +1,14 @@
+function user(name, id){
 
-var user = {
-    // Initialise l'utilisateur
-    initUser: function (nom, id) {
-        this.nom = nom;  //en premier lieu prit de user facebook
-        this.id = 123456;// facebook user id
-        this.state = 1;//initiation de l'étape de la conversation
+   // Add object properties like this
+   this.name = name;
+   this.id = id;
+}
 
-    }
+module.exports = user;
 
-  
-};
 
+/* pour l'instant on met de coté
 var user = Object.create(user);
 // Initialisation de l'utilisateur
 user.initUser = function (nom, id) {

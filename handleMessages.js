@@ -9,8 +9,8 @@ module.exports = function (senderId, message) {
     
     var text = message.text;
 
-    var user = Object.create(user);
-    
+    var user = new.user("Greg", senderId);
+
 
     if (text.toLowerCase() === 'test') {
         
@@ -36,7 +36,7 @@ module.exports = function (senderId, message) {
             .ButtonTemplate(buttons)
             .compose();*/
 
-        sendMessage(senderId, user.nom);
+        sendMessage(senderId, user.name);
     
     }
 
