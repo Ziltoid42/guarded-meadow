@@ -1,11 +1,11 @@
-var method = user.prototype;
-
 function user(name, id){
 
    // Add object properties like this
    this.name = name;
    this.id = id;
 }
+
+user.prototype.user = function(){};
 
 module.exports = user;
 
