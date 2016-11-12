@@ -26,7 +26,7 @@ user.prototype.findOrCreateSession = function(fbid){
     return sessionId;
 }  
 
-var sender = new user("Greg", fbid);
+var sender = new user("Greg", 12345);
 //initier une session
 const sessionId = sender.findOrCreateSession(sender.fbid);
 var session = sessions[sessionId];
