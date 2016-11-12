@@ -44,7 +44,7 @@ user1.save(function (err, userObj) {
   } else {
     console.log('saved successfully:', userObj);
   }
-});*/
+});
 
 //Lets try to Find a user
 User.findOne({name: 'modulus admin'}, function (err, userObj) {
