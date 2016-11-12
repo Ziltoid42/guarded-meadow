@@ -2,8 +2,22 @@
 var mongoose = require('mongoose');
 console.log("passe par db");
 //Lets connect to our database using the DB server URL.
-mongoose.connect('mongodb://greg:1186sousou@ds151707.mlab.com:51707/heroku_x563fr8q');
+var MONGOLAB_URI = 'greg:1186sousou@ds151707.mlab.com:51707';
+var uristring= 'mongodb://'+MONGOLAB_URI+'/heroku_x563fr8q';
 
+var theport = process.env.PORT  || 5000;
+var appDir = path.dirname(require.main.filename);
+mongoose.connect(uristring, function(err,res){
+        if (err) {
+                console.log('ERROR connecting to: '+uristring+'. ' + err)
+        }
+        else {
+                console.log('Succeeded connected to: '+uristring);
+        }
+});
+var conn = mongoose.connection;
+conn.on('error', console.error.bind(console, 'Database connection error, fcukkk:'));
+conn.once('open', function callback() {console.log("sup stud, Database connected.")});
 /**
  * Lets define our Model for User entity. This model represents a collection in the database.
  * We define the possible schema of User document and data types of each field.
