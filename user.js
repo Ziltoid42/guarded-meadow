@@ -1,3 +1,5 @@
+var method = user.prototype;
+
 function user(name, id){
 
    // Add object properties like this
