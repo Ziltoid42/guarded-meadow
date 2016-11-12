@@ -6,7 +6,7 @@ var user = {
         this.id = // facebook user id
         this.state = //initiation de l'étape de la conversation
 
-    },
+    }
 
   
 };
