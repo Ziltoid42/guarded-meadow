@@ -30,7 +30,8 @@ var sender = new user("Greg", 12345);
 //initier une session
 const sessionId = sender.findOrCreateSession(sender.fbid);
 var session = sessions[sessionId];
-session.context.yourfield = 10;
+session.context.name = sender.name;
+session.context.bite = 23;
 console.log(session);
 
 module.exports = user;
