@@ -9,7 +9,7 @@ module.exports = function (senderId, message) {
     
     var text = message.text;
 
-    var user = new.user("Greg", senderId);
+    var user = new user("Greg", senderId);
 
 
     if (text.toLowerCase() === 'test') {
