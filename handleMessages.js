@@ -8,7 +8,7 @@ var token = require('./config/appToken');
 module.exports = function (senderId, message) {
     
     var text = message.text;
-
+    var sender = new user("Greg", senderId);
     
 
 
@@ -35,7 +35,7 @@ module.exports = function (senderId, message) {
         var buttonReply = new fbMessage
             .ButtonTemplate(buttons)
             .compose();*/
-            var sender = new user("Greg", senderId);
+            
 
             sender.showData();
         //sendMessage(senderId, toString(sender.name));
