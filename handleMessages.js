@@ -13,6 +13,7 @@ module.exports = function (senderId, message) {
 // Initialisation de l'utilisateur
     user.initUser = function (nom, id) {
     this.initUser("gregoire", senderId);
+    }
 
     if (text.toLowerCase() === 'test') {
         
