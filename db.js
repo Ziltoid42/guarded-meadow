@@ -6,7 +6,7 @@ var MONGOLAB_URI = 'greg:1186sousou@ds151707.mlab.com:51707';
 var uristring= 'mongodb://'+MONGOLAB_URI+'/heroku_x563fr8q';
 
 var theport = process.env.PORT  || 5000;
-var appDir = path.dirname(require.main.filename);
+
 mongoose.connect(uristring, function(err,res){
         if (err) {
                 console.log('ERROR connecting to: '+uristring+'. ' + err)
