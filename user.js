@@ -4,6 +4,7 @@ function user(name, id){
    this.name = name;
    this.id = id;
 }
+user.prototype.showData = function () { console.log(this.name, this.id); };
 
 user.prototype.user = function(){};
 
