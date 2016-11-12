@@ -27,7 +27,7 @@ var User = mongoose.model('User', {name: String, roles: Array, age: Number});
 /**
  * Lets Use our Models
  * */
-/*
+
 //Lets create a new user
 var user1 = new User({name: 'modulus admin', age: 42, roles: ['admin', 'moderator', 'user']});
 
