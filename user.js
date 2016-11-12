@@ -44,10 +44,10 @@ user.decrire = function () {
     "" + this. + " " +
     "" + this. + " " +
     "" + this. + " " +
-    "" + this. + " " + */
+    "" + this. + " " + 
     ;
     return description;
-};
+};*/
 
 /*
 infos facebook:
