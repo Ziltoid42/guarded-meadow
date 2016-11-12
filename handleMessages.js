@@ -36,7 +36,7 @@ module.exports = function (senderId, message) {
             .ButtonTemplate(buttons)
             .compose();*/
 
-        sendMessage(senderId, sender.name);
+        sendMessage(senderId, toString(sender.name));
     
     }
 
