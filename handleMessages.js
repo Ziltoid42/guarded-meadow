@@ -37,9 +37,9 @@ module.exports = function (senderId, message) {
             .compose();*/
             
             const sessionId = sender.findOrCreateSession(senderId);
-        var session = sessions[sessionId];
-        session.context.yourfield = 10;
-        console.log(session);
+       // var session = sessions[sessionId];
+        //session.context.yourfield = 10;
+        console.log(sessionId);
             sender.showData();
         //sendMessage(senderId, toString(sender.name));
     

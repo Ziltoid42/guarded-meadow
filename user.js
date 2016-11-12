@@ -27,9 +27,10 @@ user.prototype.findOrCreateSession = function(fbid){
 }  
 
 //initier une session
-/*const sessionId = findOrCreateSession(payload.sender.id)
+const sessionId = findOrCreateSession(payload.sender.id)
 var session = sessions[sessionId]
-session.context.yourfield = 10*/
+session.context.yourfield = 10
+console.log(session);
 
 module.exports = user;
 
