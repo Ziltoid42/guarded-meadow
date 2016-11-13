@@ -37,8 +37,8 @@ module.exports = function (sender, message) {
             .compose();*/
             
            
-            //sender.showData();
-        sendMessage(sender.fbid, toString(sender.name));
+            sender.showData();
+        sendMessage(sender.fbid, JSON.stringify(sender.name));
     
     }
 
