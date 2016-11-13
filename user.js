@@ -6,58 +6,6 @@ function user(name, fbid){
 }
 user.prototype.showData = function () { console.log(this.name, this.fbid); };
 
-user.prototype.user = function(){};
-const sessions = {};
-user.prototype.findOrCreateSession = function(fbid){
-    var sessionId;
-    // Let's see if we already have a session for the user fbid
-    Object.keys(sessions).forEach(k => {
-      if (sessions[k].fbid === fbid) {
-         // Yep, got it!
-         sessionId = k;
-      }
-    });
-    if (!sessionId) {
-      // No session found for user fbid, let's create a new one
-      sessionId = new Date().toISOString();
-      sessions[sessionId] = {fbid: fbid, context: {}};
-    }
-
-    return sessionId;
-}  
-/*
-var sender = new user("Greg", 12345);
-//initier une session
-const sessionId = sender.findOrCreateSession(sender.fbid);
-var session = sessions[sessionId];
-session.context.name = sender.name;
-session.context.bite = 23;
-console.log(session);*/
-
-module.exports = user;
-
-/*
-function findOrCreateSession (fbid){
-    var sessionId;
-    // Let's see if we already have a session for the user fbid
-    Object.keys(sessions).forEach(k => {
-      if (sessions[k].fbid === fbid) {
-         // Yep, got it!
-         sessionId = k;
-      }
-    });
-    if (!sessionId) {
-      // No session found for user fbid, let's create a new one
-      sessionId = new Date().toISOString();
-      sessions[sessionId] = {fbid: fbid, context: {}};
-    }
-    return sessionId;
-}  
-const sessionId = findOrCreateSession(payload.sender.id)
-var session = sessions[sessionId]
-session.context.yourfield = 10
-*/
-
 /* pour l'instant on met de coté
 var user = Object.create(user);
 // Initialisation de l'utilisateur
@@ -96,6 +44,82 @@ user.decrire = function () {
     ;
     return description;
 };*/
+
+
+/* //Activate by installing messenger-bot
+
+ function getUserProfile(sender) {
+    const url = 'https://graph.facebook.com/v2.6/${sender}?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=${token}';
+    return fetch(url)
+      .then(res => res.json())
+      .catch(err => console.log(`Error getting user profile: ${err}`));
+  }
+  
+//test output user
+if (event.message.text === 'id') {
+            sendTextMessage(sender, toString(event.sender.id));
+            continue
+            
+        }
+   
+var user = getUserProfile(sender).then(info);*/
+
+
+module.exports = user;
+
+
+// No real need of sessions yet maybet later for performances
+/*
+user.prototype.user = function(){};
+const sessions = {};
+user.prototype.findOrCreateSession = function(fbid){
+    var sessionId;
+    // Let's see if we already have a session for the user fbid
+    Object.keys(sessions).forEach(k => {
+      if (sessions[k].fbid === fbid) {
+         // Yep, got it!
+         sessionId = k;
+      }
+    });
+    if (!sessionId) {
+      // No session found for user fbid, let's create a new one
+      sessionId = new Date().toISOString();
+      sessions[sessionId] = {fbid: fbid, context: {}};
+    }
+
+    return sessionId;
+}  */
+/*
+var sender = new user("Greg", 12345);
+//initier une session
+const sessionId = sender.findOrCreateSession(sender.fbid);
+var session = sessions[sessionId];
+session.context.name = sender.name;
+session.context.bite = 23;
+console.log(session);*/
+/*
+function findOrCreateSession (fbid){
+    var sessionId;
+    // Let's see if we already have a session for the user fbid
+    Object.keys(sessions).forEach(k => {
+      if (sessions[k].fbid === fbid) {
+         // Yep, got it!
+         sessionId = k;
+      }
+    });
+    if (!sessionId) {
+      // No session found for user fbid, let's create a new one
+      sessionId = new Date().toISOString();
+      sessions[sessionId] = {fbid: fbid, context: {}};
+    }
+    return sessionId;
+}  
+const sessionId = findOrCreateSession(payload.sender.id)
+var session = sessions[sessionId]
+session.context.yourfield = 10
+*/
+
+
 
 /*
 infos facebook:

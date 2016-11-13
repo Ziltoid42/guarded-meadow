@@ -5,10 +5,10 @@ var user = require('./user');
 var token = require('./config/appToken');
 
 
-module.exports = function (senderId, message) {
+module.exports = function (sender, message) {
     
     var text = message.text;
-    var sender = new user("Greg", senderId);
+    
     
 
 
@@ -38,15 +38,15 @@ module.exports = function (senderId, message) {
             
            
             sender.showData();
-        //sendMessage(senderId, toString(sender.name));
+        sendMessage(senderId, toString(sender.name));
     
     }
 
 
         if (text === 'start') {
-            sendTextMessage(senderId, "Hello Bong")
-            sendTextMessage(senderId, "My name is Creditor and I am a robot!")
-            sendTextMessage(senderId, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!")
+            sendTextMessage(sender.fbid, "Hello Bong")
+            sendTextMessage(sender.fbid, "My name is Creditor and I am a robot!")
+            sendTextMessage(sender.fbid, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!")
             var buttons = {
                 text:"Now what can I do for you?", 
                 title1:"I want more info", 
@@ -57,13 +57,13 @@ module.exports = function (senderId, message) {
             var buttonReply = new fbMessage
             .ButtonTemplate(buttons)
             .compose();
-            sendMessage(senderId, buttonReply);
+            sendMessage(sender.fbid, buttonReply);
             //continue
         }
 
         if (text === '1XX1234') {
-            sendTextMessage(senderId, "Ok thanks! Can you confirm the model of your motorcycle?")
-            sendGenericMessage(senderId)
+            sendTextMessage(sender.fbid, "Ok thanks! Can you confirm the model of your motorcycle?")
+            sendGenericMessage(sender.fbid)
             //continue
         }
         if (text === '28') {
@@ -79,11 +79,11 @@ module.exports = function (senderId, message) {
             var buttonReply = new fbMessage
             .ButtonTemplate(buttons)
             .compose();
-            sendMessage(senderId, buttonReply);
+            sendMessage(sender.fbid, buttonReply);
             //continue
         }
         if (text === 'location') {
-            sendLocationMessage(senderId)
+            sendLocationMessage(sender.fbid)
             //continue
         }
         //demande location
@@ -103,7 +103,7 @@ module.exports = function (senderId, message) {
         qs: {access_token:token},
         method: 'POST',
         json: {
-            recipient: {id:senderId},
+            recipient: {id:sender.fbid},
             message: messageData,
         }
     }, function(error, response, body) {
@@ -146,7 +146,7 @@ function sendGenericMessage(sender) {
         qs: {access_token:token},
         method: 'POST',
         json: {
-            recipient: {id:sender},
+            recipient: {id:sender.fbid},
             message: messageData,
         }
     }, function(error, response, body) {

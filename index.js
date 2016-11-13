@@ -51,26 +51,15 @@ app.post('/webhook/', function (req, res) {
   for (let i = 0; i < messaging_events.length; i++) {
     
     let event = req.body.entry[0].messaging[i];
-    let sender = event.sender.id;
+    let senderId = event.sender.id;
     let recipient = event.recipient.id;
 
-/*
-
- function getUserProfile(sender) {
-    const url = 'https://graph.facebook.com/v2.6/${sender}?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=${token}';
-    return fetch(url)
-      .then(res => res.json())
-      .catch(err => console.log(`Error getting user profile: ${err}`));
-  }
-  
-//test output user
-if (event.message.text === 'id') {
-            sendTextMessage(sender, toString(event.sender.id));
-            continue
-            
-        }
-   
-var user = getUserProfile(sender).then(info);*/
+    //Verify if user is in db, if true load info into user object, if false create one
+    /* if (db.methodload(sender) === true){
+            new user = user.fill(db.methodload(sender));
+        else
+    }*/
+    var sender = new user("Greg", senderId);
 
     //messages
     if (event.message && event.message.text) {
@@ -122,7 +111,7 @@ var user = getUserProfile(sender).then(info);*/
         qs: {access_token:token},
         method: 'POST',
         json: {
-            recipient: {id:sender},
+            recipient: {id:sender.fbid},
             message: messageData,
         }
     }, function(error, response, body) {
