@@ -1,4 +1,4 @@
-module.exports = function () {
+
 //Lets load the mongoose module in our program
 var mongoose = require('mongoose');
 console.log("passe par db");
@@ -20,8 +20,7 @@ var conn = mongoose.connection;
 conn.on('error', console.error.bind(console, 'Database connection error, fcukkk:'));
 conn.once('open', function callback() {console.log("sup stud, Database connected.")});
 
-module.exports = db;
-};
+
 /*
   Lets define our Model for User entity. This model represents a collection in the database.
   We define the possible schema of User document and data types of each field.
@@ -77,3 +76,4 @@ User.findOne({name: 'modulus admin'}, function (err, userObj) {
     console.log('User not found!');
   }
 });
+
