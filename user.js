@@ -36,7 +36,7 @@ var user = mongoose.model('User', userSchema);
 user.methods.initUser = function (name, fbid) {
       this.name = name;
       this.fbid = fbid;
-    }
+    };
 
 
 //function user(){
