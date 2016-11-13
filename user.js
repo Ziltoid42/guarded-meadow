@@ -32,13 +32,20 @@ var userSchema = new Schema({
 });
 
 var user = mongoose.model('User', userSchema);
+
+user.methods.initUser = function (name, fbid) {
+      this.name = name;
+      this.fbid = fbid;
+    }
+
+
 //function user(){
    // Add object properties like this
 
    //this.data = db.mongoose.model('User', {name: String, fbid: Number});
     
 //}
-
+/*
 user.prototype = {
 
 
@@ -50,7 +57,7 @@ user.prototype = {
 };
 
 user.prototype.showData = function () { console.log(this.name, this.fbid); };
-
+*/
 module.exports = user;
 
 /* pour l'instant on met de coté
