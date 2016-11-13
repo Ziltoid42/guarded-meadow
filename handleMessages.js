@@ -103,7 +103,7 @@ module.exports = function (sender, message) {
         qs: {access_token:token},
         method: 'POST',
         json: {
-            recipient: {id:sender.fbid},
+            recipient: {id:sender},
             message: messageData,
         }
     }, function(error, response, body) {
@@ -146,7 +146,7 @@ function sendGenericMessage(sender) {
         qs: {access_token:token},
         method: 'POST',
         json: {
-            recipient: {id:sender.fbid},
+            recipient: {id:sender},
             message: messageData,
         }
     }, function(error, response, body) {

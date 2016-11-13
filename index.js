@@ -60,9 +60,9 @@ app.post('/webhook/', function (req, res) {
             new user = user.fill(db.methodload(sender));
         else
     }*/
-    console.log(senderId);
+ 
     var sender = new user("Greg", senderId);
-    sender.showData();
+    
 
     //messages
     if (event.message && event.message.text) {
