@@ -63,7 +63,6 @@ app.post('/webhook/', function (req, res) {
  
     var sender = new user
     sender.initUser("Greg", senderId);
-    console.log(sender);
 
     //messages
     if (event.message && event.message.text) {

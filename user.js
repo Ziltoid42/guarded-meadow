@@ -1,9 +1,13 @@
+var db = require('./db');
+
 function user(){
    // Add object properties like this
+   this.data = mongoose.model('User', {name: String, fbid: Number});
     
 }
 
 user.prototype = {
+
     initUser : function (name, fbid) {
       this.name = name;
       this.fbid = fbid;
@@ -11,10 +15,9 @@ user.prototype = {
 
 };
 
-
-
-
 user.prototype.showData = function () { console.log(this.name, this.fbid); };
+
+module.exports = user;
 
 /* pour l'instant on met de coté
 var user = Object.create(user);
@@ -75,7 +78,7 @@ if (event.message.text === 'id') {
 var user = getUserProfile(sender).then(info);*/
 
 
-module.exports = user;
+
 
 
 // No real need of sessions yet maybet later for performances

@@ -36,8 +36,6 @@ module.exports = function (sender, message) {
             .ButtonTemplate(buttons)
             .compose();*/
             
-           
-            sender.showData();
         sendTextMessage(sender.fbid, JSON.stringify(sender.name));
     
     }
