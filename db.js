@@ -1,6 +1,7 @@
 
 //Lets load the mongoose module in our program
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 console.log("passe par db");
 //Lets connect to our database using the DB server URL.
 var MONGOLAB_URI = 'greg:1186sousou@ds151707.mlab.com:51707';
@@ -25,13 +26,19 @@ conn.once('open', function callback() {console.log("sup stud, Database connected
   Lets define our Model for User entity. This model represents a collection in the database.
   We define the possible schema of User document and data types of each field.
   */
+var userSchema = new Schema({
+  name: String,
+  fbid: Number,
+  state: String
+});
+var Usertemplate = mongoose.model('User', userSchema);
 
+module.exports = db;
 
-var User = mongoose.model('User', {name: String, roles: Array, age: Number});
 
 
  // Lets Use our Models
- 
+ /*
 
 //Lets create a new user
 var user1 = new User({name: 'modulus admin', age: 42, roles: ['admin', 'moderator', 'user']});
@@ -76,4 +83,4 @@ User.findOne({name: 'modulus admin'}, function (err, userObj) {
     console.log('User not found!');
   }
 });
-
+*/

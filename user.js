@@ -1,13 +1,19 @@
-var db = require('./db');
+// grab the things we need
+const db = require('./db');
 
 function user(){
    // Add object properties like this
-   console.log(db);
+   this = new db.Usertemplate({
+    name: 'Greg',
+    fbid: '12345',
+    state: 'initialisation' 
+});
    //this.data = db.mongoose.model('User', {name: String, fbid: Number});
     
 }
 
 user.prototype = {
+
 
     initUser : function (name, fbid) {
       this.name = name;
