@@ -2,10 +2,17 @@ function user(){
    // Add object properties like this
     
 }
-user.initUser = function (name, fbid) {
-  this.name = name;
-  this.fbid = fbid;
-}
+
+user.prototype = {
+    initUser : function (name, fbid) {
+      this.name = name;
+      this.fbid = fbid;
+    }
+
+};
+
+
+
 
 user.prototype.showData = function () { console.log(this.name, this.fbid); };
 
