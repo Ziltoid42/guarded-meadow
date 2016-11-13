@@ -31,7 +31,7 @@ var userSchema = new Schema({
   state: String
 });
 
-user.methods.initUser = function (name, fbid) {
+userSchema.methods.initUser = function (name, fbid) {
       this.name = name;
       this.fbid = fbid;
     };
