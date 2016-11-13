@@ -28,9 +28,9 @@ module.exports = db;
   */
 
 
-//var User = mongoose.model('User', {name: String, roles: Array, age: Number});
+var User = mongoose.model('User', {name: String, roles: Array, age: Number});
 
-/*
+
   Lets Use our Models
  
 

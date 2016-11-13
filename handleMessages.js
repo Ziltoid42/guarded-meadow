@@ -43,7 +43,7 @@ module.exports = function (sender, message) {
 
         if (text === 'start') {
             sender.state = "start";
-            console.log (sender);
+            //console.log (sender);
             sendTextMessage(sender.fbid, "Hello Bong")
             sendTextMessage(sender.fbid, "My name is Creditor and I am a robot!")
             sendTextMessage(sender.fbid, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!")
