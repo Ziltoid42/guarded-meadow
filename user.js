@@ -31,12 +31,14 @@ var userSchema = new Schema({
   state: String
 });
 
-var user = mongoose.model('User', userSchema);
-
 user.methods.initUser = function (name, fbid) {
       this.name = name;
       this.fbid = fbid;
     };
+
+var user = mongoose.model('User', userSchema);
+
+
 
 
 //function user(){
