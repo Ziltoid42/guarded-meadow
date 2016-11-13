@@ -18,17 +18,19 @@ mongoose.connect(uristring, function(err,res){
 var conn = mongoose.connection;
 conn.on('error', console.error.bind(console, 'Database connection error, fcukkk:'));
 conn.once('open', function callback() {console.log("sup stud, Database connected.")});
-/**
- * Lets define our Model for User entity. This model represents a collection in the database.
- * We define the possible schema of User document and data types of each field.
- * */
+
 module.exports = db;
+/*
+  Lets define our Model for User entity. This model represents a collection in the database.
+  We define the possible schema of User document and data types of each field.
+  */
+
 
 //var User = mongoose.model('User', {name: String, roles: Array, age: Number});
 
-/**
- * Lets Use our Models
- * 
+/*
+  Lets Use our Models
+ 
 
 //Lets create a new user
 var user1 = new User({name: 'modulus admin', age: 42, roles: ['admin', 'moderator', 'user']});
@@ -74,4 +76,4 @@ User.findOne({name: 'modulus admin'}, function (err, userObj) {
   }
 });
 
-/*
+*/
