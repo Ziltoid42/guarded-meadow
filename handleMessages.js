@@ -44,15 +44,19 @@ module.exports = function (sender, message) {
 
 
         if (text === 'start') {
+            sender.state = "start";
+            console.log (sender);
             sendTextMessage(sender.fbid, "Hello Bong")
             sendTextMessage(sender.fbid, "My name is Creditor and I am a robot!")
             sendTextMessage(sender.fbid, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!")
             var buttons = {
                 text:"Now what can I do for you?", 
-                title1:"I want more info", 
-                payload1:"more info", 
-                title2:"I want to apply", 
-                payload2:"apply"}
+                title1:"Who are you?", 
+                payload1:"Who are you?", 
+                title2:"I want a loan", 
+                payload2:"I want a loan",
+                title3:"I want to guarantee", 
+                payload3:"I want to guarantee"}
             
             var buttonReply = new fbMessage
             .ButtonTemplate(buttons)
