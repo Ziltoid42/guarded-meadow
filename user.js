@@ -1,13 +1,35 @@
-// grab the things we need
-const db = require('./db');
+var MONGOLAB_URI = 'greg:1186sousou@ds151707.mlab.com:51707';
+var uristring= 'mongodb://'+MONGOLAB_URI+'/heroku_x563fr8q';
 
+var theport = process.env.PORT  || 5000;
+
+mongoose.connect(uristring, function(err,res){
+        if (err) {
+                console.log('ERROR connecting to: '+uristring+'. ' + err)
+        }
+        else {
+                console.log('Succeeded connected to: '+uristring);
+        }
+});
+var conn = mongoose.connection;
+conn.on('error', console.error.bind(console, 'Database connection error, fcukkk:'));
+conn.once('open', function callback() {console.log("sup stud, Database connected.")});
+
+
+/*
+  Lets define our Model for User entity. This model represents a collection in the database.
+  We define the possible schema of User document and data types of each field.
+  */
+var userSchema = new Schema({
+  name: String,
+  fbid: Number,
+  state: String
+});
+
+var user = mongoose.model('User', userSchema);
 //function user(){
    // Add object properties like this
-    user = new db.Usertemplate({
-    name: 'Greg',
-    fbid: '12345',
-    state: 'initialisation' 
-    });
+
    //this.data = db.mongoose.model('User', {name: String, fbid: Number});
     
 //}
