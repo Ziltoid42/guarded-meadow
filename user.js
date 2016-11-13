@@ -2,7 +2,7 @@ var db = require('./db');
 
 function user(){
    // Add object properties like this
-   this.data = mongoose.model('User', {name: String, fbid: Number});
+   this.data = db.mongoose.model('User', {name: String, fbid: Number});
     
 }
 
