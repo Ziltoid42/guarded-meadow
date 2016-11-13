@@ -65,8 +65,7 @@ app.post('/webhook/', function (req, res) {
     //messages
     if (event.message && event.message.text) {
       
-      sendMessage(sender.fbid, JSON.stringify(sender.name));
-        //handleMessages(sender, event.message); //fonction routing text
+        handleMessages(sender, event.message); //fonction routing text
 
     }
 

@@ -38,7 +38,7 @@ module.exports = function (sender, message) {
             
            
             sender.showData();
-        sendMessage(sender.fbid, JSON.stringify(sender.name));
+        sendTextMessage(sender.fbid, JSON.stringify(sender.name));
     
     }
 
