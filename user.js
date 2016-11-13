@@ -1,3 +1,8 @@
+//Lets load the mongoose module in our program
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+console.log("passe par db");
+//Lets connect to our database using the DB server URL.
 var MONGOLAB_URI = 'greg:1186sousou@ds151707.mlab.com:51707';
 var uristring= 'mongodb://'+MONGOLAB_URI+'/heroku_x563fr8q';
 
