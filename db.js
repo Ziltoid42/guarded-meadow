@@ -77,5 +77,3 @@ User.findOne({name: 'modulus admin'}, function (err, userObj) {
     console.log('User not found!');
   }
 });
-
-*/
