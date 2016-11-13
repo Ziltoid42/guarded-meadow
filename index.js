@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const request = require('request');
 //const fetch = require('node-fetch');
 const app = express();
-const db = require('./db');
+//const db = require('./db'); // de coté por test
 var handleMessages = require('./handleMessages');
 var handlePostbacks = require('./handlePostbacks');
 
