@@ -35,35 +35,26 @@ var userSchema = new Schema({
 
 userSchema.methods.initUser = function (name, fbid) {
 
-    var self = this;
-  
-    //
-    self.findOne({fbid: fbid}, function (err, userObj) {
+    this.name = name;
+    this.fbid = fbid;
+    
+}
+
+var user = mongoose.model('User', userSchema);
+
+//Lets try to Find a user
+user.findOne({fbid: user.fbid}, function (err, userObj) {
   if (err) {
     console.log(err);
   } else if (userObj) {
     console.log('Found:', userObj);
 
+    //For demo purposes lets update the user on condition.
+   
   } else {
     console.log('User not found!');
   }
-  });
-    if(userObj)
-    {
-    this.name = userObj.name;
-    this.fbid = userObj.fbid; 
-    }
-    else{
-    //
-    console.log (self);
-    this.name = name;
-    this.fbid = fbid;
-    }
-}
-
-var user = mongoose.model('User', userSchema);
-
-
+});
 
 /*
 //Lets try to print and see it. You will see _id is assigned.
