@@ -148,7 +148,7 @@ module.exports.test = function (object) {
         return result;
     })
     .catch((err)=>{
-        console.error(err)
+        //console.error(err)
     })
 }
 
