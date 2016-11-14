@@ -16,7 +16,7 @@ module.exports.lol = function () {
 
 
 
-module.exports.save = function () {
+module.exports.save = function (user) {
 
 MongoClient.connect(url, function (err, db) {
   if (err) {
@@ -28,11 +28,8 @@ MongoClient.connect(url, function (err, db) {
     // Get the documents collection
     var collection = db.collection('users');
 
-    //Create some users
-    var user1 = {name: 'greg', age: 22};
-
     // Insert some users
-    collection.insert([user1], function (err, result) {
+    collection.insert([user], function (err, result) {
       if (err) {
         console.log(err);
       } else {
