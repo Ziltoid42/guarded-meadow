@@ -133,7 +133,7 @@ function open(){
     
     return new Promise((resolve, reject)=>{
         // Use connect method to connect to the Server
-        mongoClient.connect(url, (err, db) => {
+        MongoClient.connect(url, (err, db) => {
             if (err) {
                 reject(err);
             } else {
