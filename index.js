@@ -5,12 +5,12 @@ const bodyParser = require('body-parser');
 const request = require('request');
 //const fetch = require('node-fetch'); //a virer des modules
 const app = express();
-//const db = require('./db'); // de coté por test
+const db = require('./db'); // de coté por test
 var handleMessages = require('./handleMessages');
 var handlePostbacks = require('./handlePostbacks');
-var user = require('./user');
-var mongoose = require('./user');
-var userSchema = require('./user');
+//var user = require('./user');
+//var mongoose = require('./user');
+//var userSchema = require('./user');
 
 //var user = require('user'); //Ajout class user
 
