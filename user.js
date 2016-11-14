@@ -33,17 +33,13 @@ var userSchema = new Schema({
 
 userSchema.methods.initUser = function (name, fbid) {
 
-   userSchema.findOne({fbid: fbid}, function (err, userObj) {
-    if (err) {
-      console.log(err);
-    } else if (userObj) {
-      return userObj;
+  if(userSchema.findOne({fbid: fbid}, function (err, userObj) {})){
+    this.name = userObj.name;
+    this.fbid = userObj.fbid;
 
-    } else {
-      this.name = name;
-      this.fbid = fbid;
-    }
-  });
+  }else
+    this.name = name;
+    this.fbid = fbid;
 }
 
 
