@@ -33,13 +33,16 @@ var userSchema = new Schema({
 
 userSchema.methods.initUser = function (name, fbid) {
 
-  if(userSchema.findOne({fbid: fbid}, function (err, userObj) {})){
+  var userObj = Person.findOne({ fbid: fbid });
+    if(userObj){
+    console.log('Found:', userObj);
     this.name = userObj.name;
     this.fbid = userObj.fbid;
-
-  }else
+    }
+    else{
     this.name = name;
     this.fbid = fbid;
+    }
 }
 
 
@@ -50,6 +53,9 @@ var user = mongoose.model('User', userSchema);
 /*
 //Lets try to print and see it. You will see _id is assigned.
 console.log(user1);
+userSchema.query.byfbid = function(fbid) {
+  return this.find({ fbid: new userSchema(fbid, fbid) });
+  };
 
 //Lets save it
 user1.save(function (err, userObj) {
