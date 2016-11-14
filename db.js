@@ -103,7 +103,7 @@ collection.update({fbid: user.fbid}, {$set: {enabled: false}}, function (err, nu
 
 
 //Découpage
-/*
+
 function open(){
 
     // Connection URL. This is where your mongodb server is running.
@@ -153,7 +153,7 @@ module.exports.test = function (object) {
 
 //insert({name: 'Gary Oblanka', age: 22});
 
-module.exports = db;
+//module.exports = db;
 
-*/
+
 //fin export
