@@ -1,6 +1,6 @@
 //lets require/import the mongodb native drivers.
 var mongodb = require('mongodb');
-
+module.exports = function (sender, message) {
 //We need to work with "MongoClient" interface in order to connect to a mongodb server.
 var MongoClient = mongodb.MongoClient;
 var MONGOLAB_URI = 'greg:1186sousou@ds151707.mlab.com:51707';
@@ -36,4 +36,5 @@ MongoClient.connect(url, function (err, db) {
     });
   }
 });
+};
 module.exports(db);
