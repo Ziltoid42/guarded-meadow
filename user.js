@@ -35,6 +35,9 @@ var userSchema = new Schema({
 
 userSchema.methods.initUser = function (name, fbid) {
 
+    var self = this;
+    self.findOne({ fbid: fbid });
+    console.log (self);
     this.name = name;
     this.fbid = fbid;
     
