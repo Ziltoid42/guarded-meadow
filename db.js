@@ -140,7 +140,7 @@ module.exports.test = function (object) {
         return db.collection('users')    
     })
     .then((users)=>{
-        return users.update({fbid: user.fbid}, {$set: {enabled: false}})
+        return users.update({fbid: object.fbid}, {$set: {enabled: false}})
     })
     .then((result)=>{
         console.log(result);
