@@ -60,8 +60,8 @@ app.post('/webhook/', function (req, res) {
             new user = user.fill(db.methodload(sender));
         else
     }*/
- 
-    var sender = new user
+    var sender = mongoose.model('User', userSchema);
+    //var sender = new user
     sender.initUser("Greg", senderId);
     sender.findOne({fbid: user.fbid}, function (err, userObj) {
     if (err) {

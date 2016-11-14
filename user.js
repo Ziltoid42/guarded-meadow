@@ -57,7 +57,8 @@ user.findOne({fbid: user.fbid}, function (err, userObj) {
     console.log('User not found!');
   }
 });
-
+module.exports = user;
+module.exports = mongoose;
 /*
 //Lets try to print and see it. You will see _id is assigned.
 console.log(user1);
@@ -112,7 +113,7 @@ user.prototype = {
 
 user.prototype.showData = function () { console.log(this.name, this.fbid); };
 */
-module.exports = user;
+
 
 /* pour l'instant on met de coté
 var user = Object.create(user);
