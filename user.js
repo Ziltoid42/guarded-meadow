@@ -31,25 +31,18 @@ var userSchema = new Schema({
   state: String
 });
 
-userSchema.statics.findbyfbid = function findbyfbid (fbid) {
-  return this.model('User').findOne({ fbid: fbid });
-};
+
 
 userSchema.methods.initUser = function (name, fbid) {
 
-  var userObj = userSchema.findbyid(fbid);
-    if(userObj){
-    console.log('Found:', userObj);
-    this.name = userObj.name;
-    this.fbid = userObj.fbid;
-    }
-    else{
     this.name = name;
     this.fbid = fbid;
-    }
+    
 }
 
 var user = mongoose.model('User', userSchema);
+var userObj = userSchema.findOne({ fbid: fbid });
+console.log('Found:', userObj);
 
 /*
 //Lets try to print and see it. You will see _id is assigned.
