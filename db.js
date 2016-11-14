@@ -39,4 +39,3 @@ MongoClient.connect(url, function (err, db) {
 
 //fin export
 }
-module.exports = db;
