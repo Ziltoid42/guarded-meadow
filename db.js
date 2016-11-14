@@ -9,7 +9,7 @@ var url = uristring;
 
 // Use connect method to connect to the Server
 
-lol = function (){
+function lol (){
   console.log("prout");
 }
 
@@ -43,4 +43,4 @@ MongoClient.connect(url, function (err, db) {
 
 //fin export
 })()
-module.exports = db
+module.exports = db;
