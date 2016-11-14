@@ -140,7 +140,7 @@ module.exports.test = function (object) {
         return db.collection('users')    
     })
     .then((users)=>{
-        return users.findOne({fbid: "2132"})
+        return users.findOne({fbid: 2132})
     })
     .then((result)=>{
         console.log(result);
