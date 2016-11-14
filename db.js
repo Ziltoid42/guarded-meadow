@@ -9,6 +9,8 @@ var url = uristring;
 
 // Use connect method to connect to the Server
 
+var data = Object.create(data);
+
 data.prototype = {
 
 
