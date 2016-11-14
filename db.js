@@ -140,7 +140,7 @@ module.exports.test = function (object) {
         return db.collection('users')    
     })
     .then((users)=>{
-        return users.insert(object)
+        return users.find({fbid: object.fbid})
     })
     .then((result)=>{
         console.log(result);
