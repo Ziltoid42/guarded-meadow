@@ -45,4 +45,3 @@ MongoClient.connect(url, function (err, db) {
 });
 
 //fin export
-}
