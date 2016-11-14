@@ -42,6 +42,8 @@ userSchema.methods.initUser = function (name, fbid) {
 
 var user = mongoose.model('User', userSchema);
 
+console.log(user);
+
 //Lets try to Find a user
 user.findOne({fbid: user.fbid}, function (err, userObj) {
   if (err) {
