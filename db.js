@@ -15,7 +15,7 @@ MongoClient.connect(url, function (err, db) {
     //HURRAY!! We are connected. :)
     console.log('Connection established to', url);
 
-     // Get the documents collection
+    // Get the documents collection
     var collection = db.collection('users');
 
     //Create some users
@@ -30,10 +30,12 @@ MongoClient.connect(url, function (err, db) {
       } else {
         console.log('Inserted %d documents into the "users" collection. The documents inserted with "_id" are:', result.length, result);
       }
-
-    //Close connection
-    db.close();
+      //Close connection
+      db.close();
+    });
   }
 });
+
+//fin export
 })()
 module.exports = db
