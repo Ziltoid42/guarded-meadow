@@ -44,7 +44,7 @@ module.exports = function (sender, message) {
         if (text === 'start') {
             sender.state = "start";
 
-            user1.save(function (err, userObj) {
+            sender.save(function (err, userObj) {
                 if (err) {
             console.log(err);
                 } else {
