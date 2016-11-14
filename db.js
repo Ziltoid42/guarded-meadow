@@ -7,8 +7,7 @@ var uristring= 'mongodb://'+MONGOLAB_URI+'/heroku_x563fr8q';
 // Connection URL. This is where your mongodb server is running.
 var url = uristring;
 
-module.exports = function () {
-// Use connect method to connect to the Server
+module.exports = {};
 
 module.exports.lol = function () {
 
