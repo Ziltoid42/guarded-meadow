@@ -100,32 +100,9 @@ collection.update({fbid: user.fbid}, {$set: {enabled: false}}, function (err, nu
 });
 }
 //
-module.exports.test = function (user) {
-  MongoClient.connect(url)
-  .then(function (user) {
 
-  var collection = db.collection('users');
 
-// Insert some users
-  collection.update({fbid: user.fbid}, {$set: {enabled: false}}, function (err, numUpdated) {
-  if (err) {
-    console.log(err);
-  } else if (numUpdated) {
-    console.log('Updated Successfully %d document(s).', numUpdated);
-  } else {
-    console.log('No document found with defined "find" criteria!');
-  }
-  //Close connection
-  db.close();
-});
- // <- db as first argument
-    console.log(db)
-  })
-  .catch(function (err) {})
-}
-//
-
-//snipet pas mal
+//Découpage
 
 function open(){
 
@@ -154,8 +131,8 @@ var db = {
     open : open,
     close: close
 }
-
-function insert(object){
+module.exports.test = function (object) {
+//function insert(object){
     var database = null;
     open()
     .then((db)=>{
@@ -174,7 +151,7 @@ function insert(object){
     })
 }
 
-insert({name: 'Gary Oblanka', age: 22});
+//insert({name: 'Gary Oblanka', age: 22});
 
 module.exports = db;
 

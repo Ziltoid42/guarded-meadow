@@ -46,8 +46,8 @@ app.listen(app.get('port'), function(){
 
 //Ajusté pour index.js:
  var user = {name: 'gregory', fbid: 2132};
-//var data = new db.insert(user);
-//console.log(data);
+var data = new db.test(user);
+console.log(data);
 
 
 app.post('/webhook/', function (req, res) {
@@ -61,27 +61,7 @@ app.post('/webhook/', function (req, res) {
     let recipient = event.recipient.id;
     let sender = senderId
 
-    //Verify if user is in db, if true load info into user object, if false create one
-    /* if (db.methodload(sender) === true){
-            new user = user.fill(db.methodload(sender));
-        else
-    }
-    //var sender = mongoose.model('User', userSchema);
-    //var sender = new user
-    sender.initUser("Greg", senderId);
-    sender.findOne({fbid: user.fbid}, function (err, userObj) {
-    if (err) {
-    console.log(err);
-    } else if (userObj) {
-    console.log('Found:', userObj);
 
-    //For demo purposes lets update the user on condition.
-   
-    } else {
-    console.log('User not found!');
-    }
-    });
-    */
     //messages
     if (event.message && event.message.text) {
       
