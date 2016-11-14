@@ -31,9 +31,13 @@ var userSchema = new Schema({
   state: String
 });
 
+userSchema.methods.findbyfbid = function findbyfbid (fbid) {
+  return this.model('users').findOne({ fbid: this.type });
+};
+
 userSchema.methods.initUser = function (name, fbid) {
 
-  var userObj = userSchema.findOne({ fbid: fbid });
+  var userObj = userSchema.findbyid(fbid);
     if(userObj){
     console.log('Found:', userObj);
     this.name = userObj.name;
