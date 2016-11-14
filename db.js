@@ -9,7 +9,7 @@ var url = uristring;
 
 // Use connect method to connect to the Server
 
-function lol (){
+db.prototype.lol = function (){
   console.log("prout");
 }
 
