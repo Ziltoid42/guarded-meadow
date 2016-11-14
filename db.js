@@ -100,9 +100,9 @@ collection.update({fbid: user.fbid}, {$set: {enabled: false}}, function (err, nu
 });
 }
 //
-module.exports.test = function () {
+module.exports.test = function (user) {
   MongoClient.connect(url)
-  .then(function (db) {
+  .then(function (user) {
 
   var collection = db.collection('users');
 
