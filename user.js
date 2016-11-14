@@ -40,8 +40,8 @@ userSchema.methods.initUser = function (name, fbid) {
       }
       else if (userObj) 
         return userObj;
+      ) 
     };
-    )
   }
 
 var user = mongoose.model('User', userSchema);
