@@ -56,13 +56,14 @@ app.post('/webhook/', function (req, res) {
     let event = req.body.entry[0].messaging[i];
     let senderId = event.sender.id;
     let recipient = event.recipient.id;
+    let sender = senderId
 
     //Verify if user is in db, if true load info into user object, if false create one
     /* if (db.methodload(sender) === true){
             new user = user.fill(db.methodload(sender));
         else
-    }*/
-    var sender = mongoose.model('User', userSchema);
+    }
+    //var sender = mongoose.model('User', userSchema);
     //var sender = new user
     sender.initUser("Greg", senderId);
     sender.findOne({fbid: user.fbid}, function (err, userObj) {
@@ -77,7 +78,7 @@ app.post('/webhook/', function (req, res) {
     console.log('User not found!');
     }
     });
-
+    */
     //messages
     if (event.message && event.message.text) {
       
