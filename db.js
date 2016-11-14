@@ -130,7 +130,7 @@ module.exports.test = function (user) {
 function open(){
 
     // Connection URL. This is where your mongodb server is running.
-    let url = constants.MONGODB_URI;
+    
     return new Promise((resolve, reject)=>{
         // Use connect method to connect to the Server
         mongoClient.connect(url, (err, db) => {
