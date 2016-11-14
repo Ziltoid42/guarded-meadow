@@ -150,7 +150,7 @@ function close(db){
     }
 }
 
-let db = {
+var db = {
     open : open,
     close: close
 }
