@@ -46,8 +46,8 @@ app.listen(app.get('port'), function(){
 
 //Ajusté pour index.js:
  var user = {name: 'gregory', fbid: 2132};
-var data = new db.test(user);
-console.log(data);
+    db.test(user);
+//console.log(data);
 
 
 app.post('/webhook/', function (req, res) {
