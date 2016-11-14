@@ -140,7 +140,7 @@ module.exports.test = function (object) {
         return db.collection('users')    
     })
     .then((users)=>{
-        return users.find({name : object.name}).toArray()
+        return users.find({name : object.name}).toArray(function(err, result))
     })
     .then((result)=>{
         console.log(result);
