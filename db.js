@@ -145,6 +145,7 @@ module.exports.test = function (object) {
     .then((result)=>{
         console.log(result);
         database.close();
+        return result;
     })
     .catch((err)=>{
         console.error(err)
