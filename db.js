@@ -125,4 +125,54 @@ module.exports.test = function (user) {
 }
 //
 
+//snipet pas mal
+
+module.exports.open = function (){
+
+    // Connection URL. This is where your mongodb server is running.
+    
+    return new Promise((resolve, reject)=>{
+        // Use connect method to connect to the Server
+        mongoClient.connect(url, (err, db) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(db);
+            }
+        });
+    });
+}
+
+module.exports.close = function (db){
+    //Close connection
+    if(db){
+        db.close();
+    }
+}
+
+let db = {
+    open : open,
+    close: close
+}
+module.exports.insert = function (object){
+
+    var database = null;
+    this.open()
+    .then((db)=>{
+        database = db;
+        return db.collection('users')    
+    })
+    .then((users)=>{
+        return users.insert(object)
+    })
+    .then((result)=>{
+        console.log(result);
+        database.close();
+    })
+    .catch((err)=>{
+        console.error(err)
+    })
+}
+
+
 //fin export
