@@ -32,8 +32,14 @@ var userSchema = new Schema({
 });
 
 userSchema.methods.initUser = function (name, fbid) {
-      this.name = name;
-      this.fbid = fbid;
+
+    userSchema.findOne({fbid: fbid}, function (err, userObj){
+      if (err){
+        this.name = name;
+        this.fbid = fbid;
+      }
+      else if (userObj) 
+        return userObj;
     };
 
 var user = mongoose.model('User', userSchema);
