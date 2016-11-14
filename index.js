@@ -63,8 +63,18 @@ app.post('/webhook/', function (req, res) {
  
     var sender = new user
     sender.initUser("Greg", senderId);
-    //var userObj = sender.findOne({ fbid: sender.fbid });
-    //console.log('Found:', userObj);
+    sender.findOne({fbid: user.fbid}, function (err, userObj) {
+    if (err) {
+    console.log(err);
+    } else if (userObj) {
+    console.log('Found:', userObj);
+
+    //For demo purposes lets update the user on condition.
+   
+    } else {
+    console.log('User not found!');
+    }
+    });
 
     //messages
     if (event.message && event.message.text) {
