@@ -151,8 +151,8 @@ module.exports.close = function (db){
 }
 
 var db = {
-    open : open,
-    close: close
+    this.open : open,
+    this.close: close
 }
 module.exports.insert = function (object){
 
