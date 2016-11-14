@@ -5,7 +5,8 @@ const bodyParser = require('body-parser');
 const request = require('request');
 //const fetch = require('node-fetch'); //a virer des modules
 const app = express();
-const db = require('./db'); // de coté por test
+const db = require('./db');
+const data = require('./db'); // de coté por test
 var handleMessages = require('./handleMessages');
 var handlePostbacks = require('./handlePostbacks');
 //var user = require('./user');
@@ -45,8 +46,8 @@ app.listen(app.get('port'), function(){
 //module.exports = function (req, res) {
 
 //Ajusté pour index.js:
-
-db.lol();
+var donnee = new data:
+donnee.lol();
 
 app.post('/webhook/', function (req, res) {
 
