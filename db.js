@@ -143,7 +143,7 @@ module.exports.test = function (object) {
         return users.findOne({fbid: 2132})
     })
     .then((result)=>{
-        console.log(result);
+        console.log(object);
         database.close();
         return result;
     })
