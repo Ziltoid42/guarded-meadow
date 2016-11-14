@@ -9,6 +9,8 @@ const app = express();
 var handleMessages = require('./handleMessages');
 var handlePostbacks = require('./handlePostbacks');
 var user = require('./user');
+var mongoose = require('./user');
+var userSchema = require('./user');
 
 //var user = require('user'); //Ajout class user
 
