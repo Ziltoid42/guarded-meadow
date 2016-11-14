@@ -43,6 +43,15 @@ module.exports = function (sender, message) {
 
         if (text === 'start') {
             sender.state = "start";
+
+            user1.save(function (err, userObj) {
+                if (err) {
+            console.log(err);
+                } else {
+             console.log('saved successfully:', userObj);
+                }
+            });    
+
             console.log (sender);
             sendTextMessage(sender.fbid, "Hello Bong")
             sendTextMessage(sender.fbid, "My name is Creditor and I am a robot!")

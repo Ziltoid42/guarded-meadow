@@ -76,15 +76,7 @@ User.findOne({name: 'modulus admin'}, function (err, userObj) {
     console.log('User not found!');
   }
 });
-*/
 
-//function user(){
-   // Add object properties like this
-
-   //this.data = db.mongoose.model('User', {name: String, fbid: Number});
-    
-//}
-/*
 user.prototype = {
 
 
