@@ -150,7 +150,7 @@ module.exports.close = function (db){
     }
 }
 
-let db = {
+var db = {
     open : open,
     close: close
 }
