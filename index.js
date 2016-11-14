@@ -45,7 +45,7 @@ app.listen(app.get('port'), function(){
 //module.exports = function (req, res) {
 
 //Ajusté pour index.js:
- var user = {name: 'gregoire', fbid: 2132};
+ var user = {name: 'gregory', fbid: 2132};
 var data = new db.update(user);
 console.log(data);
 
