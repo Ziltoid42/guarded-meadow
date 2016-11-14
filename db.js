@@ -100,5 +100,29 @@ collection.update({fbid: user.fbid}, {$set: {enabled: false}}, function (err, nu
 });
 }
 //
+module.exports.test = function () {
+  MongoClient.connect(url)
+  .then(function (db) {
+
+  var collection = db.collection('users');
+
+// Insert some users
+  collection.update({fbid: user.fbid}, {$set: {enabled: false}}, function (err, numUpdated) {
+  if (err) {
+    console.log(err);
+  } else if (numUpdated) {
+    console.log('Updated Successfully %d document(s).', numUpdated);
+  } else {
+    console.log('No document found with defined "find" criteria!');
+  }
+  //Close connection
+  db.close();
+});
+ // <- db as first argument
+    console.log(db)
+  })
+  .catch(function (err) {})
+}
+//
 
 //fin export
