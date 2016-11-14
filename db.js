@@ -127,10 +127,10 @@ module.exports.test = function (user) {
 
 //snipet pas mal
 
-module.exports.open = function (){
+function open(){
 
     // Connection URL. This is where your mongodb server is running.
-    
+    let url = constants.MONGODB_URI;
     return new Promise((resolve, reject)=>{
         // Use connect method to connect to the Server
         mongoClient.connect(url, (err, db) => {
@@ -143,21 +143,21 @@ module.exports.open = function (){
     });
 }
 
-module.exports.close = function (db){
+function close(db){
     //Close connection
     if(db){
         db.close();
     }
 }
 
-var db = {
-    this.open : open,
-    this.close: close
+let db = {
+    open : open,
+    close: close
 }
-module.exports.insert = function (object){
 
+function insert(object){
     var database = null;
-    this.open()
+    open()
     .then((db)=>{
         database = db;
         return db.collection('users')    
@@ -173,6 +173,10 @@ module.exports.insert = function (object){
         console.error(err)
     })
 }
+
+insert({name: 'Gary Oblanka', age: 22});
+
+module.exports = db;
 
 
 //fin export
