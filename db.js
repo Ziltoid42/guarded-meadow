@@ -12,7 +12,7 @@ var url = uristring;
 data.prototype = {
 
 
-    lol = function (){
+    lol : function (){
   console.log("prout");
   }
 };
