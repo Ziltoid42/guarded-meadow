@@ -10,7 +10,8 @@ var url = uristring;
 module.exports = function () {
 // Use connect method to connect to the Server
 
-function lol() {
+module.exports.lol = function () {
+
    console.log("prout");
 }
 
