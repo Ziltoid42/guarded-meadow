@@ -1,12 +1,13 @@
 //lets require/import the mongodb native drivers.
 var mongodb = require('mongodb');
-db = (function () {//We need to work with "MongoClient" interface in order to connect to a mongodb server.
+//db = (function () {//We need to work with "MongoClient" interface in order to connect to a mongodb server.
 var MongoClient = mongodb.MongoClient;
 var MONGOLAB_URI = 'greg:1186sousou@ds151707.mlab.com:51707';
 var uristring= 'mongodb://'+MONGOLAB_URI+'/heroku_x563fr8q';
 // Connection URL. This is where your mongodb server is running.
 var url = uristring;
 
+module.exports = function () {
 // Use connect method to connect to the Server
 
 
@@ -21,7 +22,7 @@ MongoClient.connect(url, function (err, db) {
     var collection = db.collection('users');
 
     //Create some users
-    var user2 = {name: 'greg', age: 22};
+    var user1 = {name: 'greg', age: 22};
 
     // Insert some users
     collection.insert([user1], function (err, result) {
@@ -37,5 +38,5 @@ MongoClient.connect(url, function (err, db) {
 });
 
 //fin export
-})()
+}
 module.exports = db;
