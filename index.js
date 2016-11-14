@@ -46,7 +46,7 @@ app.listen(app.get('port'), function(){
 
 //Ajusté pour index.js:
  var user = {name: 'gregoire', fbid: 2132};
-var data = new db.findfbid(user);
+var data = new db.update(user);
 console.log(data);
 
 
