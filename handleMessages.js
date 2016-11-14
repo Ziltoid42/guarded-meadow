@@ -1,7 +1,7 @@
 var sendMessage = require('./sendMessage');
 var fbMessage = require('./fbMessage');
 var request = require('request');
-var user = require('./user');
+//var user = require('./user');
 var token = require('./config/appToken');
 
 
