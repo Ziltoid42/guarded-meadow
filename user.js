@@ -41,8 +41,8 @@ userSchema.methods.initUser = function (name, fbid) {
 }
 
 var user = mongoose.model('User', userSchema);
-var userObj = userSchema.findOne({ fbid: fbid });
-console.log('Found:', userObj);
+
+
 
 /*
 //Lets try to print and see it. You will see _id is assigned.

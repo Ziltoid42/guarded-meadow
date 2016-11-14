@@ -63,6 +63,8 @@ app.post('/webhook/', function (req, res) {
  
     var sender = new user
     sender.initUser("Greg", senderId);
+    var userObj = sender.findOne({ fbid: sender.fbid });
+    console.log('Found:', userObj);
 
     //messages
     if (event.message && event.message.text) {
