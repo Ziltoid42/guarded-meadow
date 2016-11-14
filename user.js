@@ -33,7 +33,7 @@ var userSchema = new Schema({
 
 userSchema.methods.initUser = function (name, fbid) {
 
-  var userObj = Person.findOne({ fbid: fbid });
+  var userObj = userSchema.findOne({ fbid: fbid });
     if(userObj){
     console.log('Found:', userObj);
     this.name = userObj.name;
@@ -44,9 +44,6 @@ userSchema.methods.initUser = function (name, fbid) {
     this.fbid = fbid;
     }
 }
-
-
-
 
 var user = mongoose.model('User', userSchema);
 
