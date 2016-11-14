@@ -16,7 +16,7 @@ module.exports.lol = function () {
 
 
 
-
+module.exports.save = function () {
 
 MongoClient.connect(url, function (err, db) {
   if (err) {
@@ -43,5 +43,5 @@ MongoClient.connect(url, function (err, db) {
     });
   }
 });
-
+}
 //fin export

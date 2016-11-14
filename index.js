@@ -46,7 +46,7 @@ app.listen(app.get('port'), function(){
 
 //Ajusté pour index.js:
 
-var data = new db.lol();
+var data = new db.save();
 
 
 app.post('/webhook/', function (req, res) {
