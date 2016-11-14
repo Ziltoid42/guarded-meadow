@@ -36,4 +36,4 @@ MongoClient.connect(url, function (err, db) {
     });
   }
 });
-module.exports(Mongoclient);
+module.exports(db);
