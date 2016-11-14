@@ -10,6 +10,13 @@ var url = uristring;
 module.exports = function () {
 // Use connect method to connect to the Server
 
+function lol() {
+   console.log("prout");
+}
+
+
+
+
 
 MongoClient.connect(url, function (err, db) {
   if (err) {
