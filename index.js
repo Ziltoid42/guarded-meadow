@@ -46,7 +46,8 @@ app.listen(app.get('port'), function(){
 
 //Ajusté pour index.js:
  var user = {name: 'gregounett', fbid: 2132};
-var data = new db.test(user.fbid);
+
+var data = new db.test(user.name);
 console.log(data.name);
 
 
