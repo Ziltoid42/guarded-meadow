@@ -8,6 +8,11 @@ var uristring= 'mongodb://'+MONGOLAB_URI+'/heroku_x563fr8q';
 var url = uristring;
 
 // Use connect method to connect to the Server
+
+lol = function (){
+  console.log("prout");
+}
+
 MongoClient.connect(url, function (err, db) {
   if (err) {
     console.log('Unable to connect to the mongoDB server. Error:', err);
