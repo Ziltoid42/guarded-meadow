@@ -9,17 +9,6 @@ var url = uristring;
 
 // Use connect method to connect to the Server
 
-var data = Object.create(data);
-
-data.prototype = {
-
-
-    lol : function (){
-  console.log("prout");
-  }
-};
-
-
 
 MongoClient.connect(url, function (err, db) {
   if (err) {
@@ -32,12 +21,10 @@ MongoClient.connect(url, function (err, db) {
     var collection = db.collection('users');
 
     //Create some users
-    var user1 = {name: 'modulus admin', age: 42, roles: ['admin', 'moderator', 'user']};
-    var user2 = {name: 'modulus user', age: 22, roles: ['user']};
-    var user3 = {name: 'modulus super admin', age: 92, roles: ['super-admin', 'admin', 'moderator', 'user']};
+    var user2 = {name: 'greg', age: 22};
 
     // Insert some users
-    collection.insert([user1, user2, user3], function (err, result) {
+    collection.insert([user1], function (err, result) {
       if (err) {
         console.log(err);
       } else {
@@ -52,4 +39,3 @@ MongoClient.connect(url, function (err, db) {
 //fin export
 })()
 module.exports = db;
-module.exports = data;
