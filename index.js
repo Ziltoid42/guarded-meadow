@@ -52,7 +52,7 @@ app.listen(app.get('port'), function(){
                 console.log("data index: ");
                 console.log(object);
 });
-*/
+
 function filluser(user){
   return new Promise(function (err){
     db.find(user).then((object)=>{
@@ -64,7 +64,21 @@ function filluser(user){
         console.error(err)
     })
     })
-  }
+  }*/
+
+function getuser (user) {
+
+    db.find(user.fbid)
+    .then((object)=>{
+        user = object;
+        console.log("user inside getuser: ");
+        console.log(user);
+        return user;    
+    })
+    .catch((err)=>{
+        console.error(err)
+    })  
+}
 
 
 function routeur(event, sender){
@@ -86,7 +100,8 @@ function routeur(event, sender){
     }
 }
 
-user = filluser(user.fbid);
+user = getuser(user.fbid);
+console.log("user outside getuser: ");
 console.log(user);
 
 app.post('/webhook/', function (req, res) {
@@ -100,7 +115,7 @@ app.post('/webhook/', function (req, res) {
     let recipient = event.recipient.id;
     let sender = senderId
 
-
+    console.log("passage d'un message");
     routeur(senderId, event);
     /*
     //messages
