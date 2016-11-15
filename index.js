@@ -43,7 +43,7 @@ app.listen(app.get('port'), function(){
 function fillUser(user){
   //  console.log("dans fill");
 //console.log(user);
-    new Promise(function(res, rej)=>{
+    new Promise(function(res, rej){
         // Use connect method to connect to the Server
 
         res(db.find(user)); 
