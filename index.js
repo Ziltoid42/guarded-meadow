@@ -56,7 +56,7 @@ app.listen(app.get('port'), function(){
 function filluser(user){
   return new Promise(function (fulfill, reject){
     db.find(user.fbid)
-}).done (function (res){
+.done (function (res){
       try {
         console.log("data index: ");
         console.log(res);
