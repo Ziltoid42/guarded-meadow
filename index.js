@@ -41,9 +41,10 @@ app.listen(app.get('port'), function(){
 
 
 function fillUser(user){
-
+console.log(user);
     return new Promise((resolve, reject)=>{
         // Use connect method to connect to the Server
+
         db.find((user) => {
             if (err) {
                 reject(err);
@@ -108,7 +109,6 @@ app.post('/webhook/', function (req, res) {
 
     //
     console.log("passage d'un message");
-    console.log(user);
     var coquin = fillUser(user);
     console.log(coquin);
     //routeur(senderId, event);
