@@ -9,9 +9,6 @@ var url = uristring;
 
 module.exports = {};
 
-module.exports.lol = function () {
-
-
 function open(){
 
     // Connection URL. This is where your mongodb server is running.
