@@ -102,7 +102,7 @@ app.post('/webhook/', function (req, res) {
 
 
     routeur(senderId, event);
-
+    /*
     //messages
     if (event.message && event.message.text) {
       
@@ -117,7 +117,7 @@ app.post('/webhook/', function (req, res) {
       
         handlePostbacks(sender, event.postback); //fonction routing postbacks
 
-    }
+    }*/
 
     //messaging_optins
     /* gestion abonnements a gérer plus tard
