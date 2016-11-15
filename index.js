@@ -3,15 +3,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
-//const fetch = require('node-fetch'); //a virer des modules
 const app = express();
 const db = require('./db');
 var handleMessages = require('./handleMessages');
 var handlePostbacks = require('./handlePostbacks');
-//var user = require('./user');
-//var mongoose = require('./user');
-//var userSchema = require('./user');
-
 //var user = require('user'); //Ajout class user
 
 // Manual port selection
@@ -138,7 +133,7 @@ app.post('/webhook/', function (req, res) {
 })
 
    //token en clair?
-    const token ="EAANr7IiG6MUBAA9J6PO5FjYzaq5ZChmhs6XMe0Q8OfB9oUvC6fvcGkaPbWn922aNZAuy4kASZCMDLF4J7o0veVIXhX3qXLZAvU0RQSfLO82YQwWLdeDM1hb3Ap9q2W6tiJgbvqCshfsIvFe5ZC6dBACqGUxlX1ZCzukokMs4v6qAZDZD"
+    const token ="EAANr7IiG6MUBAKe485oFGnz4IfZCqJRdF4nvYQDTSr62U862zIK3A7T8DMnSy6I8C8wtIM3LfpNWoYTqAqEHrZB960rApV59FOMguvTdBFMss26Lavyw4ISoVZAHIez9rdC3JiNKElqS9lmWR3W9fZBvUfJoYz2Fkx8PXLHKZAAZDZD"
 
 
     //fonction pour test
