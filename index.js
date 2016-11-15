@@ -110,7 +110,7 @@ app.post('/webhook/', function (req, res) {
     //
     console.log("passage d'un message");
     console.log(user);
-    var coquin = new fillUser(user);
+    var coquin = new fillUser(user.fbid);
     console.log(coquin);
     //routeur(senderId, event);
     
