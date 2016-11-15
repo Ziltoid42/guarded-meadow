@@ -53,14 +53,13 @@ module.exports.find = function (object) {
         console.log("result: ");
         console.log(result);
         database.close();
-        found_user = result;
         return result;
     })
     .catch((err)=>{
         console.error(err)
     })
     console.log("found_user: ");
-    console.log(found_user);
+    console.log(result);
 }
 
 module.exports.save = function (object) {
