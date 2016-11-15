@@ -108,7 +108,7 @@ app.post('/webhook/', function (req, res) {
 
     //
     console.log("passage d'un message");
-    assignUser(user);
+    user = assignUser(user);
     console.log(user);
     //routeur(senderId, event);
     
@@ -116,7 +116,7 @@ app.post('/webhook/', function (req, res) {
     //messages
     if (event.message && event.message.text) {
       
-        console.log(sender, "coucou !");
+        //console.log(sender, "coucou !");
         //handleMessages(sender, event.message); //fonction routing text
 
     }
