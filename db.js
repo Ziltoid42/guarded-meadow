@@ -39,6 +39,8 @@ var db = {
 
 module.exports.find = function (object) {
 //function insert(object){
+  console.log("dans find: ");
+  console.log(object);
     var database = null;
     open()
     .then((db)=>{
