@@ -66,8 +66,24 @@ function filluser(user){
     })
   }*/
 
-function getuser (user) {
+function filluser(){
 
+    return new Promise((resolve, reject)=>{
+        // Use connect method to connect to the Server
+        db.find((user.fbid) => {
+            if (err) {
+                reject(err);
+            } else {
+                console.log("user inside getuser: ");
+                console.log(user);
+                resolve(object);
+            }
+        });
+    });
+}
+/*
+function getuser (user) {
+return new Promise((resolve, reject)=>{
     db.find(user.fbid)
     .then((object)=>{
         user = object;
@@ -78,7 +94,7 @@ function getuser (user) {
     .catch((err)=>{
         console.error(err)
     })  
-}
+}*/
 
 
 function routeur(event, sender){
@@ -100,7 +116,7 @@ function routeur(event, sender){
     }
 }
 
-user = getuser(user.fbid);
+user = filluser(user.fbid);
 console.log("user outside getuser: ");
 console.log(user);
 
