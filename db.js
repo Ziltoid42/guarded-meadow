@@ -50,7 +50,7 @@ module.exports.find = function (object) {
         return users.findOne({fbid: object})
     })
     .then((result)=>{
-        //console.log(result);
+        console.log(result);
         database.close();
         found_user = result;
         return result;
@@ -58,7 +58,7 @@ module.exports.find = function (object) {
     .catch((err)=>{
         console.error(err)
     })
-    return found_user;
+    console.log(found_user);
 }
 
 module.exports.save = function (object) {
