@@ -49,7 +49,8 @@ app.listen(app.get('port'), function(){
 
 var data = new db.find(user.fbid);
 
-console.log(data  + "data");
+console.log("data: ");
+console.log(data);
 
 
 app.post('/webhook/', function (req, res) {
