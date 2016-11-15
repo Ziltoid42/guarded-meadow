@@ -66,7 +66,7 @@ function filluser(user){
     })
   }*/
 
-function filluser(){
+function filluser(user){
 
     return new Promise((resolve, reject)=>{
         // Use connect method to connect to the Server
