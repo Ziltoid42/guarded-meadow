@@ -55,12 +55,11 @@ app.listen(app.get('port'), function(){
 */
 function filluser(user){
   return new Promise(function (fulfill, reject){
-    db.find(user)
-.done (function (res){
+    db.find(user).then((object)=>{
       try {
         console.log("data index: ");
-        console.log(res);
-        return res;
+        console.log(object);
+        return object;
       } catch (ex) {
         reject(ex);
       }
