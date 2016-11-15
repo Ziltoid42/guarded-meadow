@@ -47,10 +47,10 @@ app.listen(app.get('port'), function(){
 //Ajusté pour index.js:
  var user = {name: 'gregoun', fbid: 2132};
 
-var data = new db.find(user.fbid).Then((object));
-.then((object)=>{
-    console.log("data index: ");
-    console.log(object);
+var data = new db.find(user.fbid)
+            .then((object)=>{
+                console.log("data index: ");
+                console.log(object);
 });
 
 
