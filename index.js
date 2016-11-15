@@ -95,10 +95,11 @@ app.post('/webhook/', function (req, res) {
     console.log(sender.fbid);
     //routeur(senderId, event);
     
+
     //messages
     if (event.message && event.message.text) {
       
-        sendTextMessage(sender, "coucou !");
+        console.log(sender, "coucou !");
         //handleMessages(sender, event.message); //fonction routing text
 
     }
