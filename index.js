@@ -108,7 +108,7 @@ app.post('/webhook/', function (req, res) {
 
     //
     console.log("passage d'un message");
-    assignUser(user).
+    assignUser(user);
     console.log(user);
     //routeur(senderId, event);
     
