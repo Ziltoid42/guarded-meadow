@@ -56,16 +56,16 @@ app.listen(app.get('port'), function(){
 function filluser(user){
   return new Promise(function (fulfill, reject){
     db.find(user).then((object)=>{
-      try {
+      
         console.log("data index: ");
         console.log(object);
         return object;
-      } catch (ex) {
-        reject(ex);
-      }
+      }).catch((err)=>{
+        console.error(err)
+    })
     }, reject);
-  });
-}
+  }
+
 
 function routeur(event, sender){
    if (event.message && event.message.text) {
