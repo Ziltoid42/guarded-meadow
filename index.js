@@ -92,12 +92,14 @@ app.post('/webhook/', function (req, res) {
     var sender =  {name: 'gregoun', fbid: senderId};
 
     console.log("passage d'un message");
+    console.log(sender.fbid);
     //routeur(senderId, event);
     
     //messages
     if (event.message && event.message.text) {
       
-        handleMessages(sender, event.message); //fonction routing text
+        sendTextMessage(sender, "coucou !");
+        //handleMessages(sender, event.message); //fonction routing text
 
     }
 
