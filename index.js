@@ -45,7 +45,7 @@ console.log(user);
     return new Promise((resolve, reject)=>{
         // Use connect method to connect to the Server
 
-        db.find((user) => {
+        db.find((user.fbid) => {
             if (err) {
                 reject(err);
             } else {

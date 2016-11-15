@@ -46,7 +46,7 @@ module.exports.find = function (object) {
         return db.collection('users')    
     })
     .then((users)=>{
-        return users.findOne({fbid: number(object.fbid)})
+        return users.findOne({fbid: object})
     })
     .then((result)=>{
         console.log("result: ");
