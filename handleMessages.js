@@ -27,16 +27,16 @@ module.exports = function (sender, message) {
             .compose();
 
         sendMessage(senderId, imgReply);
-        var buttons = {
+        */var buttons = {
             text:"How would you describe the overall condition of your motorcycle?", 
             title1:"Good condition", 
             payload1:"good"}
 
         var buttonReply = new fbMessage
             .ButtonTemplate(buttons)
-            .compose();*/
+            .compose();
             
-        sendTextMessage(sender.fbid, JSON.stringify(sender.name));
+        sendTextMessage(sender, "test ok");
     
     }
 

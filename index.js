@@ -68,6 +68,25 @@ function filluser(user){
   });
 }
 
+function routeur(event, sender){
+   if (event.message && event.message.text) {
+      console.log(sender);
+      console.log("passe par message");
+        //handleMessages(sender, event.message); //fonction routing text
+
+    }
+
+
+    //messaging_postbacks
+    if (event.postback && event.postback.payload) {
+
+      console.log(sender);
+      console.log("pass par postback");
+        handlePostbacks(sender, event.postback); //fonction routing postbacks
+
+    }
+}
+
 user = filluser(user.fbid);
 
 app.post('/webhook/', function (req, res) {
@@ -81,6 +100,8 @@ app.post('/webhook/', function (req, res) {
     let recipient = event.recipient.id;
     let sender = senderId
 
+
+    routeur(senderId, event);
 
     //messages
     if (event.message && event.message.text) {
