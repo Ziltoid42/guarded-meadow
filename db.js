@@ -54,8 +54,6 @@ module.exports.find = function (object) {
         console.log(result);
         object = result;
         database.close();
-        console.log("object: ");
-        console.log(object);
         return object;
     })
     .catch((err)=>{
