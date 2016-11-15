@@ -37,10 +37,10 @@ var db = {
     close: close
 }
 
-module.exports.find = function (object) {
+module.exports.find = function (user) {
 //function insert(object){
   console.log("dans find: ");
-  console.log(object);
+  console.log(user);
     var database = null;
     open()
     .then((db)=>{
@@ -48,7 +48,7 @@ module.exports.find = function (object) {
         return db.collection('users')    
     })
     .then((users)=>{
-        return users.findOne({fbid: object})
+        return users.findOne({fbid: user})
     })
     .then((result)=>{
         console.log("result: ");
