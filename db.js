@@ -52,12 +52,15 @@ module.exports.find = function (object) {
     .then((result)=>{
         console.log("result: ");
         console.log(result);
+        object = result;
         database.close();
-        return result;
+        console.log("object: ");
+        console.log(object);
+        return object;
     })
-    //.catch((err)=>{
-      //  console.error(err)
-    //})
+    .catch((err)=>{
+        console.error(err)
+    })
     
 }
 
