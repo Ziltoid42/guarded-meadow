@@ -43,26 +43,18 @@ app.listen(app.get('port'), function(){
 function fillUser(user){
   //  console.log("dans fill");
 //console.log(user);
-    new Promise((resolve, reject)=>{
+    new Promise(function(res, rej)=>{
         // Use connect method to connect to the Server
 
-        db.find((user) => {
-            if (err) {
-                reject(err);
-            } else {
-                console.log("user inside getuser: ");
-                console.log(result);
-                resolve(result);
-            }
-        });
-    });
+        res(db.find(user)); 
+        })
 }
 
 function assignUser(user) {
 //function insert(object){
     fillUser(user)
-    .then((result)=>{
-        console.log(result);    
+    .then(function(result){
+        return result;    
     })
     .catch((err)=>{
         console.error(err)
