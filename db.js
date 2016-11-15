@@ -40,14 +40,13 @@ var db = {
 module.exports.find = function (object) {
 //function insert(object){
     var database = null;
-    var found_user;
     open()
     .then((db)=>{
         database = db;
         return db.collection('users')    
     })
     .then((users)=>{
-        return users.findOne({fbid: object.fbid})
+        return users.findOne({fbid: 2132})
     })
     .then((result)=>{
         console.log("result: ");
