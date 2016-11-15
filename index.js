@@ -47,13 +47,28 @@ app.listen(app.get('port'), function(){
 //Ajusté pour index.js:
  var user = {name: 'gregoun', fbid: 2132};
 
-var data = new db.find(user.fbid)
+/*db.find(user.fbid)
             .then((object)=>{
                 console.log("data index: ");
                 console.log(object);
 });
+*/
+function filluser(user){
+  return new Promise(function (fulfill, reject){
+    db.find(user.fbid)
+}).done (function (res){
+      try {
+        console.log("data index: ");
+        console.log(res);
+        return res;
+      } catch (ex) {
+        reject(ex);
+      }
+    }, reject);
+  });
+}
 
-
+user = filluser(user.fbid);
 
 app.post('/webhook/', function (req, res) {
 
