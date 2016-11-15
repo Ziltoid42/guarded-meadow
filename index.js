@@ -50,12 +50,23 @@ function filluser(user){
             } else {
                 console.log("user inside getuser: ");
                 console.log(user);
-                resolve(object);
+                resolve(user);
             }
         });
     });
 }
 
+function assignUser(user) {
+//function insert(object){
+    filluser(user)
+    .then((user)=>{
+        console.log(user);    
+    })
+    .catch((err)=>{
+        console.error(err)
+    })
+    
+}
 
 function routeur(event, sender){
    if (event.message && event.message.text) {
@@ -90,9 +101,15 @@ app.post('/webhook/', function (req, res) {
     let senderId = event.sender.id;
     let recipient = event.recipient.id;
     var sender =  {name: 'gregoun', fbid: senderId};
+    //zone test
 
+
+
+
+    //
     console.log("passage d'un message");
-    console.log(sender.fbid);
+    assignUser(user).
+    console.log(user);
     //routeur(senderId, event);
     
 
