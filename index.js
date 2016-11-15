@@ -97,8 +97,8 @@ app.post('/webhook/', function (req, res) {
     let sender = senderId
 
     console.log("passage d'un message");
-    routeur(senderId, event);
-    /*
+    //routeur(senderId, event);
+    
     //messages
     if (event.message && event.message.text) {
       
@@ -113,7 +113,7 @@ app.post('/webhook/', function (req, res) {
       
         handlePostbacks(sender, event.postback); //fonction routing postbacks
 
-    }*/
+    }
 
     //messaging_optins
     /* gestion abonnements a gérer plus tard
