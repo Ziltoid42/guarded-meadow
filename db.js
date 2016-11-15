@@ -40,6 +40,7 @@ var db = {
 module.exports.find = function (object) {
 //function insert(object){
     var database = null;
+    var found_user;
     open()
     .then((db)=>{
         database = db;
@@ -51,11 +52,13 @@ module.exports.find = function (object) {
     .then((result)=>{
         //console.log(result);
         database.close();
+        found_user = result;
         return result;
     })
     .catch((err)=>{
         console.error(err)
     })
+    return found_user;
 }
 
 module.exports.save = function (object) {
