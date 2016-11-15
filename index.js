@@ -63,7 +63,7 @@ function filluser(user){
       }).catch((err)=>{
         console.error(err)
     })
-    }, reject);
+    })
   }
 
 
