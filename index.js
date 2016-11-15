@@ -49,8 +49,8 @@ function fillUser(user){
                 reject(err);
             } else {
                 console.log("user inside getuser: ");
-                console.log(user);
-                resolve(user);
+                console.log(result);
+                resolve(result);
             }
         });
     });
@@ -59,8 +59,8 @@ function fillUser(user){
 function assignUser(user) {
 //function insert(object){
     fillUser(user)
-    .then((user)=>{
-        console.log(user);    
+    .then((result)=>{
+        console.log(result);    
     })
     .catch((err)=>{
         console.error(err)
@@ -108,7 +108,7 @@ app.post('/webhook/', function (req, res) {
 
     //
     console.log("passage d'un message");
-    user = fillUser(user);
+    fillUser(user);
     console.log(user);
     //routeur(senderId, event);
     

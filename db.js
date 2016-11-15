@@ -50,11 +50,10 @@ module.exports.find = function (object) {
         return users.findOne({fbid: object})
     })
     .then((result)=>{
-        //console.log("result: ");
-        //console.log(result);
-        object = result;
+        console.log("result: ");
+        console.log(result);
         database.close();
-        return object;
+        return result;
     })
     .catch((err)=>{
         console.error(err)
