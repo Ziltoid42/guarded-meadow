@@ -40,7 +40,7 @@ app.listen(app.get('port'), function(){
 
 
 
-function filluser(user){
+function fillUser(user){
 
     return new Promise((resolve, reject)=>{
         // Use connect method to connect to the Server
@@ -58,7 +58,7 @@ function filluser(user){
 
 function assignUser(user) {
 //function insert(object){
-    filluser(user)
+    fillUser(user)
     .then((user)=>{
         console.log(user);    
     })
@@ -108,7 +108,7 @@ app.post('/webhook/', function (req, res) {
 
     //
     console.log("passage d'un message");
-    user = assignUser(user);
+    user = fillUser(user);
     console.log(user);
     //routeur(senderId, event);
     
