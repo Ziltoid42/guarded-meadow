@@ -36,7 +36,7 @@ app.listen(app.get('port'), function(){
 // Where the app runs
 //app.post('/webhook/', fbMessengerBot);
 
- var user = {name: 'gregoun', fbid: 2132};
+ 
 
 
 
@@ -102,6 +102,7 @@ app.post('/webhook/', function (req, res) {
     let senderId = event.sender.id;
     let recipient = event.recipient.id;
     var sender =  {name: 'gregoun', fbid: senderId};
+    var user = {name: 'gregoun', fbid: 2132};
     //zone test
 
 
@@ -109,7 +110,8 @@ app.post('/webhook/', function (req, res) {
 
     //
     console.log("passage d'un message");
-    var coquin = fillUser(user);
+    console.log(user);
+    var coquin = new fillUser(user);
     console.log(coquin);
     //routeur(senderId, event);
     
