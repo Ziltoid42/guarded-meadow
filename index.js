@@ -88,6 +88,7 @@ function routeur(event, sender){
 }
 
 user = filluser(user.fbid);
+console.log(user);
 
 app.post('/webhook/', function (req, res) {
 
