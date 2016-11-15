@@ -41,30 +41,9 @@ app.listen(app.get('port'), function(){
 // Where the app runs
 //app.post('/webhook/', fbMessengerBot);
 
-//A l'origine dans index plutot que server, intégré dans app.post:
-//module.exports = function (req, res) {
-
-//Ajusté pour index.js:
  var user = {name: 'gregoun', fbid: 2132};
 
-/*db.find(user.fbid)
-            .then((object)=>{
-                console.log("data index: ");
-                console.log(object);
-});
 
-function filluser(user){
-  return new Promise(function (err){
-    db.find(user).then((object)=>{
-      
-        console.log("data index: ");
-        console.log(object);
-        return object;
-      }).catch((err)=>{
-        console.error(err)
-    })
-    })
-  }*/
 
 function filluser(user){
 
@@ -81,20 +60,6 @@ function filluser(user){
         });
     });
 }
-/*
-function getuser (user) {
-return new Promise((resolve, reject)=>{
-    db.find(user.fbid)
-    .then((object)=>{
-        user = object;
-        console.log("user inside getuser: ");
-        console.log(user);
-        return user;    
-    })
-    .catch((err)=>{
-        console.error(err)
-    })  
-}*/
 
 
 function routeur(event, sender){
@@ -116,7 +81,7 @@ function routeur(event, sender){
     }
 }
 
-user = filluser(user.fbid);
+//user = filluser(user.fbid);
 console.log("user outside getuser: ");
 console.log(user);
 
