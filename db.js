@@ -55,11 +55,10 @@ module.exports.find = function (object) {
         database.close();
         return result;
     })
-    .catch((err)=>{
-        console.error(err)
-    })
-    console.log("found_user: ");
-    console.log(result);
+    //.catch((err)=>{
+      //  console.error(err)
+    //})
+    
 }
 
 module.exports.save = function (object) {
