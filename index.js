@@ -111,7 +111,7 @@ app.post('/webhook/', function (req, res) {
     //
     console.log("passage d'un message");
     //console.log(user);
-    var coquin = new db.find(user.fbid);
+    var coquin = new assignUser(user.fbid);
     console.log(coquin);
     //routeur(senderId, event);
     
