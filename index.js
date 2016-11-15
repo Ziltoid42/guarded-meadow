@@ -48,6 +48,7 @@ app.listen(app.get('port'), function(){
  var user = {name: 'gregoun', fbid: 2132};
 
 var data = new db.test(user.fbid);
+
 console.log(data.name);
 
 
