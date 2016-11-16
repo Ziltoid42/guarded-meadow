@@ -49,7 +49,7 @@ var founduser = promise(db.findfbidtest(user))
     });
 console.log("hors de la promise promise: ", founduser);
 
-*/
+
 //Fin zone test//
  
 
