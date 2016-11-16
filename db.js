@@ -57,7 +57,7 @@ function findtest(user){
         var collection = db.collection('users');
 
         // Insert some users
-        var retour = collection.find({fbid: user.fbid}).toArray(function (err, result) {
+        collection.find({fbid: user.fbid}).toArray(function (err, result) {
           if (err) {
             console.log(err);
           } else if (result.length) {
@@ -68,7 +68,8 @@ function findtest(user){
           //Close connection
           db.close();
           
-          console.log("retour", retour); //.toArray(function(err, items){
+          console.log("dans findtest", result);
+          return result; //.toArray(function(err, items){
           //return items;
             //})
         });
