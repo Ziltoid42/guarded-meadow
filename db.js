@@ -78,8 +78,17 @@ function findtest(user){
 }
 
 var user = {name: 'gregoun', fbid: 2132};
-var data = findtest(user);
-console.log("data", data);
+var promise = new Promise(function(resolve, reject) {
+  resolve(db.findtest(user));
+});
+
+promise
+.then((result)=>{
+  console.log("dans then: ", result); // 1
+  return result; 
+}).catch((err)=>{
+        console.error(err)
+    });
 
 module.exports.findfbid = function (user) {
         MongoClient.connect(url, function (err, db) {
