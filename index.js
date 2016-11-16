@@ -45,7 +45,7 @@ var promise = new Promise(function(resolve, reject) {
 
 promise.then(function(result) {
   console.log("dans then: ", result); // 1
-  return val; 
+  return result; 
 })
 
 console.log("promise a la fin: ", promise);
