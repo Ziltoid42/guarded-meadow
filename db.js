@@ -52,7 +52,6 @@ module.exports.find = function (object) {
     })
     .then((result)=>{
         console.log("result: ", result);
-        console.log(result);
         database.close();
         return result;
     })
