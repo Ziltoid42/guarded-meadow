@@ -41,7 +41,7 @@ var db = {
 //test
 
 module.exports.findfbidtest = function (user){
-    return new Promise(function(resolve, reject) {
+    return Promise(function(resolve, reject) {
   //resolve(findtest(user));
   MongoClient.connect(url, function (err, db) {
       if (err) {
