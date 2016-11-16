@@ -40,8 +40,7 @@ var db = {
 module.exports.find = function (object) {
 //function insert(object){
 
-  console.log("dans find: ");
-  console.log(Number(object));
+  console.log("dans find: ", object);
     var database = null;
     open()
     .then((db)=>{
@@ -52,7 +51,7 @@ module.exports.find = function (object) {
         return users.findOne({fbid: object})
     })
     .then((result)=>{
-        console.log("result: ");
+        console.log("result: ", result);
         console.log(result);
         database.close();
         return result;
