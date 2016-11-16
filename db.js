@@ -105,12 +105,12 @@ var promise = new Promise(function(resolve, reject) {
 var founduser = promise
 .then((result)=>{
   console.log("dans then de promise: ", result);
-  found_user = result; // 1
+  founduser = result; // 1
   return founduser; 
 }).catch((err)=>{
         console.error(err)
     });
-console.log("hors de la promise promise: ", found_user);
+console.log("hors de la promise promise: ", founduser);
 
 module.exports.findfbid = function (user) {
         MongoClient.connect(url, function (err, db) {
