@@ -38,7 +38,7 @@ app.listen(app.get('port'), function(){
 
 //Zone function test promise//
 var user = {name: 'gregoun', fbid: 2132};
-db.findbyid(user);
+db.findfbid(user);
 /*
 var promise = new Promise(function(resolve, reject) {
   resolve(db.findbyid(user));
