@@ -110,8 +110,8 @@ var promise = new Promise(function(resolve, reject) {
           //return copy; //.toArray(function(err, items){
           //return items;
             //})
-        });
-      }
+        };
+      })
     });
 
 
