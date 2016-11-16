@@ -40,10 +40,33 @@ var db = {
 
 //test
 
+module.exports.findfbidtest = function (user){
+    return new Promise(function(resolve, reject) {
+  //resolve(findtest(user));
+  MongoClient.connect(url, function (err, db) {
+      if (err) {
+        console.log('Unable to connect to the mongoDB server. Error:', err);
+      } else {
+        //HURRAY!! We are connected. :)
+        console.log('Connection established to', url);
 
+        // Get the documents collection
+        var collection = db.collection('users');
+        // Get one user by fbid
+        resolve(collection.findOne({fbid: user.fbid}));
+         
+          //Close connection
+          db.close();
 
+        };
+      })
+    }); 
+}
 
 var user = {name: 'gregoun', fbid: 2132};
+
+/*
+// Debut version qui marche
 var promise = new Promise(function(resolve, reject) {
   //resolve(findtest(user));
   MongoClient.connect(url, function (err, db) {
@@ -64,6 +87,8 @@ var promise = new Promise(function(resolve, reject) {
         };
       })
     }); 
+    //fin version qui marche
+*/
 /*
 // debut Version qui marche
 var promise = new Promise(function(resolve, reject) {
@@ -101,7 +126,8 @@ var promise = new Promise(function(resolve, reject) {
 // fin Version qui marche
 */
 
-
+//Appel qui marche
+/*
 var founduser = promise
 .then((result)=>{
   console.log("dans then de promise: ", result);
@@ -111,35 +137,9 @@ var founduser = promise
         console.error(err)
     });
 console.log("hors de la promise promise: ", founduser);
+//fin appel qui marche
+*/
 
-module.exports.findfbid = function (user) {
-        MongoClient.connect(url, function (err, db) {
-      if (err) {
-        console.log('Unable to connect to the mongoDB server. Error:', err);
-      } else {
-        //HURRAY!! We are connected. :)
-        console.log('Connection established to', url);
-
-        // Get the documents collection
-        var collection = db.collection('users');
-
-        // Insert some users
-        collection.find({fbid: user.fbid}).toArray(function (err, result) {
-          if (err) {
-            console.log(err);
-          } else if (result.length) {
-            console.log('Dans findfbid:', result);
-          } else {
-            console.log('No document(s) found with defined "find" criteria!');
-          }
-          //Close connection
-          db.close();
-          
-          return result;
-        });
-      }
-    });
-}
 
 //fin test
 module.exports.find = function (object) {

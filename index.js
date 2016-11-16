@@ -39,29 +39,15 @@ app.listen(app.get('port'), function(){
 //Zone function test promise//
 var user = {name: 'gregoun', fbid: 2132};
 
-/*
-var promise = new Promise(function(resolve, reject) {
-  resolve(db.findtest(user));
-});
-
-promise
+var founduser = promise(db.findfbidtest(user))
 .then((result)=>{
-  console.log("dans then: ", result); // 1
-  return result; 
+  console.log("dans then de promise: ", result);
+  founduser = result; // 1
+  return founduser; 
 }).catch((err)=>{
         console.error(err)
     });
-/*
-console.log("promise a la fin: ", promise);
-
-/*
-promise.then(function(val) {
-  console.log(val); // 1
-  return val + 2;
-}).then(function(val) {
-  console.log(val); // 3
-})
-
+console.log("hors de la promise promise: ", founduser);
 
 */
 //Fin zone test//
