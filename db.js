@@ -60,7 +60,7 @@ module.exports.findfbid = function (user) {
           if (err) {
             console.log(err);
           } else if (result.length) {
-            console.log('Found:', result);
+            return result;
           } else {
             console.log('No document(s) found with defined "find" criteria!');
           }
