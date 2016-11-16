@@ -67,8 +67,9 @@ function findtest(user){
           }
           //Close connection
           db.close();
-          
-          return result;
+          console.log(result).toArray(function(err, items){
+          return items;
+            }
         });
       }
     });
