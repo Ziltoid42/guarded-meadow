@@ -44,71 +44,33 @@ module.exports.lol = function () {
 
    console.log("prout");
 }
+module.exports.findfbid = function (user) {
+        MongoClient.connect(url, function (err, db) {
+      if (err) {
+        console.log('Unable to connect to the mongoDB server. Error:', err);
+      } else {
+        //HURRAY!! We are connected. :)
+        console.log('Connection established to', url);
 
-function getConnection(cb) {  
-    MongoClient.connect(url, function(err, db) {
-        if (err) return cb(err);
-        var accounts = db.collection("users");
-        cb(null, accounts);
-    })
-}    
-// list all of the documents by passing an empty selector.
-// This returns a 'cursor' which allows you to walk through the documents
+        // Get the documents collection
+        var collection = db.collection('users');
 
-function readAll(collection, cb) {  
-   collection.find({}, cb);
-}
-
-function printAccount(account) {  
-    // make sure you found your account!
-    if (!account) {
-        console.log("Couldn't find the account you asked for!");
-    }
-    console.log("Account from Array "+ account);
-}
-
-// the each method allows you to walk through the result set, 
-// notice the callback, as every time the callback
-// is called, there is another chance of an error
-function printAccounts(accounts, cb) {  
-    accounts.each(function(err, account) {
-        if (err) return cb(err);
-        printAccount(account);
+        // Insert some users
+        collection.find({fbid: user.fbid}).toArray(function (err, result) {
+          if (err) {
+            console.log(err);
+          } else if (result.length) {
+            console.log('Dans findfbid:', result);
+            return result;
+          } else {
+            console.log('No document(s) found with defined "find" criteria!');
+          }
+          //Close connection
+          db.close();
+        });
+      }
     });
 }
-
-function get_accounts(cb) {  
-    getConnection(function(err, collection) {
-        if (err) return cb(err);    
-        // need to make sure to close the database, otherwise the process
-        // won't stop
-        function processAccounts(err, accounts) {
-            if (err) return cb(err);
-            // the callback to each is called for every result, 
-            // once it returns a null, you know
-            // the result set is done
-            accounts.each(function(err, account) {
-                if (err) return cb(err)  
-                if (hero) {  
-                    printAccount(account);
-                } else {
-                    collection.db.close();
-                    cb();
-                }
-            })
-        }
-        readAll(collection, processAccounts);        
-    })
-}
-
-// Call the get_accounts function
-get_accounts(function(err) {  
-     if (err) {
-         console.log("had an error!", err);
-         process.exit(1);
-     }
-});
-
 //fin test
 module.exports.find = function (object) {
 //function insert(object){
