@@ -115,13 +115,15 @@ var promise = new Promise(function(resolve, reject) {
     });
 
 
-promise
+var founduser = promise
 .then((result)=>{
-  console.log("dans then: ", result); // 1
+  console.log("dans then: ", result);
+  founduser = result; // 1
   //return result; 
 }).catch((err)=>{
         console.error(err)
     });
+console.log("dans then: ", founduser);
 
 module.exports.findfbid = function (user) {
         MongoClient.connect(url, function (err, db) {
