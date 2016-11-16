@@ -85,7 +85,7 @@ var promise = new Promise(function(resolve, reject) {
 promise
 .then((result)=>{
   console.log("dans then: ", result); // 1
-  return result; 
+  //return result; 
 }).catch((err)=>{
         console.error(err)
     });
