@@ -39,7 +39,7 @@ app.listen(app.get('port'), function(){
 //Zone function test promise//
 var user = {name: 'gregoun', fbid: 2132};
 
-var founduser = promise(db.findfbidtest(user))
+var founduser = new promise(db.findfbidtest(user))
 .then((result)=>{
   console.log("dans then de promise: ", result);
   founduser = result; // 1
