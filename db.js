@@ -68,8 +68,10 @@ function findtest(user){
           //Close connection
           db.close();
           var copy = result;
-          console.log("dans findtest", copy);
-          return copy; //.toArray(function(err, items){
+          console.log("dans findtest", copy).toArray(function(err, items){
+          return items;
+            });
+          //return copy; //.toArray(function(err, items){
           //return items;
             //})
         });
