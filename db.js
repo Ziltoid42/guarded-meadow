@@ -39,6 +39,11 @@ var db = {
 
 
 //test
+
+module.exports.lol = function () {
+
+   console.log("prout");
+}
 module.exports.findfbid = function (user) {
 MongoClient.connect(url, function (err, db) {
   if (err) {
