@@ -44,6 +44,40 @@ module.exports.lol = function () {
 
    console.log("prout");
 }
+
+function findtest(user){
+      MongoClient.connect(url, function (err, db) {
+      if (err) {
+        console.log('Unable to connect to the mongoDB server. Error:', err);
+      } else {
+        //HURRAY!! We are connected. :)
+        console.log('Connection established to', url);
+
+        // Get the documents collection
+        var collection = db.collection('users');
+
+        // Insert some users
+        collection.find({fbid: user.fbid}).toArray(function (err, result) {
+          if (err) {
+            console.log(err);
+          } else if (result.length) {
+            console.log('Dans findfbid:', result);
+          } else {
+            console.log('No document(s) found with defined "find" criteria!');
+          }
+          //Close connection
+          db.close();
+          
+          return result;
+        });
+      }
+    });
+}
+
+var user = {name: 'gregoun', fbid: 2132};
+var data = findtest(user);
+console.log(data);
+
 module.exports.findfbid = function (user) {
         MongoClient.connect(url, function (err, db) {
       if (err) {
@@ -72,6 +106,7 @@ module.exports.findfbid = function (user) {
       }
     });
 }
+
 //fin test
 module.exports.find = function (object) {
 //function insert(object){
