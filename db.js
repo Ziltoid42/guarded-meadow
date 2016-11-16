@@ -119,7 +119,7 @@ var founduser = promise
 .then((result)=>{
   console.log("dans then: ", result);
   founduser = result; // 1
-  //return result; 
+  return founduser; 
 }).catch((err)=>{
         console.error(err)
     });
