@@ -57,7 +57,7 @@ function findtest(user){
         var collection = db.collection('users');
 
         // Insert some users
-        collection.find({fbid: user.fbid}).toArray(function (err, result) {
+        var retour = collection.find({fbid: user.fbid}).toArray(function (err, result) {
           if (err) {
             console.log(err);
           } else if (result.length) {
@@ -67,7 +67,8 @@ function findtest(user){
           }
           //Close connection
           db.close();
-          console.log(result); //.toArray(function(err, items){
+          
+          console.log("retour", retour); //.toArray(function(err, items){
           //return items;
             //})
         });
