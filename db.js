@@ -56,7 +56,7 @@ var promise = new Promise(function(resolve, reject) {
         // Get the documents collection
         var collection = db.collection('users');
         // Get one user by fbid
-        resolve(collection.find({fbid: user.fbid}));
+        resolve(collection.findOne({fbid: user.fbid}));
          
           //Close connection
           db.close();
@@ -105,12 +105,12 @@ var promise = new Promise(function(resolve, reject) {
 var founduser = promise
 .then((result)=>{
   console.log("dans then de promise: ", result);
-  founduser = result; // 1
+  found_user = result; // 1
   return founduser; 
 }).catch((err)=>{
         console.error(err)
     });
-console.log("hors de la promise promise: ", founduser);
+console.log("hors de la promise promise: ", found_user);
 
 module.exports.findfbid = function (user) {
         MongoClient.connect(url, function (err, db) {
