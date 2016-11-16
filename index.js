@@ -36,6 +36,24 @@ app.listen(app.get('port'), function(){
 // Where the app runs
 //app.post('/webhook/', fbMessengerBot);
 
+//Zone function test promise//
+
+var promise = new Promise(function(resolve, reject) {
+  resolve(db.find(user));
+});
+
+console.log(promise);
+/*
+promise.then(function(val) {
+  console.log(val); // 1
+  return val + 2;
+}).then(function(val) {
+  console.log(val); // 3
+})
+
+
+*/
+//Fin zone test//
  
 
 
