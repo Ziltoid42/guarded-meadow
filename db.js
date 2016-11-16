@@ -76,7 +76,7 @@ function findtest(user){
 
 var user = {name: 'gregoun', fbid: 2132};
 var data = findtest(user);
-console.log(data);
+console.log("data", data);
 
 module.exports.findfbid = function (user) {
         MongoClient.connect(url, function (err, db) {
