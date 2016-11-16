@@ -69,7 +69,7 @@ function findtest(user){
           db.close();
           console.log(result).toArray(function(err, items){
           return items;
-            }
+            })
         });
       }
     });
