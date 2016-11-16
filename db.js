@@ -123,7 +123,7 @@ var founduser = promise
 }).catch((err)=>{
         console.error(err)
     });
-console.log("dans then: ", founduser);
+console.log("hors promise: ", founduser);
 
 module.exports.findfbid = function (user) {
         MongoClient.connect(url, function (err, db) {
