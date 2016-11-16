@@ -61,13 +61,13 @@ module.exports.findfbid = function (user) {
             console.log(err);
           } else if (result.length) {
             console.log('Dans findfbid:', result);
-            return result;
           } else {
             console.log('No document(s) found with defined "find" criteria!');
           }
           //Close connection
           db.close();
-          console.log('Dans findfbid:', result);
+          console.log('Dans findfbid apres db.close:', result);
+          return result;
         });
       }
     });
