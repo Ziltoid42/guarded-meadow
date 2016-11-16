@@ -44,15 +44,13 @@ var user = {name: 'gregoun', fbid: 2132};
 var promise = new Promise(function(resolve, reject) {
   resolve(db.findfbid(user));
 });
-console.log('Found:', promise);
-/*
+
 promise
 .then((result)=>{
-//.then(function(result) {
   console.log("dans then: ", result); // 1
   return result; 
 });
-
+/*
 console.log("promise a la fin: ", promise);
 
 /*
