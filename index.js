@@ -43,7 +43,10 @@ var promise = new Promise(function(resolve, reject) {
   resolve(db.find(user.fbid));
 });
 
-console.log(promise);
+promise.then(function(val) {
+  console.log(val); // 1
+  return val; 
+})
 /*
 promise.then(function(val) {
   console.log(val); // 1
