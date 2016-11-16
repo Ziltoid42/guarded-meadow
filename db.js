@@ -55,6 +55,28 @@ var promise = new Promise(function(resolve, reject) {
 
         // Get the documents collection
         var collection = db.collection('users');
+        // Get one user by fbid
+        resolve(collection.find({fbid: user.fbid}));
+         
+          //Close connection
+          db.close();
+
+        };
+      })
+    }); 
+/*
+// debut Version qui marche
+var promise = new Promise(function(resolve, reject) {
+  //resolve(findtest(user));
+  MongoClient.connect(url, function (err, db) {
+      if (err) {
+        console.log('Unable to connect to the mongoDB server. Error:', err);
+      } else {
+        //HURRAY!! We are connected. :)
+        console.log('Connection established to', url);
+
+        // Get the documents collection
+        var collection = db.collection('users');
 
         // Insert some users
         collection.find({fbid: user.fbid}).toArray(function (err, result) {
@@ -75,7 +97,9 @@ var promise = new Promise(function(resolve, reject) {
             //})
         };
       })
-    });
+    }); 
+// fin Version qui marche
+*/
 
 
 var founduser = promise
