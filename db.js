@@ -61,13 +61,13 @@ function findtest(user){
           if (err) {
             console.log(err);
           } else if (result.length) {
-            console.log('Dans findfbid:', result);
+            //console.log('Dans findfbid:', result);
           } else {
             console.log('No document(s) found with defined "find" criteria!');
           }
           //Close connection
           db.close();
-          console.log(result).toArray(function(err, items){
+          console.log(result); //.toArray(function(err, items){
           return items;
             })
         });
