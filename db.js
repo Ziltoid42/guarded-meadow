@@ -57,19 +57,19 @@ var promise = new Promise(function(resolve, reject) {
         var collection = db.collection('users');
 
         // Insert some users
-        resolve(collection.findOne({fbid: user.fbid}));/*.toArray(function (err, result) {
+        collection.find({fbid: user.fbid}).toArray(function (err, result) {
           if (err) {
             reject(err);
           } else if (result.length) {
             //console.log('Dans findfbid:', result);
           } else {
             console.log('No document(s) found with defined "find" criteria!');
-          }*/
+          }
           //Close connection
           db.close();
-          //resolve (result);
+          resolve (result);
           
-            }//);
+            });
           //return copy; //.toArray(function(err, items){
           //return items;
             //})
