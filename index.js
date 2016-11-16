@@ -43,10 +43,12 @@ var promise = new Promise(function(resolve, reject) {
   resolve(db.find(user.fbid));
 });
 
-promise.then(function(result) {
+promise
+.then((result)=>{
+//.then(function(result) {
   console.log("dans then: ", result); // 1
   return result; 
-})
+});
 
 console.log("promise a la fin: ", promise);
 
