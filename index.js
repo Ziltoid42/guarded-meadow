@@ -48,7 +48,9 @@ promise
 .then((result)=>{
   console.log("dans then: ", result); // 1
   return result; 
-});
+}).catch((err)=>{
+        console.error(err)
+    });
 /*
 console.log("promise a la fin: ", promise);
 
