@@ -37,7 +37,7 @@ app.listen(app.get('port'), function(){
 //app.post('/webhook/', fbMessengerBot);
 
 //Zone function test promise//
-
+var user = {name: 'gregoun', fbid: 2132};
 var promise = new Promise(function(resolve, reject) {
   resolve(db.find(user));
 });
