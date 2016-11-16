@@ -38,7 +38,8 @@ app.listen(app.get('port'), function(){
 
 //Zone function test promise//
 var user = {name: 'gregoun', fbid: 2132};
-db.findfbid(user);
+var result = db.findfbid(user);
+console.log("dans index: ", result);
 
 /*
 var promise = new Promise(function(resolve, reject) {
