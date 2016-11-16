@@ -37,6 +37,47 @@ var db = {
     close: close
 }
 
+
+//test
+ return new Promise(
+        function(resolve, reject) {
+          var obj = getDbObject();
+          if (obj.connected == true) {
+            console.log('success');
+            resolve(true);
+          }
+          else {
+            console.log('error');
+            reject(false);
+          }
+        }
+    )
+
+ module.exports.findtest = function (object) {
+//function insert(object){
+return new Promise(function(resolve, reject) {
+  console.log("dans find: ", object);
+    var database = null;
+    open()
+    .then((db)=>{
+        database = db;
+        return db.collection('users')    
+    })
+    .then((users)=>{
+        return users.findOne({fbid: object})
+    })
+    .then((result)=>{
+        console.log("result: ", result);
+        database.close();
+        resolve (result);
+    })
+    .catch((err)=>{
+        console.error(err)
+        reject(false);
+    })
+ })   
+}
+//fin test
 module.exports.find = function (object) {
 //function insert(object){
 
