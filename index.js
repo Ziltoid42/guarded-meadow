@@ -40,7 +40,7 @@ app.listen(app.get('port'), function(){
 var user = {name: 'gregoun', fbid: 2132};
 
 
-
+/*
 var promise = new Promise(function(resolve, reject) {
   resolve(db.findfbid(user));
 });
