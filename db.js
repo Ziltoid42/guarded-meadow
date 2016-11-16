@@ -67,6 +67,7 @@ module.exports.findfbid = function (user) {
           }
           //Close connection
           db.close();
+          console.log('Dans findfbid:', result);
         });
       }
     });
