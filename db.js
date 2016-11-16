@@ -79,7 +79,7 @@ function findtest(user){
 
 var user = {name: 'gregoun', fbid: 2132};
 var promise = new Promise(function(resolve, reject) {
-  resolve(db.findtest(user));
+  resolve(findtest(user));
 });
 
 promise
