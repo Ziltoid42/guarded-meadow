@@ -67,9 +67,9 @@ function findtest(user){
           }
           //Close connection
           db.close();
-          
-          console.log("dans findtest", result);
-          return result; //.toArray(function(err, items){
+          var copy = result;
+          console.log("dans findtest", copy);
+          return copy; //.toArray(function(err, items){
           //return items;
             //})
         });
