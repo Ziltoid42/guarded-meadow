@@ -53,6 +53,7 @@ module.exports = function (sender, message) {
                 }
             });    */
             //sender.name = 'michel';
+            console.log(sender.name);
             sendTextMessage(sender, "Hello Bong")
             sendTextMessage(sender, "My name is Creditor and I am a robot!")
             sendTextMessage(sender, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!")
