@@ -53,10 +53,9 @@ module.exports = function (sender, message) {
                 }
             });    */
 
-            console.log (sender.fbid);
-            //sendTextMessage(sender.fbid, "Hello Bong")
-            //sendTextMessage(sender.fbid, "My name is Creditor and I am a robot!")
-            //sendTextMessage(sender.fbid, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!")
+            sendTextMessage(sender, "Hello Bong")
+            sendTextMessage(sender, "My name is Creditor and I am a robot!")
+            sendTextMessage(sender, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!")
             var buttons = {
                 text:"Now what can I do for you?", 
                 title1:"Who are you?", 
