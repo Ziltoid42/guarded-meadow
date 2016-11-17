@@ -69,7 +69,7 @@ module.exports = function (sender, message) {
             .ButtonTemplate(buttons)
             .compose();
             sendMessage(sender.fbid, buttonReply);
-            db.update(sender);
+            db.save(sender);
             //continue
         }
 
