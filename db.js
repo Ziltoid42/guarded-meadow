@@ -205,7 +205,7 @@ module.exports.findSave = function (object) {
     
 }
 
-module.exports.save = function (object) {
+function save (object) {
 //function insert(object){
     var database = null;
     open()
@@ -225,7 +225,7 @@ module.exports.save = function (object) {
     })
 }
 
-module.exports.update = function (object) {
+function update (object) {
 //function insert(object){
     var database = null;
     open()
