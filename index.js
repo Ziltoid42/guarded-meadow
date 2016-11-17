@@ -131,7 +131,7 @@ app.post('/webhook/', function (req, res) {
     //message_deliveries
     
     if (event.delivery && event.delivery.watermark) {
-        console.log(delivery);
+        console.log(event.delivery);
     }
 
   }
