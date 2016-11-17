@@ -235,7 +235,7 @@ function update (object) {
         return db.collection('users')    
     })
     .then((users)=>{
-        return users.update({fbid: object.fbid}, object.toArray());
+        return users.update({fbid: object.fbid}, toArray(object));
     })
     .then((result)=>{
         console.log(result);
