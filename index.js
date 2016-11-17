@@ -126,7 +126,7 @@ app.post('/webhook/', function (req, res) {
     //messages
     if (event.message && event.message.text) {
       
-        //console.log(sender, "coucou !");
+        console.log(sender, "coucou !");
         //handleMessages(sender, event.message); //fonction routing text
 
     }
