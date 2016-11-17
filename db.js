@@ -57,7 +57,7 @@ module.exports.findfbidtest = function (user){
           if (err) {
             reject(err);
           } if (result) {
-            console.log('Dans findfbid:', result);
+            //console.log('Dans findfbid:', result);
             resolve(result);
           } else {
             console.log('No document(s) found with defined "find" criteria!', result);
@@ -179,7 +179,6 @@ console.log("hors de la promise promise: ", founduser);
 module.exports.find = function (object) {
 //function insert(object){
 
-  console.log("dans find: ", object);
     var database = null;
     open()
     .then((db)=>{
@@ -187,7 +186,7 @@ module.exports.find = function (object) {
         return db.collection('users')    
     })
     .then((users)=>{
-        return users.findOne({fbid: object})
+        return users.findOne({fbid: object.fbid})
     })
     .then((result)=>{
         console.log("result: ", result);
