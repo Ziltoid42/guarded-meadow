@@ -109,17 +109,18 @@ app.post('/webhook/', function (req, res) {
     let senderId = event.sender.id;
     let recipient = event.recipient.id;
     var sender =  {name: 'gregoun', fbid: senderId};
-    
+    console.log("passage d'un message");
     //zone test
 
 
 
 
-    //
-    console.log("passage d'un message");
-    //console.log(user);
-
+    routeur(event, sender);
+    
+ 
+    //fin zone test
     //messages
+    /* //routeur qui marche
     if (event.message && event.message.text) {
       
         console.log(sender, "coucou  sender: !");
@@ -135,7 +136,7 @@ app.post('/webhook/', function (req, res) {
         handlePostbacks(sender, event.postback); //fonction routing postbacks
 
     }
-
+    */ // Fin routeur qui marche
     //messaging_optins
     /* gestion abonnements a gérer plus tard
     if (event.optin && event.optin.ref) {
