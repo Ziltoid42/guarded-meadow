@@ -69,6 +69,7 @@ module.exports.findfbidtest = function (user){
         });
       })
     }); 
+})
 }
 /*
 // Debut version qui marche
