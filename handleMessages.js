@@ -44,11 +44,17 @@ module.exports = function (sender, message) {
 
         if (text === 'start') {
             //sender.state = "start";
-            sendTextMessage(sender, "Hello Bong")
+            var promise = new Promise(function(resolve, reject) {
+                 resolve(sendTextMessage(sender, "Hello Bong"))
+            });
+
+            var send = promise
             .then(()=>{
-               sendTextMessage(sender, "My name is Creditor and I am a robot!")
+                sendTextMessage(sender, "My name is Creditor and I am a robot!")
                return true; 
             });
+
+           
             /*
             sendTextMessage(sender, "Hello Bong")
             sendTextMessage(sender, "My name is Creditor and I am a robot!")
