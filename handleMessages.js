@@ -42,7 +42,7 @@ module.exports = function (sender, message) {
 
 
         if (text === 'start') {
-            sender.state = "start";
+            /*sender.state = "start";
 
             sender.save(function (err, userObj) {
                 if (err) {
@@ -50,7 +50,7 @@ module.exports = function (sender, message) {
                 } else {
              console.log('saved successfully:', userObj);
                 }
-            });    
+            });    */
 
             console.log (sender);
             sendTextMessage(sender.fbid, "Hello Bong")
@@ -114,7 +114,7 @@ module.exports = function (sender, message) {
         qs: {access_token:token},
         method: 'POST',
         json: {
-            recipient: {id:sender},
+            recipient: {id:sender.fbid},
             message: messageData,
         }
     }, function(error, response, body) {
