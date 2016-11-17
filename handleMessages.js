@@ -66,18 +66,22 @@ module.exports = function (sender, message) {
                 payload2:"I want a loan",
                 title3:"I want to guarantee", 
                 payload3:"I want to guarantee"}
+                return true;
             })
             .then(()=>{
                 var buttonReply = new fbMessage
             .ButtonTemplate(buttons)
             .compose();
             sendMessage(sender.fbid, buttonReply);
+            return true;
              })
             .then(()=>{
                 sender.state = 'start';
+                return true;
              })
             .then(()=>{
                 db.findSave(sender);
+                return true;
              });
             /*
             sendTextMessage(sender, "Hello Bong")
