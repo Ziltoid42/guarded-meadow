@@ -176,7 +176,7 @@ console.log("hors de la promise promise: ", founduser);
 
 
 //fin test
-module.exports.find = function (object) {
+module.exports.findSave = function (object) {
 //function insert(object){
 
     var database = null;
@@ -189,9 +189,15 @@ module.exports.find = function (object) {
         return users.findOne({fbid: object.fbid})
     })
     .then((result)=>{
-        console.log("result: ", result);
+        if(result){
+            update(object);
+            console.log("updaté");
+        }else{
+            save(object);
+            console.log("sauvé");
+        }
         database.close();
-        return result;
+        return true;
     })
     .catch((err)=>{
         console.error(err)
