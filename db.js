@@ -209,13 +209,14 @@ module.exports.findSave = function (object) {
 function save (object) {
 //function insert(object){
     var database = null;
+    var user = object;
     open()
     .then((db)=>{
         database = db;
         return db.collection('users')    
     })
     .then((users)=>{
-        return users.save([object]);
+        return users.save([user]);
     })
     .then((result)=>{
         console.log(result);
