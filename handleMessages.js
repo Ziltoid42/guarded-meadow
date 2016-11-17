@@ -53,10 +53,10 @@ module.exports = function (sender, message) {
                 }
             });    */
 
-            console.log (sender);
-            sendTextMessage(sender.fbid, "Hello Bong")
-            sendTextMessage(sender.fbid, "My name is Creditor and I am a robot!")
-            sendTextMessage(sender.fbid, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!")
+            console.log (sender.fbid);
+            //sendTextMessage(sender.fbid, "Hello Bong")
+            //sendTextMessage(sender.fbid, "My name is Creditor and I am a robot!")
+            //sendTextMessage(sender.fbid, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!")
             var buttons = {
                 text:"Now what can I do for you?", 
                 title1:"Who are you?", 
@@ -158,7 +158,7 @@ function sendGenericMessage(sender) {
         qs: {access_token:token},
         method: 'POST',
         json: {
-            recipient: {id:sender},
+            recipient: {id:sender.fbid},
             message: messageData,
         }
     }, function(error, response, body) {
