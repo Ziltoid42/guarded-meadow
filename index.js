@@ -36,7 +36,7 @@ app.listen(app.get('port'), function(){
 // Where the app runs
 //app.post('/webhook/', fbMessengerBot);
 
-//Zone function test promise//
+/*//Zone function test promise//
 var user = {name: 'gregoun', fbid: 457384};
 
 var founduser = new db.findfbidtest(user)
@@ -48,7 +48,7 @@ var founduser = new db.findfbidtest(user)
         console.error(err)
     });
 console.log("hors de la promise promise: ", founduser);
-
+*///Fin zone test promise//
 
 //Fin zone test//
  
@@ -86,14 +86,27 @@ app.post('/webhook/', function (req, res) {
     let event = req.body.entry[0].messaging[i];
     let senderId = event.sender.id;
     let recipient = event.recipient.id;
-    var sender =  {name: 'gregoun', fbid: senderId};
+    var sender =  {name: 'gregoire', fbid: senderId};
     console.log("passage d'un message");
     //zone test
 
 
+    var founduser = new db.findfbidtest(sender)
+    .then((result)=>{
+      console.log("dans then de promise: ", result);
+      founduser = result; // 1
+      return founduser; 
+    })
+    .then((result)=>{
+        routeur(event, result);
+    })
+    .catch((err)=>{
+            console.error(err)
+        });
+    console.log("hors de la promise promise: ", founduser);
 
 
-    routeur(event, sender);
+    //routeur(event, sender);
     
  
     //fin zone test
