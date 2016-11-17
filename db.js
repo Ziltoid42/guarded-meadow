@@ -239,7 +239,7 @@ function update (object) {
         return users.update({fbid: object.fbid}, object);
     })
     .then((result)=>{
-        console.log(result);
+        //console.log(result);
         database.close();
     })
     .catch((err)=>{
