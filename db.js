@@ -56,9 +56,9 @@ module.exports.findfbidtest = function (user){
         collection.findOne({fbid: user.fbid}, function (err, result){
           if (err) {
             reject(err);
-          } else if (result.length) {
+          } if (result) {
+            console.log('Dans findfbid:', result);
             resolve(result);
-            //console.log('Dans findfbid:', result);
           } else {
             console.log('No document(s) found with defined "find" criteria!', result);
           }
