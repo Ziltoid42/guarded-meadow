@@ -49,12 +49,35 @@ module.exports = function (sender, message) {
             });
 
             var send = promise
-            .then(()=>{
+            .then(()=>{ 
                 sendTextMessage(sender, "My name is Creditor and I am a robot!")
                return true; 
-            });
-
-           
+            })
+            .then(()=>{ 
+                sendTextMessage(sender, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!")
+            })
+            .then(()=>{ 
+                var buttons = {
+                text:"Now what can I do for you?", 
+                title1:"Who are you?", 
+                payload1:"Who are you?", 
+                title2:"I want a loan", 
+                payload2:"I want a loan",
+                title3:"I want to guarantee", 
+                payload3:"I want to guarantee"}
+            })
+            .then(()=>{
+                var buttonReply = new fbMessage
+            .ButtonTemplate(buttons)
+            .compose();
+            sendMessage(sender.fbid, buttonReply);
+             });
+            .then(()=>{
+                sender.state = 'start';
+             })
+            .then(()=>{
+                db.findSave(sender);
+             });
             /*
             sendTextMessage(sender, "Hello Bong")
             sendTextMessage(sender, "My name is Creditor and I am a robot!")
