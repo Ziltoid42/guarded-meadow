@@ -215,7 +215,7 @@ function save (object) {
         return db.collection('users')    
     })
     .then((users)=>{
-        return users.insert([object])
+        return users.save([object])
     })
     .then((result)=>{
         console.log(result);
@@ -235,7 +235,7 @@ function update (object) {
         return db.collection('users')    
     })
     .then((users)=>{
-        return users.update({fbid: object.fbid}, toArray(object));
+        return users.update({fbid: object.fbid}, object);
     })
     .then((result)=>{
         console.log(result);
