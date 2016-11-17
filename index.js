@@ -36,19 +36,38 @@ app.listen(app.get('port'), function(){
 // Where the app runs
 //app.post('/webhook/', fbMessengerBot);
 
-/*//Zone function test promise//
-var user = {name: 'gregoun', fbid: 457384};
+//Zone function test promise//
 
-var founduser = new db.findfbidtest(user)
-.then((result)=>{
-  console.log("dans then de promise: ", result);
-  founduser = result; // 1
-  return founduser; 
-}).catch((err)=>{
-        console.error(err)
+//contenu 1
+/*if (message.delivery) {
+      Object.assign(message, message.delivery);
+      message.delivered = message.delivery.mids;
+
+      delete message.delivery;
+
+      this.emit('delivery', message, message.delivered);
+      return;
+    }
+*/
+//contenu 2 fb-vision bot
+function receivedDeliveryConfirmation(event) {
+  var senderID = event.sender.id;
+  var recipientID = event.recipient.id;
+  var delivery = event.delivery;
+  var messageIDs = delivery.mids;
+  var watermark = delivery.watermark;
+  var sequenceNumber = delivery.seq;
+
+  if (messageIDs) {
+    messageIDs.forEach(function(messageID) {
+      console.log("Received delivery confirmation for message ID: %s",
+        messageID);
     });
-console.log("hors de la promise promise: ", founduser);
-*///Fin zone test promise//
+  }
+
+  console.log("All message before %d were delivered.", watermark);
+}
+//Fin zone test promise//
 
 //Fin zone test//
  
@@ -68,8 +87,14 @@ function routeur(event, sender){
 
         console.log(sender);
         handlePostbacks(sender, event.postback); //fonction routing postbacks
-
     }
+
+    //message_deliveries
+    if (event.delivery && event.delivery.watermark) {
+
+        receivedDeliveryConfirmation(event);
+    }
+    
 }
 
 //user = filluser(user.fbid);
@@ -129,11 +154,11 @@ app.post('/webhook/', function (req, res) {
     */
 
     //message_deliveries
-    
+    /*
     if (event.delivery && event.delivery.watermark) {
-        console.log(event.delivery);
+        receivedDeliveryConfirmation(event);
     }
-
+    */
   }
 
   res.sendStatus(200);
