@@ -43,16 +43,12 @@ module.exports = function (sender, message) {
 
 
         if (text === 'start') {
-            /*sender.state = "start";
-
-            sender.save(function (err, userObj) {
-                if (err) {
-            console.log(err);
-                } else {
-             console.log('saved successfully:', userObj);
-                }
-            });    */
-            //sender.name = 'michel';
+            //sender.state = "start";
+            sendTextMessage(sender, "Hello Bong")
+            .then(()=>{
+               sendTextMessage(sender, "My name is Creditor and I am a robot!"); 
+            });
+            /*
             sendTextMessage(sender, "Hello Bong")
             sendTextMessage(sender, "My name is Creditor and I am a robot!")
             sendTextMessage(sender, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!")
@@ -70,6 +66,7 @@ module.exports = function (sender, message) {
             .compose();
             sendMessage(sender.fbid, buttonReply);
             db.findSave(sender);
+            */
             //continue
         }
 
