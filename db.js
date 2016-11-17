@@ -67,7 +67,7 @@ module.exports.findfbidtest = function (user){
           db.close();
 
         });
-      })
+      }
     }); 
 })
 }
