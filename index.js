@@ -57,8 +57,7 @@ console.log("hors de la promise promise: ", founduser);
 
 function routeur(event, sender){
    if (event.message && event.message.text) {
-      console.log(sender);
-      console.log("passe par message");
+        console.log(sender);
         handleMessages(sender, event.message); //fonction routing text
 
     }
@@ -67,8 +66,7 @@ function routeur(event, sender){
     //messaging_postbacks
     if (event.postback && event.postback.payload) {
 
-      console.log(sender);
-      console.log("pass par postback");
+        console.log(sender);
         handlePostbacks(sender, event.postback); //fonction routing postbacks
 
     }
@@ -87,7 +85,6 @@ app.post('/webhook/', function (req, res) {
     let senderId = event.sender.id;
     let recipient = event.recipient.id;
     var sender =  {name: 'gregoire', fbid: senderId};
-    console.log("passage d'un message");
     //zone test
 
 
