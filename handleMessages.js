@@ -44,7 +44,8 @@ module.exports = function (sender, message) {
 
         if (text === 'start') {
             //sender.state = "start";
-            sendTextMessage(sender, "Hello Bong")
+            sendTextMessage(sender, "Hello Bong");
+            return true;
             .then(()=>{
                sendTextMessage(sender, "My name is Creditor and I am a robot!"); 
             });
