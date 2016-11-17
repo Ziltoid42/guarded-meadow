@@ -60,7 +60,7 @@ module.exports.findfbidtest = function (user){
             resolve(result);
             //console.log('Dans findfbid:', result);
           } else {
-            console.log('No document(s) found with defined "find" criteria!');
+            console.log('No document(s) found with defined "find" criteria!', result);
           }
          
           //Close connection
