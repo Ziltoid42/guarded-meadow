@@ -59,7 +59,7 @@ function routeur(event, sender){
    if (event.message && event.message.text) {
       console.log(sender);
       console.log("passe par message");
-        //handleMessages(sender, event.message); //fonction routing text
+        handleMessages(sender, event.message); //fonction routing text
 
     }
 
