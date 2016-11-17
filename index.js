@@ -109,7 +109,7 @@ app.post('/webhook/', function (req, res) {
     let senderId = event.sender.id;
     let recipient = event.recipient.id;
     var sender =  {name: 'gregoun', fbid: senderId};
-    var user = {name: 'gregoun', fbid: 2132};
+    
     //zone test
 
 
@@ -118,15 +118,11 @@ app.post('/webhook/', function (req, res) {
     //
     console.log("passage d'un message");
     //console.log(user);
-    var coquin = new assignUser(user.fbid);
-    console.log(coquin);
-    //routeur(senderId, event);
-    
 
     //messages
     if (event.message && event.message.text) {
       
-        console.log(sender, "coucou !");
+        console.log(sender, "coucou  sender: !");
         //handleMessages(sender, event.message); //fonction routing text
 
     }
