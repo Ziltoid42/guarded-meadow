@@ -60,7 +60,7 @@ module.exports.findfbidtest = function (user){
             //console.log('Dans findfbid:', result);
             resolve(result);
           } else {
-            console.log('No document(s) found with defined "find" criteria!', result);
+            //console.log('No document(s) found with defined "find" criteria!', result);
             resolve(user);
           }
          
@@ -215,7 +215,7 @@ function save (object) {
         return db.collection('users')    
     })
     .then((users)=>{
-        return users.save([object])
+        return users.save([object]);
     })
     .then((result)=>{
         console.log(result);
