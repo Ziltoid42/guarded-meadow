@@ -71,7 +71,7 @@ module.exports = function (sender, message) {
             .ButtonTemplate(buttons)
             .compose();
             sendMessage(sender.fbid, buttonReply);
-             });
+             })
             .then(()=>{
                 sender.state = 'start';
              })
