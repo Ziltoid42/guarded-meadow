@@ -55,28 +55,6 @@ console.log("hors de la promise promise: ", founduser);
 
 
 
-function fillUser(user){
-  //  console.log("dans fill");
-//console.log(user);
-    new Promise(function(res, rej){
-        // Use connect method to connect to the Server
-
-        res(db.find(user)); 
-        })
-}
-
-function assignUser(user) {
-//function insert(object){
-    fillUser(user)
-    .then(function(result){
-        return result;    
-    })
-    .catch((err)=>{
-        console.error(err)
-    })
-    
-}
-
 function routeur(event, sender){
    if (event.message && event.message.text) {
       console.log(sender);

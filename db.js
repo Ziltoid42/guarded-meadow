@@ -39,7 +39,39 @@ var db = {
 
 
 //test
+var user = {name: 'gregoun', fbid: 2132};
+module.exports.findfbidtest = function (user){
+    return new Promise(function(resolve, reject) {
+  //resolve(findtest(user));
+  MongoClient.connect(url, function (err, db) {
+      if (err) {
+        console.log('Unable to connect to the mongoDB server. Error:', err);
+      } else {
+        //HURRAY!! We are connected. :)
+        console.log('Connection established to', url);
 
+        // Get the documents collection
+        var collection = db.collection('users');
+        // Get one user by fbid
+        collection.findOne({fbid: user.fbid}){
+          if (err) {
+            reject(err);
+          } else if (result.length) {
+            resolve(result);
+            //console.log('Dans findfbid:', result);
+          } else {
+            console.log('No document(s) found with defined "find" criteria!');
+          }
+         
+          //Close connection
+          db.close();
+
+        };
+      })
+    }); 
+}
+/*
+// Debut version qui marche
 module.exports.findfbidtest = function (user){
     return new Promise(function(resolve, reject) {
   //resolve(findtest(user));
@@ -62,8 +94,8 @@ module.exports.findfbidtest = function (user){
       })
     }); 
 }
+*/ //fin version qui marche
 
-var user = {name: 'gregoun', fbid: 2132};
 
 /*
 // Debut version qui marche
