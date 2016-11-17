@@ -53,7 +53,7 @@ module.exports.findfbidtest = function (user){
         // Get the documents collection
         var collection = db.collection('users');
         // Get one user by fbid
-        collection.findOne({fbid: user.fbid}, function(err, result){
+        collection.findOne({fbid: user.fbid}, function (err, result){
           if (err) {
             reject(err);
           } else if (result.length) {
