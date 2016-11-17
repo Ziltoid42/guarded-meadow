@@ -55,6 +55,7 @@ module.exports = function (sender, message) {
             })
             .then(()=>{ 
                 sendTextMessage(sender, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!")
+                return true;
             })
             .then(()=>{ 
                 var buttons = {
