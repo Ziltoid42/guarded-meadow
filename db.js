@@ -190,7 +190,8 @@ module.exports.findSave = function (object) {
     })
     .then((result)=>{
         if(result){
-            update(object);
+            //update(object);
+            users.update({fbid: object.fbid}, {object});
             console.log("updaté");
         }else{
             save(object);
@@ -234,7 +235,7 @@ function update (object) {
         return db.collection('users')    
     })
     .then((users)=>{
-        return users.update({fbid: object.fbid})
+        return users.update({fbid: object.fbid}, {object});
     })
     .then((result)=>{
         console.log(result);
