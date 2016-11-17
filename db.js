@@ -39,7 +39,7 @@ var db = {
 
 
 //test
-var user = {name: 'gregoun', fbid: 2132};
+//var user = {name: 'gregoun', fbid: 2132};
 module.exports.findfbidtest = function (user){
     return new Promise(function(resolve, reject) {
   //resolve(findtest(user));
