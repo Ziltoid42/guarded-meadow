@@ -61,6 +61,7 @@ module.exports.findfbidtest = function (user){
             resolve(result);
           } else {
             console.log('No document(s) found with defined "find" criteria!', result);
+            resolve(user);
           }
          
           //Close connection
