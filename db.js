@@ -216,7 +216,7 @@ function save (object) {
         return db.collection('users')    
     })
     .then((users)=>{
-        return users.save([user]);
+        return users.save(user);
     })
     .then((result)=>{
         console.log(result);
