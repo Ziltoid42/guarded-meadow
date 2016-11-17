@@ -1,6 +1,7 @@
 var sendMessage = require('./sendMessage');
 var fbMessage = require('./fbMessage');
 var request = require('request');
+var db = require('./db');
 //var user = require('./user');
 var token = require('./config/appToken');
 
@@ -36,7 +37,7 @@ module.exports = function (sender, message) {
             .ButtonTemplate(buttons)
             .compose();
             
-        sendTextMessage(sender, "test ok");
+        sendTextMessage(sender.fbid, "test ok");
     
     }
 

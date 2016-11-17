@@ -93,7 +93,6 @@ app.post('/webhook/', function (req, res) {
 
     var founduser = new db.findfbidtest(sender)
     .then((result)=>{
-      console.log("dans then de promise: ", result);
       founduser = result; // 1
       return founduser; 
     })
@@ -103,12 +102,7 @@ app.post('/webhook/', function (req, res) {
     .catch((err)=>{
             console.error(err)
         });
-    console.log("hors de la promise promise: ", founduser);
 
-
-    //routeur(event, sender);
-    
- 
     //fin zone test
     //messages
     /* //routeur qui marche
