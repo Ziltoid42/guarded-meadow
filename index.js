@@ -85,10 +85,8 @@ const autoTimeout = (message && message.text) ? message.text.length * 10 : 1000;
 // var timeOfMessage = event.timestamp;
 //var timeOfAuth = event.timestamp;
 
-var timestamp = Date.now();
-console.log(timestamp);
 
-function receivedDeliveryConfirmation(event) {
+function receivedDeliveryConfirmation(event, timestamp) {
   var senderID = event.sender.id;
   var recipientID = event.recipient.id;
   var delivery = event.delivery;
@@ -96,15 +94,21 @@ function receivedDeliveryConfirmation(event) {
   var watermark = delivery.watermark;
   var sequenceNumber = delivery.seq;
 
-  if (messageIDs) {
+  return new Promise((resolve, reject) => {
+
+  /*if (messageIDs) {
     messageIDs.forEach(function(messageID) {
       console.log("Received delivery confirmation for message ID: %s",
         messageID);
     });
-  }
+  }*/
+  if (timestamp < watermark)
+    resolve(true);
   console.log("Timestamp perso: ", timestamp);
   console.log("All message before %d were delivered.", watermark);
+})
 }
+
 //Fin zone test promise//
 
 //Fin zone test//
