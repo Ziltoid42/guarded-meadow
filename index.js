@@ -83,6 +83,10 @@ const autoTimeout = (message && message.text) ? message.text.length * 10 : 1000;
 //var message = event.message;
 //var messageId = message.mid;
 // var timeOfMessage = event.timestamp;
+//var timeOfAuth = event.timestamp;
+
+var timestamp = Math.floor(Date.now() / 1000);
+console.log(timestamp);
 
 function receivedDeliveryConfirmation(event) {
   var senderID = event.sender.id;
