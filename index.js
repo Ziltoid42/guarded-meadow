@@ -115,7 +115,6 @@ function routeur(event, sender){
 
     }
 
-
     //messaging_postbacks
     if (event.postback && event.postback.payload) {
 
@@ -133,7 +132,7 @@ function routeur(event, sender){
     if (event.message.attachments[0].payload.coordinates.lat && event.message.attachments[0].payload.coordinates.long) {
     console.log(event.message.attachments[0].payload.coordinates.lat);
     console.log(event.message.attachments[0].payload.coordinates.long);
-}
+    }
     //Fin zone test location
     
 }

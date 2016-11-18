@@ -127,7 +127,7 @@ module.exports = function (sender, message) {
             //continue
         }
         if (text === 'location') {
-            sendLocationMessage(sender.fbid)
+            sendLocationMessage(sender)
             //continue
         }
         //demande location
@@ -203,6 +203,31 @@ function sendGenericMessage(sender) {
 }
     //ok now here we can handle generic messages received by the bot...
 
+function sendLocationMessage(sender) {
+    let messageData = {
+            "text":"Please share your location:",
+            "quick_replies":[
+         {
+            "content_type":"location",
+        }
+        ]
+    }
+    request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: {access_token:token},
+        method: 'POST',
+        json: {
+            recipient: {id:sender.fbid},
+            message: messageData,
+        }
+    }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
+        }
+    })
+}
 
 
 
