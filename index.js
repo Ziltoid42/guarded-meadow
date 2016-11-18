@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const request = require('request');
 const app = express();
 const db = require('./db');
+const fetch = require('node-fetch');
 var handleMessages = require('./handleMessages');
 var handlePostbacks = require('./handlePostbacks');
 //var user = require('user'); //Ajout class user
