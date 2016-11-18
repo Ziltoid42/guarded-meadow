@@ -99,10 +99,10 @@ function receivedDeliveryConfirmation(event, timestamp) {
             var send = promise
             .then(()=>{ 
                 sendTextMessage(sender, "My name is Creditor and I am a robot!");
-                return true; 
+                return Date.now(); 
             })
-            .then(()=>{ 
-                receivedDeliveryConfirmation(event, Date.now());                
+            .then((result)=>{ 
+                receivedDeliveryConfirmation(event, result);                
             })
             .then(()=>{ 
                 sendTextMessage(sender, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!")
