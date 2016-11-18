@@ -73,10 +73,10 @@ module.exports = function (sender, message) {
                 sendTextMessage(sender, "My name is Creditor and I am a robot!")
                return true; 
             })
-            //.then(()=>{ 
-                //sendTypingIndicator(sender.recipient, 5000);                
-                //return true;
-            //})
+            .then(()=>{ 
+                sendTypingIndicator(sender.recipient, 5000);                
+                return true;
+            })
             .then(()=>{ 
                 sendTextMessage(sender, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!")
                 return true;
