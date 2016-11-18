@@ -220,7 +220,7 @@ function save (object) {
         return users.save(user);
     })
     .then((result)=>{
-        console.log(result);
+        //console.log(result);
         database.close();
     })
     .catch((err)=>{
