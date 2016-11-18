@@ -133,7 +133,7 @@ function routeur(event, sender){
     //message_deliveries
     if (event.delivery && event.delivery.watermark) {
 
-        receivedDeliveryConfirmation(event);
+        //receivedDeliveryConfirmation(event);
     }
 
     //zone test location
