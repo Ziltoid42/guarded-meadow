@@ -95,10 +95,10 @@ function receivedDeliveryConfirmation(event, timestamp) {
                 sendTextMessage(sender, "My name is Creditor and I am a robot!");
                 return true; 
             })
-            .then(()=>{ 
+            /*.then(()=>{ 
                 receivedDeliveryConfirmation(event, Date.now());                
                 return true;
-            })
+            })*/
             .then(()=>{ 
                 sendTextMessage(sender, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!")
                 return true;
