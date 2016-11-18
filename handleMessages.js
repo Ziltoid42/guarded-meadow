@@ -10,6 +10,15 @@ module.exports = function (sender, message) {
     
     var text = message.text;
     
+     function sendAction(recipientId, action, options) {
+    return this.sendRequest({
+      recipient: {
+        id: recipientId
+      },
+      sender_action: action
+    });
+  }
+
      function sendTypingIndicator(recipientId, milliseconds) {
     const timeout = isNaN(milliseconds) ? 0 : milliseconds;
     if (milliseconds > 20000) {
@@ -17,8 +26,8 @@ module.exports = function (sender, message) {
       console.error('sendTypingIndicator: max milliseconds value is 20000 (20 seconds)');
     }
     return new Promise((resolve, reject) => {
-      return this.sendAction(recipientId, 'typing_on').then(() => {
-        setTimeout(() => this.sendAction(recipientId, 'typing_off').then((json) => resolve(json)), timeout);
+      return sendAction(recipientId, 'typing_on').then(() => {
+        setTimeout(() => sendAction(recipientId, 'typing_off').then((json) => resolve(json)), timeout);
       });
     });
   }
