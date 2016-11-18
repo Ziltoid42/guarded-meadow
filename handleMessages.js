@@ -21,6 +21,7 @@ module.exports = function (sender, message) {
 
      function sendTypingIndicator(recipientId, milliseconds) {
     const timeout = isNaN(milliseconds) ? 0 : milliseconds;
+    console.log("passe par typer");
     if (milliseconds > 20000) {
       milliseconds = 20000;
       console.error('sendTypingIndicator: max milliseconds value is 20000 (20 seconds)');
