@@ -128,6 +128,12 @@ function routeur(event, sender){
 
         receivedDeliveryConfirmation(event);
     }
+
+    //zone test location
+    if (event.message.attachments[0].payload.coordinates.lat && event.message.attachments[0].payload.coordinates.long) {
+    console.log(event.message.attachments[0].payload.coordinates.lat);
+    console.log(event.message.attachments[0].payload.coordinates.long);
+    //Fin zone test location
     
 }
 
