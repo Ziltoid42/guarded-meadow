@@ -143,6 +143,7 @@ app.post('/webhook/', function (req, res) {
     let senderId = event.sender.id;
     let recipient = event.recipient.id;
     var sender =  {name: 'dédé', fbid: senderId};
+    console.log("passage message");
     //zone test
 
 /*// debut version qui marche

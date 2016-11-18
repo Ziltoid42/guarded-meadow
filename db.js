@@ -48,7 +48,7 @@ module.exports.findfbidtest = function (user){
         console.log('Unable to connect to the mongoDB server. Error:', err);
       } else {
         //HURRAY!! We are connected. :)
-        //console.log('Connection established to', url);
+        console.log('Connection established to', url);
 
         // Get the documents collection
         var collection = db.collection('users');
@@ -57,7 +57,7 @@ module.exports.findfbidtest = function (user){
           if (err) {
             reject(err);
           } if (result) {
-            //console.log('Dans findfbid:', result);
+            console.log('Dans findfbid:', result);
             resolve(result);
           } else {
             //console.log('No document(s) found with defined "find" criteria!', result);
