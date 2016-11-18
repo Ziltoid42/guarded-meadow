@@ -133,6 +133,7 @@ function routeur(event, sender){
     if (event.message.attachments[0].payload.coordinates.lat && event.message.attachments[0].payload.coordinates.long) {
     console.log(event.message.attachments[0].payload.coordinates.lat);
     console.log(event.message.attachments[0].payload.coordinates.long);
+}
     //Fin zone test location
     
 }
@@ -170,14 +171,12 @@ app.post('/webhook/', function (req, res) {
       return getUserProfile(result); 
     })
     .then((result)=>{
-        console.log("infos facebook: ",result);
         sender.first_name = result.first_name;
         sender.last_name = result.last_name;
         sender.profile_pic = result.profile_pic;
         sender.locale = result.locale;
         sender.timezone = result.timezone;
         sender.gender = result.gender;
-        console.log("infos user: ",sender);
         return sender;
     })
     .then((result)=>{
