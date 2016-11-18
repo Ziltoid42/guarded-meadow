@@ -65,7 +65,7 @@ app.listen(app.get('port'), function(){
   }
 
    function getUserProfile(userId) {
-    const url = `https://graph.facebook.com/v2.6/${userId}?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=${this.accessToken}`;
+    const url = `https://graph.facebook.com/v2.6/${userId}?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=${token}`;
     return fetch(url)
       .then(res => res.json())
       .catch(err => console.log(`Error getting user profile: ${err}`));
