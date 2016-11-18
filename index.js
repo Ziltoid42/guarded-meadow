@@ -146,7 +146,7 @@ app.post('/webhook/', function (req, res) {
     console.log("passage message");
     //zone test
 
-/*// debut version qui marche
+// debut version qui marche
     var founduser = new db.findfbidtest(sender)
     .then((result)=>{
       founduser = result; // 1
@@ -158,7 +158,8 @@ app.post('/webhook/', function (req, res) {
     .catch((err)=>{
             console.error(err)
         });
-*///fin version qui marche
+//fin version qui marche
+/*//test get profile
     var founduser = new db.findfbidtest(sender)
     .then((result)=>{
         console.log(result);
@@ -170,6 +171,7 @@ app.post('/webhook/', function (req, res) {
     .catch((err)=>{
             console.error(err)
         });
+*///fin test getprofile
     //fin zone test
     //messages
     /* //routeur qui marche
