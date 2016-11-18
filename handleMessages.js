@@ -204,7 +204,7 @@ function sendGenericMessage(sender) {
     //ok now here we can handle generic messages received by the bot...
 
 function sendLocationMessage(sender) {
-    let messageData = {
+    messageData = {
             "text":"Please share your location:",
             "quick_replies":[
          {
