@@ -11,10 +11,10 @@ module.exports = function (sender, event) {
     var text = event.message.text;
 
 
-    var timestamp = Date.now();
+    
 console.log(timestamp);
 
-function receivedDeliveryConfirmation(event) {
+function receivedDeliveryConfirmation(event, timestamp) {
   var senderID = event.sender.id;
   var recipientID = event.recipient.id;
   var delivery = event.delivery;
@@ -96,10 +96,10 @@ function receivedDeliveryConfirmation(event) {
             var send = promise
             .then(()=>{ 
                 sendTextMessage(sender, "My name is Creditor and I am a robot!")
-               return true; 
+               return var timestamp = Date.now();; 
             })
-            .then(()=>{ 
-                sendTypingIndicator(sender.id, 5000);                
+            .then((result)=>{ 
+                receivedDeliveryConfirmation(event, result);                
                 return true;
             })
             .then(()=>{ 
