@@ -160,6 +160,7 @@ app.post('/webhook/', function (req, res) {
 *///fin version qui marche
     var founduser = new db.findfbidtest(sender)
     .then((result)=>{
+        console.log(result);
       return getUserProfile(result.fbid); 
     })
     .then((result)=>{
