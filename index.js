@@ -129,10 +129,10 @@ function routeur(event, sender){
     }
 
     //zone test location
-    if (event.message.attachments[0].payload.coordinates.lat && event.message.attachments[0].payload.coordinates.long) {
+   // if (event.message.attachments[0].payload.coordinates.lat && event.message.attachments[0].payload.coordinates.long) {
     //console.log(event.message.attachments[0].payload.coordinates.lat);
     //console.log(event.message.attachments[0].payload.coordinates.long);
-    }
+    //}
     //Fin zone test location
     
 }
