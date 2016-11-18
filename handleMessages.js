@@ -10,7 +10,18 @@ module.exports = function (sender, message) {
     
     var text = message.text;
     
-    
+     function sendTypingIndicator(recipientId, milliseconds) {
+    const timeout = isNaN(milliseconds) ? 0 : milliseconds;
+    if (milliseconds > 20000) {
+      milliseconds = 20000;
+      console.error('sendTypingIndicator: max milliseconds value is 20000 (20 seconds)');
+    }
+    return new Promise((resolve, reject) => {
+      return this.sendAction(recipientId, 'typing_on').then(() => {
+        setTimeout(() => this.sendAction(recipientId, 'typing_off').then((json) => resolve(json)), timeout);
+      });
+    });
+  }
 
 
     if (text.toLowerCase() === 'test') {
@@ -43,7 +54,52 @@ module.exports = function (sender, message) {
 
 
         if (text === 'start') {
-            //sender.state = "start";
+
+             var promise = new Promise(function(resolve, reject) {
+                 resolve(sendTextMessage(sender, "Hello Bong"))
+            });
+
+            var send = promise
+            .then(()=>{ 
+                sendTextMessage(sender, "My name is Creditor and I am a robot!")
+               return true; 
+            })
+            .then(()=>{ 
+                sendTypingIndicator(sender.recipient, 5000);                
+                return true;
+            })
+            .then(()=>{ 
+                sendTextMessage(sender, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!")
+                return true;
+            })
+            .then(()=>{ 
+                var buttons = {
+                text:"Now what can I do for you?", 
+                title1:"Who are you?", 
+                payload1:"Who are you?", 
+                title2:"I want a loan", 
+                payload2:"I want a loan",
+                title3:"I want to guarantee", 
+                payload3:"I want to guarantee"}
+                return buttons;
+            })
+            .then((result)=>{
+                var buttonReply = new fbMessage
+            .ButtonTemplate(result)
+            .compose();
+            sendMessage(sender.fbid, buttonReply);
+            return true;
+             })
+            .then(()=>{
+                sender.state = 'start';
+                return sender;
+             })
+            .then((sender)=>{
+                db.findSave(sender);
+                return true;
+             });
+
+            /*//Debut version qui marche
             var promise = new Promise(function(resolve, reject) {
                  resolve(sendTextMessage(sender, "Hello Bong"))
             });
@@ -83,6 +139,7 @@ module.exports = function (sender, message) {
                 db.findSave(sender);
                 return true;
              });
+            *///fin version qui marche
             /*
             sendTextMessage(sender, "Hello Bong")
             sendTextMessage(sender, "My name is Creditor and I am a robot!")
