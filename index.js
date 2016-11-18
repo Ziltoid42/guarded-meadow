@@ -165,6 +165,12 @@ app.post('/webhook/', function (req, res) {
     })
     .then((result)=>{
         console.log("infos facebook: ",result);
+        sender.first_name = result.first_name;
+        sender.last_name = result.last_name;
+        sender.profile_pic = result.profile_pic;
+        sender.locale = result.locale;
+        sender.timezone = result.timezone;
+        sender.gender = result.gender;
         console.log("infos user: ",sender);
 
     })
