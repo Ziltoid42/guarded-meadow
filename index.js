@@ -172,7 +172,10 @@ app.post('/webhook/', function (req, res) {
         sender.timezone = result.timezone;
         sender.gender = result.gender;
         console.log("infos user: ",sender);
-
+        return sender;
+    })
+    .then((result)=>{
+        routeur(event, result);
     })
     .catch((err)=>{
             console.error(err)
