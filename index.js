@@ -65,8 +65,8 @@ app.listen(app.get('port'), function(){
     });
   }
 
-   function getUserProfile(userId) {
-    const url = `https://graph.facebook.com/v2.6/${userId}?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=${token}`;
+   function getUserProfile(user) {
+    const url = `https://graph.facebook.com/v2.6/${user.fbid}?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=${token}`;
     return fetch(url)
       .then(res => res.json())
       .catch(err => console.log(`Error getting user profile: ${err}`));
@@ -160,11 +160,13 @@ app.post('/webhook/', function (req, res) {
 //test get profile
     var founduser = new db.findfbidtest(sender)
     .then((result)=>{
-        console.log(result);
-      return getUserProfile(result.fbid); 
+        sender = result;
+      return getUserProfile(result); 
     })
     .then((result)=>{
-        console.log(result);
+        console.log("infos facebook: ",result);
+        console.log("infos user: ",sender);
+
     })
     .catch((err)=>{
             console.error(err)
