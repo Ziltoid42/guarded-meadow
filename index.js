@@ -51,7 +51,7 @@ app.listen(app.get('port'), function(){
 */
 
 // Contenu bootbot
- sendTypingIndicator(recipientId, milliseconds) {
+ function sendTypingIndicator(recipientId, milliseconds) {
     const timeout = isNaN(milliseconds) ? 0 : milliseconds;
     if (milliseconds > 20000) {
       milliseconds = 20000;
