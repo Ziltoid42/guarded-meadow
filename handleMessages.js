@@ -75,7 +75,7 @@ module.exports = function (sender, message) {
                return true; 
             })
             .then(()=>{ 
-                sendTypingIndicator(sender.recipient, 5000);                
+                sendTypingIndicator(sender.id, 5000);                
                 return true;
             })
             .then(()=>{ 
