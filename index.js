@@ -49,7 +49,40 @@ app.listen(app.get('port'), function(){
       return;
     }
 */
+
+// Contenu bootbot
+ sendTypingIndicator(recipientId, milliseconds) {
+    const timeout = isNaN(milliseconds) ? 0 : milliseconds;
+    if (milliseconds > 20000) {
+      milliseconds = 20000;
+      console.error('sendTypingIndicator: max milliseconds value is 20000 (20 seconds)');
+    }
+    return new Promise((resolve, reject) => {
+      return this.sendAction(recipientId, 'typing_on').then(() => {
+        setTimeout(() => this.sendAction(recipientId, 'typing_off').then((json) => resolve(json)), timeout);
+      });
+    });
+  }
+
+    getUserProfile(userId) {
+    const url = `https://graph.facebook.com/v2.6/${userId}?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=${this.accessToken}`;
+    return fetch(url)
+      .then(res => res.json())
+      .catch(err => console.log(`Error getting user profile: ${err}`));
+  }
+
+/*//appel
+const autoTimeout = (message && message.text) ? message.text.length * 10 : 1000;
+      const timeout = (typeof options.typing === 'number') ? options.typing : autoTimeout;
+      return this.sendTypingIndicator(recipientId, timeout).then(req);
+*///Fin appel
+
 //contenu 2 fb-vision bot
+
+//var message = event.message;
+//var messageId = message.mid;
+// var timeOfMessage = event.timestamp;
+
 function receivedDeliveryConfirmation(event) {
   var senderID = event.sender.id;
   var recipientID = event.recipient.id;
@@ -112,7 +145,7 @@ app.post('/webhook/', function (req, res) {
     var sender =  {name: 'dédé', fbid: senderId};
     //zone test
 
-
+/*// debut version qui marche
     var founduser = new db.findfbidtest(sender)
     .then((result)=>{
       founduser = result; // 1
@@ -124,7 +157,17 @@ app.post('/webhook/', function (req, res) {
     .catch((err)=>{
             console.error(err)
         });
-
+*///fin version qui marche
+    var founduser = new db.findfbidtest(sender)
+    .then((result)=>{
+      return getUserProfile(result.fbid); 
+    })
+    .then((result)=>{
+        console.log(result);
+    })
+    .catch((err)=>{
+            console.error(err)
+        });
     //fin zone test
     //messages
     /* //routeur qui marche
