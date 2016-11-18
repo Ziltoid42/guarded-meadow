@@ -95,8 +95,9 @@ function receivedDeliveryConfirmation(event, timestamp) {
 
             var send = promise
             .then(()=>{ 
-                sendTextMessage(sender, "My name is Creditor and I am a robot!")
-               return var timestamp = Date.now();; 
+                sendTextMessage(sender, "My name is Creditor and I am a robot!");
+                var timestamp = Date.now();
+                return timestamp; 
             })
             .then((result)=>{ 
                 receivedDeliveryConfirmation(event, result);                
