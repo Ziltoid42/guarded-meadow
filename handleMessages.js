@@ -11,9 +11,6 @@ module.exports = function (sender, event) {
     var text = event.message.text;
 
 
-    
-console.log(timestamp);
-
 function receivedDeliveryConfirmation(event, timestamp) {
   var senderID = event.sender.id;
   var recipientID = event.recipient.id;
