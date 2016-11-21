@@ -19,7 +19,7 @@ function receivedDeliveryConfirmation(event, timestamp) {
   var watermark = delivery.watermark;
   var sequenceNumber = delivery.seq;
 console.log("Passage dans deliveryconfirmation avant promise");
-  return new Promise((resolve, reject) => {
+  new Promise((resolve, reject) => {
  console.log("Passage dans deliveryconfirmation");
 
   /*if (messageIDs) {
@@ -31,8 +31,10 @@ console.log("Passage dans deliveryconfirmation avant promise");
   
  console.log("Timestamp perso dans fonction comparaison: ", timestamp);
   console.log("All message before %d were delivered.", watermark);
-  if (timestamp < watermark)
-    resolve(true);
+    if (timestamp < watermark)
+        resolve(true);
+    else
+        reject(false);
  
 })
 }
@@ -105,7 +107,8 @@ console.log("Passage dans deliveryconfirmation avant promise");
                 return Date.now(); 
             })
             .then((result)=>{ 
-                receivedDeliveryConfirmation(event, result);                
+                new receivedDeliveryConfirmation(event, result) 
+
             })
             .then(()=>{ 
                 sendTextMessage(sender, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!")
