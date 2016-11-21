@@ -20,6 +20,7 @@ function receivedDeliveryConfirmation(event, timestamp) {
   var sequenceNumber = delivery.seq;
 
   return new Promise((resolve, reject) => {
+ console.log("Passage dans deliveryconfirmation");
 
   /*if (messageIDs) {
     messageIDs.forEach(function(messageID) {
@@ -104,7 +105,6 @@ function receivedDeliveryConfirmation(event, timestamp) {
                 return Date.now(); 
             })
             .then((result)=>{ 
-                 console.log("Timestamp perso dans result: ", result);
                 receivedDeliveryConfirmation(event, result);                
             })
             .then(()=>{ 
