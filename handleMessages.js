@@ -26,7 +26,7 @@ console.log("Passage dans deliveryconfirmation avant promise");
         messageID);
     });
   }*/
-
+/* sleep?
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -37,7 +37,7 @@ function demo() {
   console.log('Two second later');
 }
 
-demo();
+demo(); */
   
  console.log("Timestamp perso dans fonction comparaison: ", timestamp);
   console.log("All message before %d were delivered.", watermark);
@@ -112,9 +112,9 @@ demo();
             });
 
             var send = promise
-            .then(Promise.resolve(sendTextMessage(sender, "My name is Creditor and I am a robot!")))
+            .then(sendTextMessage(sender, "My name is Creditor and I am a robot!"))
             //.then(receivedDeliveryConfirmation(event, Date.now()))
-            .then(Promise.resolve(sendTextMessage(sender, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!")))
+            .then(sendTextMessage(sender, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!"))
             .then(()=>{ 
                 var buttons = {
                 text:"Now what can I do for you?", 
@@ -241,6 +241,7 @@ demo();
     //fonction pour test 
     
     function sendTextMessage(sender, text) {
+    new Promise(function(resolve, reject) {
     messageData = { text:text }
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
@@ -255,9 +256,11 @@ demo();
             console.log('Error sending messages: ', error)
         } else if (response.body.error) {
             console.log('Error: ', response.body.error)
+            reject(response.body.error);
         }
+        resolve(true);
     })
-}
+}}
 
 function sendGenericMessage(sender) {
     messageData = {
