@@ -39,6 +39,11 @@ function demo() {
 
 demo(); */
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+ //setTimeout(() =>{resolve()},x)
   
  console.log("Timestamp perso dans fonction comparaison: ", timestamp);
   console.log("All message before %d were delivered.", watermark);
@@ -119,6 +124,7 @@ demo(); */
 
             var send = promise
             .then(function(){return(sendTextMessage(sender, "My name is Creditor and I am a robot!"))})
+            .then(function(){return(sleep(2000))})
 
             //.then(receivedDeliveryConfirmation(event, Date.now()))
             .then(sendTextMessage(sender, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!"))
