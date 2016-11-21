@@ -38,9 +38,7 @@ function demo() {
 }
 
 demo(); */
-console.log('Taking a break...');
-setTimeout(() =>{resolve()},2000);
-console.log('Two second later');
+
   
  console.log("Timestamp perso dans fonction comparaison: ", timestamp);
   console.log("All message before %d were delivered.", watermark);
