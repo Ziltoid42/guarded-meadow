@@ -115,19 +115,19 @@ function sleep (time) {
         if (text === 'start') {
                
             setTimeout(function() {
-            sendTextMessage(user, "1");
+            sendTextMessage(sender, "1");
             }, 1000)
 
 // 2 seconds
 
             setTimeout(function() {
-                sendTextMessage(user, "2");
+                sendTextMessage(sender, "2");
             }, 2000)
 
 // 3 seconds
 
             setTimeout(function() {
-                sendTextMessage(user, "3");
+                sendTextMessage(sender, "3");
             }, 3000) 
 
 
