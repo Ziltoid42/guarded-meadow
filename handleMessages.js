@@ -109,14 +109,19 @@ console.log('Two second later');
 
 
         if (text === 'start') {
+            /*
+            a().then(function () {
+            return b()
+            }).then( //# This "then" is chained off of b's promise
+            */
 
              var promise = new Promise(function(resolve, reject) {
                  resolve(sendTextMessage(sender, "Hello Bong"))
             });
 
             var send = promise
-            .then(sendTextMessage(sender, "My name is Creditor and I am a robot!"))
-            .then(setTimeout(() =>{resolve()},2000))
+            .then(function(){return(sendTextMessage(sender, "My name is Creditor and I am a robot!"))})
+
             //.then(receivedDeliveryConfirmation(event, Date.now()))
             .then(sendTextMessage(sender, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!"))
             .then(()=>{ 
