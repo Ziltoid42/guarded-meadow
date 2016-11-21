@@ -26,6 +26,18 @@ console.log("Passage dans deliveryconfirmation avant promise");
         messageID);
     });
   }*/
+
+  function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function demo() {
+  console.log('Taking a break...');
+  await sleep(2000);
+  console.log('Two second later');
+}
+
+demo();
   
  console.log("Timestamp perso dans fonction comparaison: ", timestamp);
   console.log("All message before %d were delivered.", watermark);
