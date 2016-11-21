@@ -113,11 +113,23 @@ function sleep (time) {
 
 
         if (text === 'start') {
-            /*
-            a().then(function () {
-            return b()
-            }).then( //# This "then" is chained off of b's promise
-            */
+               
+            setTimeout(function() {
+            sendTextMessage(user, "1");
+            }, 1000)
+
+// 2 seconds
+
+            setTimeout(function() {
+                sendTextMessage(user, "2");
+            }, 2000)
+
+// 3 seconds
+
+            setTimeout(function() {
+                sendTextMessage(user, "3");
+            }, 3000) 
+
 
              var promise = new Promise(function(resolve, reject) {
                  resolve(sendTextMessage(sender, "Hello Bong"))
