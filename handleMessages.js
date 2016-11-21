@@ -260,7 +260,7 @@ demo(); */
         }
         resolve(true);
     })
-}}
+})}
 
 function sendGenericMessage(sender) {
     messageData = {
