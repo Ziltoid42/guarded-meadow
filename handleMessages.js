@@ -113,7 +113,7 @@ function sleep (time) {
 
 
         if (text === 'start') {
-               
+            /* timers test   
             setTimeout(function() {
             sendTextMessage(sender, "1");
             }, 1000)
@@ -129,17 +129,28 @@ function sleep (time) {
             setTimeout(function() {
                 sendTextMessage(sender, "3");
             }, 3000) 
-
-            /*
+            */
+            
              var promise = new Promise(function(resolve, reject) {
-                 resolve(sendTextMessage(sender, "Hello Bong"))
+                 resolve(
+                setTimeout(function() {
+                    sendTextMessage(sender, "Hello Bong");
+                }, 1000)
             });
 
             var send = promise
-            .then(function(){return(sendTextMessage(sender, "My name is Creditor and I am a robot!"))})
+            .then(function(){return(
+                setTimeout(function() {
+                    sendTextMessage(sender, "My name is Creditor and I am a robot!");
+                }, 2000)
+                )})
             //.then(function(){return (receivedDeliveryConfirmation(event, Date.now()))})
             //.then(receivedDeliveryConfirmation(event, Date.now()))
-            .then(function(){return(sendTextMessage(sender, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!"))})
+            .then(function(){return(
+                setTimeout(function() {
+                    sendTextMessage(sender, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!");
+                }, 3000)
+                )})
             //.then(function(){return (sleep(2000))})
             .then(()=>{ 
                 var buttons = {
@@ -156,7 +167,9 @@ function sleep (time) {
                 var buttonReply = new fbMessage
             .ButtonTemplate(result)
             .compose();
-            sendMessage(sender.fbid, buttonReply);
+            setTimeout(function() {
+                sendMessage(sender.fbid, buttonReply);
+                }, 4000)
             return true;
              })
             .then(()=>{
@@ -168,7 +181,7 @@ function sleep (time) {
                 return true;
              }).catch((err)=>{
                 console.error(err)
-            });*/
+            });
 
             /*//Debut version qui marche
             var promise = new Promise(function(resolve, reject) {
