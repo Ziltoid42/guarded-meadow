@@ -118,7 +118,7 @@ function receivedDeliveryConfirmation(event, timestamp) {
 
 function routeur(event, sender){
    if (event.message && event.message.text) {
-        console.log(sender);
+    
         handleMessages(sender, event); //fonction routing text
 
     }
