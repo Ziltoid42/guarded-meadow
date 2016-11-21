@@ -27,7 +27,7 @@ console.log("Passage dans deliveryconfirmation avant promise");
     });
   }*/
 
-  function sleep(ms) {
+function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
