@@ -135,7 +135,7 @@ function sleep (time) {
                  resolve(
                 setTimeout(function() {
                     sendTextMessage(sender, "Hello Bong");
-                }, 1000)
+                }, 1000))
             });
 
             var send = promise
