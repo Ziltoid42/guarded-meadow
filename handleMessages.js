@@ -28,7 +28,7 @@ function receivedDeliveryConfirmation(event, timestamp) {
     });
   }*/
   
- console.log("Timestamp perso: ", timestamp);
+ console.log("Timestamp perso dans fonction comparaison: ", timestamp);
   console.log("All message before %d were delivered.", watermark);
   if (timestamp < watermark)
     resolve(true);
@@ -104,6 +104,7 @@ function receivedDeliveryConfirmation(event, timestamp) {
                 return Date.now(); 
             })
             .then((result)=>{ 
+                 console.log("Timestamp perso dans result: ", result);
                 receivedDeliveryConfirmation(event, result);                
             })
             .then(()=>{ 
