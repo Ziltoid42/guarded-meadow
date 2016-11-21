@@ -154,7 +154,9 @@ function sleep (time) {
             .then((sender)=>{
                 db.findSave(sender);
                 return true;
-             });
+             }).catch((err)=>{
+                console.error(err)
+            });
 
             /*//Debut version qui marche
             var promise = new Promise(function(resolve, reject) {
