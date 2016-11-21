@@ -130,7 +130,7 @@ function sleep (time) {
                 sendTextMessage(sender, "3");
             }, 3000) 
 
-
+            /*
              var promise = new Promise(function(resolve, reject) {
                  resolve(sendTextMessage(sender, "Hello Bong"))
             });
@@ -168,7 +168,7 @@ function sleep (time) {
                 return true;
              }).catch((err)=>{
                 console.error(err)
-            });
+            });*/
 
             /*//Debut version qui marche
             var promise = new Promise(function(resolve, reject) {
