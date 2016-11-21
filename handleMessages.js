@@ -39,8 +39,9 @@ function demo() {
 
 demo(); */
 
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+
+function sleep (time) {
+  return new Promise((resolve) => setTimeout(resolve, time));
 }
 
  //setTimeout(() =>{resolve()},x)
@@ -124,10 +125,10 @@ function sleep(ms) {
 
             var send = promise
             .then(function(){return(sendTextMessage(sender, "My name is Creditor and I am a robot!"))})
-            .then(function(){return(sleep(2000))})
-
+            .then(function(){sleep(2000)})
             //.then(receivedDeliveryConfirmation(event, Date.now()))
-            .then(sendTextMessage(sender, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!"))
+            .then(function(){return(sendTextMessage(sender, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!"))})
+            .then(function(){sleep(2000)})
             .then(()=>{ 
                 var buttons = {
                 text:"Now what can I do for you?", 
