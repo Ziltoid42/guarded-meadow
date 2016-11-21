@@ -106,10 +106,10 @@ console.log("Passage dans deliveryconfirmation avant promise");
                 sendTextMessage(sender, "My name is Creditor and I am a robot!");
                 return Date.now(); 
             })
-            .then((result)=>{ 
+           /* .then((result)=>{ 
                 new receivedDeliveryConfirmation(event, result) 
 
-            })
+            })*/
             .then(()=>{ 
                 sendTextMessage(sender, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!")
                 return true;
