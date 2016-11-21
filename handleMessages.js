@@ -125,10 +125,10 @@ function sleep (time) {
 
             var send = promise
             .then(function(){return(sendTextMessage(sender, "My name is Creditor and I am a robot!"))})
-            .then(function(){sleep(2000)})
+            .then(function(){return sleep(2000)})
             //.then(receivedDeliveryConfirmation(event, Date.now()))
             .then(function(){return(sendTextMessage(sender, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!"))})
-            .then(function(){sleep(2000)})
+            .then(function(){return sleep(2000)})
             .then(()=>{ 
                 var buttons = {
                 text:"Now what can I do for you?", 
