@@ -15,9 +15,7 @@ function receivedDeliveryConfirmation(event, timestamp) {
   var senderID = event.sender.id;
   var recipientID = event.recipient.id;
   var delivery = event.delivery;
-  var messageIDs = delivery.mids;
   var watermark = delivery.watermark;
-  var sequenceNumber = delivery.seq;
 console.log("Passage dans deliveryconfirmation avant promise");
   new Promise((resolve, reject) => {
  console.log("Passage dans deliveryconfirmation");
