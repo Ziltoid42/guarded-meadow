@@ -101,7 +101,7 @@ console.log("Passage dans deliveryconfirmation avant promise");
 
             var send = promise
             .then(sendTextMessage(sender, "My name is Creditor and I am a robot!"))
-            .then(receivedDeliveryConfirmation(event, Date.now()))
+            //.then(receivedDeliveryConfirmation(event, Date.now()))
             .then(sendTextMessage(sender, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!"))
             .then(()=>{ 
                 var buttons = {
