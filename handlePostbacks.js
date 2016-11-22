@@ -221,22 +221,25 @@ module.exports = function (senderId, event) {
             }
 
 
-	function sendTextMessage(senderId, text) {
-   	 messageData = { text:text }
-   	 request({
-   	     url: 'https://graph.facebook.com/v2.6/me/messages',
-    	    qs: {access_token:token},
-    	    method: 'POST',
-    	    json: {
-            recipient: {id:sender},
-            message: messageData,
-        }
-    }, function(error, response, body) {
-        if (error) {
-            console.log('Error sending messages: ', error)
-        } else if (response.body.error) {
-            console.log('Error: ', response.body.error)
-        }
-    	})
-	}
+	    function sendTextMessage(sender, text) {
+            new Promise(function(resolve, reject) {
+            messageData = { text:text }
+            request({
+                url: 'https://graph.facebook.com/v2.6/me/messages',
+                qs: {access_token:token},
+                method: 'POST',
+                json: {
+                    recipient: {id:sender.fbid},
+                    message: messageData,
+                }
+            }, function(error, response, body) {
+                if (error) {
+                    console.log('Error sending messages: ', error)
+                } else if (response.body.error) {
+                    console.log('Error: ', response.body.error)
+                    reject(response.body.error);
+                }
+                resolve(true);
+            })
+        })}
 }
