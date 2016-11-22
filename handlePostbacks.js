@@ -22,8 +22,8 @@ module.exports = function (senderId, event) {
                  resolve(sendText(sender, "Hello Bong", 1000))});
 
             var send = promise
-            .then(function(){return(sendText(sender, "My name is Creditor and I am a robot!", 2000))})
-            .then(function(){return(sendText(sender, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!", 3000))})
+            .then(sendText(sender, "My name is Creditor and I am a robot!", 2000))
+            .then(sendText(sender, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!", 3000))
             .then(()=>{ 
                 var buttons = {
                 text:"Now what can I do for you?", 
