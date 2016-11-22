@@ -16,7 +16,7 @@ module.exports = function (senderId, event) {
     	//envoyer la carte suivante
     //}
 
-            if (text === 'start') {
+            if (payload === 'start') {
             
              var promise = new Promise(function(resolve, reject) {
                  resolve(
