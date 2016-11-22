@@ -19,6 +19,43 @@ module.exports = function (senderId, event) {
             if (payload === 'start') {
             
              var promise = new Promise(function(resolve, reject) {
+                 resolve(sendText(sender, "Hello Bong", 1000))});
+
+            var send = promise
+            .then(function(){return(sendTextMessage(sender, "My name is Creditor and I am a robot!", 2000))})
+            .then(function(){return(sendTextMessage(sender, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!", 3000))})
+            .then(()=>{ 
+                var buttons = {
+                text:"Now what can I do for you?", 
+                title1:"Who are you?", 
+                payload1:"Who are you?", 
+                title2:"I want a loan", 
+                payload2:"I want a loan",
+                title3:"I want to guarantee", 
+                payload3:"I want to guarantee"}
+                return buttons;
+            })
+            .then((result)=>{
+                var buttonReply = new fbMessage
+            .ButtonTemplate(result)
+            .compose();
+            setTimeout(function() {
+                sendMessage(sender.fbid, buttonReply);
+                }, 4000)
+            return true;
+             })
+            .then(()=>{
+                sender.state = 'start';
+                return sender;
+             })
+            .then((sender)=>{
+                db.findSave(sender);
+                return true;
+             }).catch((err)=>{
+                console.error(err)
+            });
+            /*
+             var promise = new Promise(function(resolve, reject) {
                  resolve(
                 setTimeout(function() {
                     sendTextMessage(sender, "Hello Bong");
@@ -65,7 +102,7 @@ module.exports = function (senderId, event) {
                 return true;
              }).catch((err)=>{
                 console.error(err)
-            });
+            });*/
 
            
         }
@@ -242,4 +279,11 @@ module.exports = function (senderId, event) {
                 resolve(true);
             })
         })}
+
+        function sendText(sender, text, time){
+
+            setTimeout(function() {
+                    sendTextMessage(sender, text);
+                }, time);
+        }
 }
