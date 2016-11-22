@@ -127,7 +127,7 @@ function routeur(event, sender){
     if (event.postback && event.postback.payload) {
 
         console.log(sender);
-        handlePostbacks(sender, event.postback); //fonction routing postbacks
+        handlePostbacks(sender, event); //fonction routing postbacks
     }
 
     //message_deliveries

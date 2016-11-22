@@ -1,12 +1,13 @@
 var sendMessage = require('./sendMessage');
 var fbMessage = require('./fbMessage');
 var request = require('request');
+var db = require('./db');
 //var user = require('./user');
 var token = require('./config/appToken');
 
-module.exports = function (senderId, postback) {
+module.exports = function (senderId, event) {
     
-    var payload = postback.payload;
+    var payload = event.postback.payload;
     var sender = senderId;
 
     //if (payload === /* Payload d'une des cartes faire fonction qui fetch dans la lib*/) {
@@ -14,6 +15,63 @@ module.exports = function (senderId, postback) {
     	//enregistrer le niveau de la step
     	//envoyer la carte suivante
     //}
+
+            if (text === 'start') {
+            
+             var promise = new Promise(function(resolve, reject) {
+                 resolve(
+                setTimeout(function() {
+                    sendTextMessage(sender, "Hello Bong");
+                }, 1000))
+            });
+
+            var send = promise
+            .then(function(){return(
+                setTimeout(function() {
+                    sendTextMessage(sender, "My name is Creditor and I am a robot!");
+                }, 2000)
+                )})
+            .then(function(){return(
+                setTimeout(function() {
+                    sendTextMessage(sender, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!");
+                }, 3000)
+                )})
+            .then(()=>{ 
+                var buttons = {
+                text:"Now what can I do for you?", 
+                title1:"Who are you?", 
+                payload1:"Who are you?", 
+                title2:"I want a loan", 
+                payload2:"I want a loan",
+                title3:"I want to guarantee", 
+                payload3:"I want to guarantee"}
+                return buttons;
+            })
+            .then((result)=>{
+                var buttonReply = new fbMessage
+            .ButtonTemplate(result)
+            .compose();
+            setTimeout(function() {
+                sendMessage(sender.fbid, buttonReply);
+                }, 4000)
+            return true;
+             })
+            .then(()=>{
+                sender.state = 'start';
+                return sender;
+             })
+            .then((sender)=>{
+                db.findSave(sender);
+                return true;
+             }).catch((err)=>{
+                console.error(err)
+            });
+
+           
+        }
+
+
+
 
             if (payload === 'apply') {
                 var buttons = {
