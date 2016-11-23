@@ -352,7 +352,7 @@ module.exports = function (senderId, event) {
                     db.findSave(sender);
 
             }
-            if (payload === ('good' || 'normal')) {
+            if ((payload === 'good') || (payload === 'normal')) {
                 var buttons = {
                     text:"Ok, this looks good! Based on the information you gave me, you can borrow up to 1,500 USD from Barang Ktchey Microfinance! Should we continue?", 
                     title1:"Yes", 
@@ -388,6 +388,7 @@ module.exports = function (senderId, event) {
                     db.findSave(sender);
             }
 
+            /* Anciennes cartes
             if (payload === 'Proceed to loan') {
                 var buttons = {
                     text:"So I understand you want a loan amounting to 1,500 USD. Now tell me, how long would you like the loan for?", 
@@ -484,7 +485,7 @@ module.exports = function (senderId, event) {
                 sendTextMessage(sender, "How old are you Grégoire?")
                 //continue
             } 
-
+            */
             if (buttons) //verifier que ça existe en javascript
             {
             	var buttonReply = new fbMessage
