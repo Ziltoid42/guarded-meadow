@@ -116,9 +116,28 @@ module.exports = function (sender, event) {
             if (age){
                 sender.age = age;
                 sender.state = "valid age";
+                var buttons = {
+                    text:"Please tell me about your personal situation", 
+                    title1:"Single", 
+                    payload1:"Single", 
+                    title2:"Married", 
+                    payload2:"Married",
+                    title2:"Widow", 
+                    payload2:"Widow"}
+                var buttonReply = new fbMessage
+                .ButtonTemplate(buttons)
+                .compose();
+                sendMessage(senderId, buttonReply);
                 db.findSave(sender);
             }else{
-                sendTextMessage(sender, "I am sorry but I can only provide a loan to people aged between 20 and 58 years old...");
+                var buttons = {
+                    text:"I am sorry but I can only provide a loan to people aged between 20 and 58 years old...", 
+                    title1:"Stop Application", 
+                    payload1:"Abort"}
+                var buttonReply = new fbMessage
+                .ButtonTemplate(buttons)
+                .compose();
+                sendMessage(senderId, buttonReply);
                 sender.state = "Abort";
                 db.findSave(sender);
             }

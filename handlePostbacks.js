@@ -680,6 +680,71 @@ module.exports = function (senderId, event) {
             if (payload === 'Invalid_name') {
 
             }
+
+            if ((payload === 'Married') || (payload === 'Single') || (payload === 'Widow')) {
+                
+                if(payload === 'Married'){
+                    sender.situation = 'Married';
+                }else if(payload === 'Single'){
+                    sender.situation = 'Single';
+                }else if(payload === 'Widow'){
+                    sender.situation = 'Widow';
+                }
+
+                var buttons = {
+                    text:'Do you have children?', 
+                    title1:"Yes", 
+                    payload1:"With_children", 
+                    title2:"No", 
+                    payload2:"Without_children"}
+
+                var buttonReply = new fbMessage
+                .ButtonTemplate(buttons)
+                .compose();
+                sendMessage(sender.fbid, buttonReply);
+                sender.state = 'Children';
+                db.findSave(sender);
+
+            }
+
+            if ((payload === 'With_children') || (payload === 'Without_children')) {
+                
+                if(payload === 'With_children'){
+                    sender.children = true;
+                    var buttons = {
+                    text:'How many children do you have?', 
+                    title1:"1 or 2 children", 
+                    payload1:"1 or 2 children", 
+                    title2:"3 or 4 children", 
+                    payload2:"3 or 4 children"
+                    title3:"5 or 6 children", 
+                    payload3:"5 or 6 children"}
+
+                var buttonReply = new fbMessage
+                .ButtonTemplate(buttons)
+                .compose();
+                sendMessage(sender.fbid, buttonReply);
+                }else if(payload === 'Without_children'){
+                    sender.children = false;
+                    var buttons = {
+                    text:'Where do you live?', 
+                    title1:"With parents", 
+                    payload1:"With parents", 
+                    title2:"Alone", 
+                    payload2:"Alone"
+                    title3:"With brother sisters", 
+                    payload3:"With brother sisters"}
+
+                var buttonReply = new fbMessage
+                .ButtonTemplate(buttons)
+                .compose();
+                sendMessage(sender.fbid, buttonReply);
+                }
+
+                sender.state = 'Children';
+                db.findSave(sender);
+
+            }
             /* Anciennes cartes
             if (payload === 'Proceed to loan') {
                 var buttons = {
