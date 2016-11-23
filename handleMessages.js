@@ -42,10 +42,7 @@ demo(); */
 
 function sleep (time) {
   return new Promise((resolve) => setTimeout(resolve, time));
-}
-
- //setTimeout(() =>{resolve()},x)
-  
+} 
  console.log("Timestamp perso dans fonction comparaison: ", timestamp);
   console.log("All message before %d were delivered.", watermark);
     if (timestamp < watermark)
@@ -56,9 +53,6 @@ function sleep (time) {
 })
 }
 
-
-
-    
      function sendAction(recipientId, action, options) {
     return this.sendRequest({
       recipient: {
@@ -113,23 +107,6 @@ function sleep (time) {
 
 
         if (text === 'start') {
-            /* timers test   
-            setTimeout(function() {
-            sendTextMessage(sender, "1");
-            }, 1000)
-
-// 2 seconds
-
-            setTimeout(function() {
-                sendTextMessage(sender, "2");
-            }, 2000)
-
-// 3 seconds
-
-            setTimeout(function() {
-                sendTextMessage(sender, "3");
-            }, 3000) 
-            */
             
              var promise = new Promise(function(resolve, reject) {
                  resolve(
@@ -144,14 +121,11 @@ function sleep (time) {
                     sendTextMessage(sender, "My name is Creditor and I am a robot!");
                 }, 2000)
                 )})
-            //.then(function(){return (receivedDeliveryConfirmation(event, Date.now()))})
-            //.then(receivedDeliveryConfirmation(event, Date.now()))
             .then(function(){return(
                 setTimeout(function() {
                     sendTextMessage(sender, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!");
                 }, 3000)
                 )})
-            //.then(function(){return (sleep(2000))})
             .then(()=>{ 
                 var buttons = {
                 text:"Now what can I do for you?", 
@@ -183,67 +157,7 @@ function sleep (time) {
                 console.error(err)
             });
 
-            /*//Debut version qui marche
-            var promise = new Promise(function(resolve, reject) {
-                 resolve(sendTextMessage(sender, "Hello Bong"))
-            });
-
-            var send = promise
-            .then(()=>{ 
-                sendTextMessage(sender, "My name is Creditor and I am a robot!")
-               return true; 
-            })
-            .then(()=>{ 
-                sendTextMessage(sender, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!")
-                return true;
-            })
-            .then(()=>{ 
-                var buttons = {
-                text:"Now what can I do for you?", 
-                title1:"Who are you?", 
-                payload1:"Who are you?", 
-                title2:"I want a loan", 
-                payload2:"I want a loan",
-                title3:"I want to guarantee", 
-                payload3:"I want to guarantee"}
-                return buttons;
-            })
-            .then((result)=>{
-                var buttonReply = new fbMessage
-            .ButtonTemplate(result)
-            .compose();
-            sendMessage(sender.fbid, buttonReply);
-            return true;
-             })
-            .then(()=>{
-                sender.state = 'start';
-                return sender;
-             })
-            .then((sender)=>{
-                db.findSave(sender);
-                return true;
-             });
-            *///fin version qui marche
-            /*
-            sendTextMessage(sender, "Hello Bong")
-            sendTextMessage(sender, "My name is Creditor and I am a robot!")
-            sendTextMessage(sender, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!")
-            var buttons = {
-                text:"Now what can I do for you?", 
-                title1:"Who are you?", 
-                payload1:"Who are you?", 
-                title2:"I want a loan", 
-                payload2:"I want a loan",
-                title3:"I want to guarantee", 
-                payload3:"I want to guarantee"}
-            
-            var buttonReply = new fbMessage
-            .ButtonTemplate(buttons)
-            .compose();
-            sendMessage(sender.fbid, buttonReply);
-            db.findSave(sender);
-            */
-            //continue
+           
         }
 
         if (text === '1XX1234') {
@@ -269,18 +183,14 @@ function sleep (time) {
         }
         if (text === 'location') {
             sendLocationMessage(sender)
-            //continue
-        }
-        //demande location
-         /*
-        if (message.attachments[0].type === 'location'){
-            sendTextMessage(senderId, "lat: "+attachment.payload.coordinates.lat+"\nlong: "+
-            attachment.payload.coordinates.long)
-            //continue
-            }*/
 
-    //fonction pour test 
-    
+        }
+
+
+
+//messages functions area, move later
+
+    //promified texts    
     function sendTextMessage(sender, text) {
     new Promise(function(resolve, reject) {
     messageData = { text:text }
@@ -303,6 +213,7 @@ function sleep (time) {
     })
 })}
 
+//generic with motorbikes
 function sendGenericMessage(sender) {
     messageData = {
         "attachment": {
@@ -345,8 +256,8 @@ function sendGenericMessage(sender) {
         }
     })
 }
-    //ok now here we can handle generic messages received by the bot...
 
+// Basic location message
 function sendLocationMessage(sender) {
     messageData = {
             "text":"Please share your location:",
@@ -372,13 +283,5 @@ function sendLocationMessage(sender) {
         }
     })
 }
-
-
-
-
-
-
-
-
 
 };
