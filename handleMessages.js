@@ -104,7 +104,7 @@ module.exports = function (sender, event) {
                 sender.state = "Loan valid";
                 db.findSave(sender);
             }else{
-                sendText(sender, "Sorry, loan amount must be between 500 and 1500 USD", 1000);
+                sendTextMessage(sender, "Sorry, loan amount must be between 500 and 1500 USD");
                 sender.state = "Loan error";
                 db.findSave(sender);
             }
