@@ -356,7 +356,7 @@ module.exports = function (senderId, event) {
                 var buttons = {
                     text:"Ok, this looks good! Based on the information you gave me, you can borrow up to 1,500 USD from Barang Ktchey Microfinance! Should we continue?", 
                     title1:"Yes", 
-                    payload1:"Proceed to loan", 
+                    payload1:"Term", 
                     title2:"I need less money", 
                     payload2:"Less", 
                     title3:"I need more money", 
@@ -413,18 +413,6 @@ module.exports = function (senderId, event) {
 
             }
 
-            if (payload === 'Term') {
-                var buttons = {
-                    text:"So I understand you want a loan amounting to 1,500 USD. Now tell me, how long would you like the loan for?", 
-                    title1:"6 months", 
-                    payload1:"6", 
-                    title2:"12 months", 
-                    payload2:"12", 
-                    title3:"24 months", 
-                    payload3:"24"}
-
-            }
-
             if (payload === 'Proceed to loan') {
                 
                 var buttons = {
@@ -443,6 +431,240 @@ module.exports = function (senderId, event) {
                     sender.motorcycle_condition = payload;
                     sender.state = 'Get motorcycle condition';
                     db.findSave(sender);
+
+            }
+
+            if (payload === 'Term') {
+                var buttons = {
+                    text:"So I understand you want a loan amounting to 1,500 USD. Now tell me, how long would you like the loan for?", 
+                    title1:"6 months", 
+                    payload1:"6 months", 
+                    title2:"12 months", 
+                    payload2:"12 months", 
+                    title3:"24 months", 
+                    payload3:"24 months"}
+
+                     var buttonReply = new fbMessage
+                    .ButtonTemplate(buttons)
+                    .compose();
+                    sendMessage(sender.fbid, buttonReply);
+                    sender.loan_amount = 1500;
+                    sender.state = 'Term';
+                    db.findSave(sender);
+
+            }
+
+            if (payload === '6 months') {
+                var buttons = {
+                    text:"Ok ok. Then if you want 1,500 USD over 6 month, that means you would pay a total of 138 USD total interest including all fees", 
+                    title1:"Continue", 
+                    payload1:"Installment 6 months", 
+                    title2:"Change terms", 
+                    payload2:"Term"}
+
+                     var buttonReply = new fbMessage
+                    .ButtonTemplate(buttons)
+                    .compose();
+                    sendMessage(sender.fbid, buttonReply);
+                    sender.state = '6 months';
+                    db.findSave(sender);
+
+            }
+
+            if (payload === '12 months') {
+                var buttons = {
+                    text:"Ok ok. Then if you want 1,500 USD over 12 month, that means you would pay a total of 246 USD total interest including all fees", 
+                    title1:"Continue", 
+                    payload1:"Installment 12 months", 
+                    title2:"Change terms", 
+                    payload2:"Term"}
+
+                     var buttonReply = new fbMessage
+                    .ButtonTemplate(buttons)
+                    .compose();
+                    sendMessage(sender.fbid, buttonReply);
+                    sender.state = '12 months';
+                    db.findSave(sender);
+
+            }
+
+            if (payload === '24 months') {
+                var buttons = {
+                    text:"Ok ok. Then if you want 1,500 USD over 6 month, that means you would pay a total of 462 USD total interest including all fees", 
+                    title1:"Continue", 
+                    payload1:"Installment 24 months", 
+                    title2:"Change terms", 
+                    payload2:"Term"}
+
+                     var buttonReply = new fbMessage
+                    .ButtonTemplate(buttons)
+                    .compose();
+                    sendMessage(sender.fbid, buttonReply);
+                    sender.state = '24 months';
+                    db.findSave(sender);
+
+            }
+
+            if (payload === 'Installment 6 months') {
+
+                 var promise = new Promise(function(resolve, reject) {
+                 resolve(sendText(sender, "In order to get the loan, you will have to pay 30 USD first", 1000))});
+
+                var send = promise
+                .then(sendText(sender, "Then, you will pay a monthly installment of 268 USD", 2000))
+                .then(()=>{ 
+                var buttons = {
+                    text:"So total payment will be 1,638 USD for this loan", 
+                    title1:"Continue", 
+                    payload1:"Installment validation 6 months", 
+                    title2:"Change terms", 
+                    payload2:"Term"}
+                return buttons;
+                })
+                .then((result)=>{
+                    var buttonReply = new fbMessage
+                .ButtonTemplate(result)
+                .compose();
+                setTimeout(function() {
+                    sendMessage(sender.fbid, buttonReply);
+                    }, 3000)
+                return true;
+                 })
+                .then(()=>{
+                    sender.state = 'Installment 6 months';
+                    return sender;
+                 })
+                .then((sender)=>{
+                    db.findSave(sender);
+                    return true;
+                 }).catch((err)=>{
+                    console.error(err)
+                });
+
+            }
+
+            if (payload === 'Installment 12 months') {
+                
+
+                var promise = new Promise(function(resolve, reject) {
+                resolve(sendText(sender, "In order to get the loan, you will have to pay 30 USD first", 1000))});
+
+                var send = promise
+                .then(sendText(sender, "Then, you will pay a monthly installment of 143 USD", 2000))
+                .then(()=>{ 
+                var buttons = {
+                    text:"So total payment will be 1,746 USD for this loan", 
+                    title1:"Continue", 
+                    payload1:"Installment validation 12 months", 
+                    title2:"Change terms", 
+                    payload2:"Term"}
+                return buttons;
+                })
+                .then((result)=>{
+                    var buttonReply = new fbMessage
+                .ButtonTemplate(result)
+                .compose();
+                setTimeout(function() {
+                    sendMessage(sender.fbid, buttonReply);
+                    }, 3000)
+                return true;
+                 })
+                .then(()=>{
+                    sender.state = 'Installment 12 months';
+                    return sender;
+                 })
+                .then((sender)=>{
+                    db.findSave(sender);
+                    return true;
+                 }).catch((err)=>{
+                    console.error(err)
+                });
+
+            }
+
+            if (payload === 'Installment 24 months') {
+                
+
+                var promise = new Promise(function(resolve, reject) {
+                resolve(sendText(sender, "In order to get the loan, you will have to pay 30 USD first", 1000))});
+
+                var send = promise
+                .then(sendText(sender, "Then, you will pay a monthly installment of 80,5 USD", 2000))
+                .then(()=>{ 
+                var buttons = {
+                    text:"Ok ok. Then if you want 1,500 USD over 24 month, that means you would pay a total of 462 USD total interest including all fees", 
+                    title1:"Continue", 
+                    payload1:"Installment validation 24 months", 
+                    title2:"Change terms", 
+                    payload2:"Term"}
+                return buttons;
+                })
+                .then((result)=>{
+                    var buttonReply = new fbMessage
+                .ButtonTemplate(result)
+                .compose();
+                setTimeout(function() {
+                    sendMessage(sender.fbid, buttonReply);
+                    }, 3000)
+                return true;
+                 })
+                .then(()=>{
+                    sender.state = 'Installment 24 months';
+                    return sender;
+                 })
+                .then((sender)=>{
+                    db.findSave(sender);
+                    return true;
+                 }).catch((err)=>{
+                    console.error(err)
+                });
+            }
+
+            if ((payload === 'Installment validation 6 months') || (payload === 'Installment validation 12 months') || (payload === 'Installment validation 24 months')) {
+                
+                if(payload === 'Installment validation 6 months'){
+                    sender.installment = 6;
+                }else if(payload === 'Installment validation 12 months'){
+                    sender.installment = 12;
+                }else if(payload === 'Installment validation 24 months'){
+                    sender.installment = 24;
+                }
+
+
+                var promise = new Promise(function(resolve, reject) {
+                resolve(sendText(sender, "Great! Let's continue this conversation", 1000))});
+
+                var send = promise
+                .then(sendText(sender, "By the way, I didn't ask your name!", 2000))
+                .then(()=>{ 
+
+                var buttons = {
+                    text:`Is your name ${sender.first_name}`, 
+                    title1:"Yes", 
+                    payload1:"Valid_name", 
+                    title2:"No", 
+                    payload2:"Invalid_name"}
+                return buttons;
+                })
+                .then((result)=>{
+                    var buttonReply = new fbMessage
+                .ButtonTemplate(result)
+                .compose();
+                setTimeout(function() {
+                    sendMessage(sender.fbid, buttonReply);
+                    }, 3000)
+                return true;
+                 })
+                .then(()=>{
+                    sender.state = 'Name_validation';
+                    return sender;
+                 })
+                .then((sender)=>{
+                    db.findSave(sender);
+                    return true;
+                 }).catch((err)=>{
+                    console.error(err)
+                });
 
             }
             /* Anciennes cartes

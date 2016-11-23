@@ -98,7 +98,7 @@ module.exports = function (sender, event) {
 
         if (sender.state === 'Less') {
             var loan;
-            loan = loanController.loanFind(text)
+            loan = loanController.loanFind(text) // a refaire
             if (loan){
                 sender.loan_amount = loan;
                 sender.state = "Loan valid";
