@@ -801,6 +801,8 @@ module.exports = function (senderId, event) {
                 db.findSave(sender);
             }
 
+            //ADD FONCTION FOR CHILDREN NOT WORKING
+
             if ((payload === 'With wife and children') || (payload === 'Alone') || (payload === 'With relatives') || (payload === 'With parents')) {
                 
                 if(payload === 'With wife and children'){
@@ -808,7 +810,7 @@ module.exports = function (senderId, event) {
                 }else if(payload === 'Alone'){
                     sender.housing = 'Alone';
                 }else if(payload === 'With relatives'){
-                    sender.chousing = 'With relatives';
+                    sender.housing = 'With relatives';
                 }else if(payload === 'With parents'){
                     sender.housing = 'With parents';
                 }
@@ -828,6 +830,72 @@ module.exports = function (senderId, event) {
                 sendMessage(sender.fbid, buttonReply);
                 sender.state = 'Housing';
                 db.findSave(sender);
+            }
+
+            if (payload === 'Somewhere else') {
+                
+                var promise = new Promise(function(resolve, reject) {
+                resolve(sendText(sender, "I need you to be at home or at work to continue this application", 1000))});
+
+                var send = promise
+                .then(()=>{ 
+
+                var buttons = {
+                    text:`Is your name ${sender.first_name}`, 
+                    title1:"At home already", 
+                    payload1:"Home", 
+                    title2:"At work already", 
+                    payload2:"Work"}
+                return buttons;
+                })
+                .then((result)=>{
+                    var buttonReply = new fbMessage
+                .ButtonTemplate(result)
+                .compose();
+                setTimeout(function() {
+                    sendMessage(sender.fbid, buttonReply);
+                    }, 2000)
+                return true;
+                 })
+                .then(()=>{
+                    sender.state = 'Is somewhere else';
+                    return sender;
+                 })
+                .then((sender)=>{
+                    db.findSave(sender);
+                    return true;
+                 }).catch((err)=>{
+                    console.error(err)
+                });
+            }
+
+            if (payload === 'Work') {
+
+                sendTextMessage(sender, 'Ok, can you please let me know where is your work?');
+                sender.state = 'At work';
+                db.findSave(sender);
+                sendLocationMessage(sender)
+
+            }
+
+            if (event.message.attachments[0].payload.coordinates.lat && event.message.attachments[0].payload.coordinates.long && sender.state === 'At work') {
+                
+                sender.work.location.lat = event.message.attachments[0].payload.coordinates.lat;
+                sender.work.location.long = event.message.attachments[0].payload.coordinates.long;
+
+                var buttons = {
+                        text:'Are you self-employed or do you work for a company and get a monthly salary?', 
+                        title1:"Employed by company", 
+                        payload1:"Employed", 
+                        title2:"Self-employed", 
+                        payload2:"Self-employed"}
+
+                    var buttonReply = new fbMessage
+                    .ButtonTemplate(buttons)
+                    .compose();
+                    sendMessage(sender.fbid, buttonReply);
+                    sender.state = 'Work coordinates';
+                    db.findSave(sender);
             }
             /* Anciennes cartes
             if (payload === 'Proceed to loan') {
@@ -966,4 +1034,30 @@ module.exports = function (senderId, event) {
                     sendTextMessage(sender, text);
                 }, time);
         }
+
+        function sendLocationMessage(sender) {
+            messageData = {
+                    "text":"Just click the button below to let me know!",
+                    "quick_replies":[
+                 {
+                    "content_type":"location",
+                }
+                ]
+            }
+            request({
+                url: 'https://graph.facebook.com/v2.6/me/messages',
+                qs: {access_token:token},
+                method: 'POST',
+                json: {
+                    recipient: {id:sender.fbid},
+                    message: messageData,
+                }
+            }, function(error, response, body) {
+                if (error) {
+                    console.log('Error sending messages: ', error)
+                } else if (response.body.error) {
+                    console.log('Error: ', response.body.error)
+                }
+            })
+}
 }

@@ -262,4 +262,11 @@ function sendLocationMessage(sender) {
     })
 }
 
+    function sendText(sender, text, time){
+
+            setTimeout(function() {
+                    sendTextMessage(sender, text);
+                }, time);
+        }
+
 };
