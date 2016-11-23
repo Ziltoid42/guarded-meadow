@@ -1,7 +1,6 @@
 module.exports = {};
 
-
-function plateFind(str){
+module.exports.plateFind = function (str){
 
 	str = str.replace(/\s+/g, '');
 	str = str.toUpperCase(str);
