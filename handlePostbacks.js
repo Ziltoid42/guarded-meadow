@@ -325,31 +325,7 @@ module.exports = function (senderId, event) {
             }
 
             
-            if (payload === 'Plate number') {
-                sendText(sender, "Good. First, can you send me your motorcycle plate number?", 1000);
-                sender.state = 'Plate number';
-                db.findSave(sender);
-            }
-
-            if (payload === 'apply') {
-                var buttons = {
-                    text:"Shall we start?", 
-                    title1:"Start application", 
-                    payload1:"start_app", 
-                    title2:"I need more info", 
-                    payload2:"more"}
-                var buttonReply = new fbMessage
-            	.ButtonTemplate(buttons)
-            	.compose();
-
-        		sendMessage(senderId, buttonReply);
-                //continue
-            }   
-            if (payload === 'start_app') {
-            sendTextMessage(sender, "Good. First, can you write down your motorcycle plate number?")
-            //continue
-            }
-            if (payload === 'honda_dream') {
+            if (payload === ('honda_dream') || ('honda_wave')) { //Need to add verification model/plate when more info availlable
                 var buttons = {
                     text:"How would you describe the overall condition of your motorcycle?", 
                     title1:"Good condition", 
@@ -358,20 +334,53 @@ module.exports = function (senderId, event) {
                     payload2:"normal", 
                     title3:"Poor condition", 
                     payload3:"poor"}
-                //continue
+
+                    var buttonReply = new fbMessage
+                    .ButtonTemplate(buttons)
+                    .compose();
+                    sendMessage(sender.fbid, buttonReply);
+                    sender.motorcycle_model = payload;
+                    sender.state = 'Get motorcycle model';
+                    db.findSave(sender);
+
             }
-            if (payload === 'good') {
+            if (payload === ('good') || ('normal')) {
                 var buttons = {
                     text:"Ok, this looks good! Based on the information you gave me, you can borrow up to 1,500 USD from Barang Ktchey Microfinance! Should we continue?", 
                     title1:"Yes", 
-                    payload1:"yes", 
+                    payload1:"Proceed to loan", 
                     title2:"I need less money", 
                     payload2:"less", 
                     title3:"I need more money", 
                     payload3:"more"}
+
+                     var buttonReply = new fbMessage
+                    .ButtonTemplate(buttons)
+                    .compose();
+                    sendMessage(sender.fbid, buttonReply);
+                    sender.motorcycle_condition = payload;
+                    sender.state = 'Get motorcycle condition';
+                    db.findSave(sender);
                 //continue
             }
-            if (payload === 'yes') {
+
+            if (payload === 'poor') { // Prepare a fonction for value calculation when formula ready
+                var buttons = {
+                    text:"Sorry bong, but your motorcycle is too old to serve as a loan collateral. If you have another motorcycle registered under your name, you can startover the application again. If not, I am sorry we cannot proceed further", 
+                    title1:"Stop application", 
+                    payload1:"abort" 
+                    }
+
+                     var buttonReply = new fbMessage
+                    .ButtonTemplate(buttons)
+                    .compose();
+                    sendMessage(sender.fbid, buttonReply);
+                    sender.motorcycle_condition = payload;
+                    sender.state = 'Get motorcycle condition';
+                    db.findSave(sender);
+            }
+
+            if (payload === 'Proceed to loan') {
                 var buttons = {
                     text:"So I understand you want a loan amounting to 1,500 USD. Now tell me, how long would you like the loan for?", 
                     title1:"6 months", 

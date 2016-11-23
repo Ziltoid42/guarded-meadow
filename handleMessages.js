@@ -97,7 +97,7 @@ function sleep (time) {
 
        
 
-        if (sender.state === 'Plate number') {
+        if (sender.state === 'Plate number' {
             var Plate;
             plate = plateController.plateFind(text)
             if (plate){
@@ -110,11 +110,10 @@ function sleep (time) {
                 db.findSave(sender);
             }
 
-            
-            //continue
         }
 
         if (sender.state === 'Plate valid') {
+            sendTextMessage(sender, "Ok thanks! Can you confirm the model of your motorcycle?");
             sendGenericMessage(sender);
         }
 
