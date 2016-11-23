@@ -201,7 +201,7 @@ function sendGenericMessage(sender) {
                     "image_url": "http://www.manager.co.th/asp-bin/Image.aspx?ID=808778",
                     "buttons": [{
                         "type": "postback",
-                        "title": "Postback",
+                        "title": "My moto is like this",
                         "payload": "honda_wave",
                     }],
                 }]

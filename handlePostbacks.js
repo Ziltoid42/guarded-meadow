@@ -333,7 +333,7 @@ module.exports = function (senderId, event) {
             }
 
             
-            if (payload === (('honda_dream') || ('honda_wave'))) { //Need to add verification model/plate when more info availlable
+            if (payload === ('honda_dream' || 'honda_wave')) { //Need to add verification model/plate when more info availlable
                 var buttons = {
                     text:"How would you describe the overall condition of your motorcycle?", 
                     title1:"Good condition", 
@@ -352,7 +352,7 @@ module.exports = function (senderId, event) {
                     db.findSave(sender);
 
             }
-            if (payload === (('good') || ('normal'))) {
+            if (payload === ('good' || 'normal')) {
                 var buttons = {
                     text:"Ok, this looks good! Based on the information you gave me, you can borrow up to 1,500 USD from Barang Ktchey Microfinance! Should we continue?", 
                     title1:"Yes", 
