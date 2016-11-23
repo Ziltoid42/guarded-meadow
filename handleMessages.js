@@ -2,7 +2,7 @@ var sendMessage = require('./sendMessage');
 var fbMessage = require('./fbMessage');
 var request = require('request');
 var db = require('./db');
-var plateController = require('plateController');
+var plateController = require('./plateController');
 var token = require('./config/appToken');
 
 
