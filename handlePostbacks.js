@@ -54,61 +54,165 @@ module.exports = function (senderId, event) {
              }).catch((err)=>{
                 console.error(err)
             });
-            /*
-             var promise = new Promise(function(resolve, reject) {
-                 resolve(
-                setTimeout(function() {
-                    sendTextMessage(sender, "Hello Bong");
-                }, 1000))
-            });
+            
+        }
 
-            var send = promise
-            .then(function(){return(
+
+            if (payload === 'Who are you?') {
+
+                var promise = new Promise(function(resolve, reject) {
+                 resolve(sendText(sender, "I am a robot!", 1000))});
+
+                var send = promise
+                .then(sendText(sender, "It means I only exist inside a computer", 2000))
+                .then(sendText(sender, "You cannot really have a conversation with me, but I can provide you information about our lending service, and I can collect information about you and tell you if you are eligible for a loan", 3000))
+                .then(()=>{ 
+                var buttons = {
+                text:"Now what would you like to do",  
+                title1:"I want a loan", 
+                payload1:"I want a loan",
+                title2:"I want to guarantee", 
+                payload2:"I want to guarantee"}
+                return buttons;
+                })
+                .then((result)=>{
+                    var buttonReply = new fbMessage
+                .ButtonTemplate(result)
+                .compose();
                 setTimeout(function() {
-                    sendTextMessage(sender, "My name is Creditor and I am a robot!");
-                }, 2000)
-                )})
-            .then(function(){return(
-                setTimeout(function() {
-                    sendTextMessage(sender, "If you have business project, you can help you get a credit only by  answering my questions on Facebook!");
-                }, 3000)
-                )})
-            .then(()=>{ 
+                    sendMessage(sender.fbid, buttonReply);
+                    }, 4000)
+                return true;
+                 })
+                .then(()=>{
+                    sender.state = 'Who are you?';
+                    return sender;
+                 })
+                .then((sender)=>{
+                    db.findSave(sender);
+                    return true;
+                 }).catch((err)=>{
+                    console.error(err)
+                });
+            }
+
+
+            if (payload === 'I want a loan') {
+                
+                var promise = new Promise(function(resolve, reject) {
+                 resolve(sendText(sender, "Alright, you knock at the right door then!", 1000))});
+
+                var send = promise
+                .then(sendText(sender, "Here you can get the cheapest loan in Cambodia", 2000))
+                .then(sendText(sender, "For 1,000 USD, we charge only 12 USD interest per month!", 3000))
+                .then(()=>{ 
                 var buttons = {
                 text:"Now what can I do for you?", 
                 title1:"Who are you?", 
                 payload1:"Who are you?", 
-                title2:"I want a loan", 
-                payload2:"I want a loan",
-                title3:"I want to guarantee", 
-                payload3:"I want to guarantee"}
+                title2:"I want to know more", 
+                payload2:"Get info",
+                title3:"I want to apply", 
+                payload3:"I want to apply"}
                 return buttons;
-            })
-            .then((result)=>{
-                var buttonReply = new fbMessage
-            .ButtonTemplate(result)
-            .compose();
-            setTimeout(function() {
-                sendMessage(sender.fbid, buttonReply);
-                }, 4000)
-            return true;
-             })
-            .then(()=>{
-                sender.state = 'start';
-                return sender;
-             })
-            .then((sender)=>{
-                db.findSave(sender);
+                })
+                .then((result)=>{
+                    var buttonReply = new fbMessage
+                .ButtonTemplate(result)
+                .compose();
+                setTimeout(function() {
+                    sendMessage(sender.fbid, buttonReply);
+                    }, 4000)
                 return true;
-             }).catch((err)=>{
-                console.error(err)
-            });*/
+                 })
+                .then(()=>{
+                    sender.state = 'I want a loan';
+                    return sender;
+                 })
+                .then((sender)=>{
+                    db.findSave(sender);
+                    return true;
+                 }).catch((err)=>{
+                    console.error(err)
+                });
+            }
 
-           
-        }
+            if (payload === 'I want to guarantee') {
+                
+            }
 
+            if (payload === 'Get info') {
 
+                var buttons = {
+                text:"What do you want to know??", 
+                title1:"Loan amount and term", 
+                payload1:"Loan amount and term", 
+                title2:"Interest rate", 
+                payload2:"Interest rate",
+                title3:"Conditions", 
+                payload3:"Conditions"}
 
+                var buttonReply = new fbMessage
+                .ButtonTemplate(result)
+                .compose();
+                sendMessage(sender.fbid, buttonReply);
+                sender.state = 'Get info';
+                db.findSave(sender);
+                
+            }
+
+            if (payload === 'Loan amount and term') {
+                
+                var promise = new Promise(function(resolve, reject) {
+                 resolve(sendText(sender, "As for the amount, you can borrow from 500 USD up to 2000 USD.", 1000))});
+
+                var send = promise
+                .then(sendText(sender, "You can borrow this amount for minimum 6 months and up to 2 years", 2000))
+                .then(()=>{ 
+                var buttons = {
+                text:"NDo you need more information?", 
+                title1:"Interest rate", 
+                payload1:"WInterest rate", 
+                title2:"Conditions", 
+                payload2:"Conditions",
+                title3:"I want to apply", 
+                payload3:"I want to apply"}
+                return buttons;
+                })
+                .then((result)=>{
+                    var buttonReply = new fbMessage
+                .ButtonTemplate(result)
+                .compose();
+                setTimeout(function() {
+                    sendMessage(sender.fbid, buttonReply);
+                    }, 3000)
+                return true;
+                 })
+                .then(()=>{
+                    sender.state = 'Loan amount and term';
+                    return sender;
+                 })
+                .then((sender)=>{
+                    db.findSave(sender);
+                    return true;
+                 }).catch((err)=>{
+                    console.error(err)
+                });
+            }
+
+            if (payload === 'I want to apply') {
+                
+            }
+
+            
+
+            if (payload === 'Who are you?') {
+                
+            }
+
+            if (payload === 'Who are you?') {
+                
+            }
 
             if (payload === 'apply') {
                 var buttons = {
