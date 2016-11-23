@@ -170,9 +170,9 @@ module.exports = function (senderId, event) {
                 .then(sendText(sender, "You can borrow this amount for minimum 6 months and up to 2 years", 2000))
                 .then(()=>{ 
                 var buttons = {
-                text:"NDo you need more information?", 
+                text:"Do you need more information?", 
                 title1:"Interest rate", 
-                payload1:"WInterest rate", 
+                payload1:"Interest rate", 
                 title2:"Conditions", 
                 payload2:"Conditions",
                 title3:"I want to apply", 
@@ -201,23 +201,135 @@ module.exports = function (senderId, event) {
             }
 
             if (payload === 'Interest rate') {
-                
+                var promise = new Promise(function(resolve, reject) {
+                 resolve(sendText(sender, "Don't worry, we provide the cheapest loan you can find in Cambodia", 1000))});
+
+                var send = promise
+                .then(sendText(sender, "With Barang Ktchey Microfinance, the loans are provided directly by foreigner from Europe. They lend you for a low rate to help you set up a business or succeed in your projects", 2000))
+                .then(sendText(sender, "The interest rate for the loan is 1.2% per month + 30 USD only one time", 3000))
+                .then(sendText(sender, "For a 1,000 USD loan, it means 12 USD interest every month", 4000))
+                .then(sendText(sender, "30 USD is a service fee you need to pay only one time, before you get the loan", 5000))
+                .then(sendText(sender, "Example, if you get 1,000 USD for 1 year, you will pay total 144 USD + 30 USD", 6000))
+                .then(sendText(sender, "So total 174 USD for 1 year", 7000))
+                .then(sendText(sender, "1.2% + 30 USD is the maximum you will pay. Actually, our customer usually get a discount of 30 USD or even 80 USD. It will depend on how we like your project!", 8000))
+
+                .then(()=>{ 
+                var buttons = {
+                text:"Do you need more information?", 
+                title1:"Loan amount and term", 
+                payload1:"Loan amount and term", 
+                title2:"Conditions", 
+                payload2:"Conditions",
+                title3:"I want to apply", 
+                payload3:"I want to apply"}
+                return buttons;
+                })
+                .then((result)=>{
+                    var buttonReply = new fbMessage
+                .ButtonTemplate(result)
+                .compose();
+                setTimeout(function() {
+                    sendMessage(sender.fbid, buttonReply);
+                    }, 9000)
+                return true;
+                 })
+                .then(()=>{
+                    sender.state = 'Interest rate';
+                    return sender;
+                 })
+                .then((sender)=>{
+                    db.findSave(sender);
+                    return true;
+                 }).catch((err)=>{
+                    console.error(err)
+                });
             }
 
             if (payload === 'Conditions') {
-                
+                var promise = new Promise(function(resolve, reject) {
+                 resolve(sendText(sender, "First, you need to be the owner of your motorcycle. It means you need to have a registration card with your name on it", 1000))});
+
+                var send = promise
+                .then(sendText(sender, "When you get a loan with Barang Ktchey Microfinance, we will take your motorcycle registration card as a guarantee, this is all we need! And you can keep your motorcycle of course, we just take the registration card until you pay off the loan", 2000))
+                .then(sendText(sender, "Also you need to have enough monthly revenu to be able to pay back your loan", 3000))
+                .then(sendText(sender, "We will also ask you for some documents to prove your identity, your current address and you income", 4000))
+                .then(sendText(sender, "Finally, we provide loans for business projects only. So we can lend you money for a purpose that will help you get more income,but not if you want to buy a phone or home appliance", 5000))
+    
+                .then(()=>{ 
+                var buttons = {
+                text:"Do you need more information?", 
+                title1:"Loan amount and term", 
+                payload1:"Loan amount and term", 
+                title2:"Interest rate", 
+                payload2:"Interest rate",
+                title3:"I want to apply", 
+                payload3:"I want to apply"}
+                return buttons;
+                })
+                .then((result)=>{
+                    var buttonReply = new fbMessage
+                .ButtonTemplate(result)
+                .compose();
+                setTimeout(function() {
+                    sendMessage(sender.fbid, buttonReply);
+                    }, 6000)
+                return true;
+                 })
+                .then(()=>{
+                    sender.state = 'Conditions';
+                    return sender;
+                 })
+                .then((sender)=>{
+                    db.findSave(sender);
+                    return true;
+                 }).catch((err)=>{
+                    console.error(err)
+                });
             }
 
             if (payload === 'I want to apply') {
-                
+                 var promise = new Promise(function(resolve, reject) {
+                 resolve(sendText(sender, "Great, I will guide you through the process of applying for a loan with Barang Ktchey Microfinance!", 1000))});
+
+                var send = promise
+                .then(sendText(sender, "Note that you can leave this conversation at any time, and come back to it. I will remember all the information you have already provided :)", 2000))
+                .then(sendText(sender, "First, let me ask you a few question so that I can know how much maximum you can borrow", 3000))
+                .then(()=>{ 
+                var buttons = {
+                text:"Shall we start?", 
+                title1:"I want to know more", 
+                payload1:"Get info", 
+                title2:"Yes", 
+                payload2:"Plate number"
+                }
+                return buttons;
+                })
+                .then((result)=>{
+                    var buttonReply = new fbMessage
+                .ButtonTemplate(result)
+                .compose();
+                setTimeout(function() {
+                    sendMessage(sender.fbid, buttonReply);
+                    }, 4000)
+                return true;
+                 })
+                .then(()=>{
+                    sender.state = 'I want to apply';
+                    return sender;
+                 })
+                .then((sender)=>{
+                    db.findSave(sender);
+                    return true;
+                 }).catch((err)=>{
+                    console.error(err)
+                });
             }
 
             
-
-            
-
-            if (payload === 'Who are you?') {
-                
+            if (payload === 'Plate number') {
+                sendText(sender, "Good. First, can you send me your motorcycle plate number?", 1000);
+                sender.state = 'Plate number';
+                db.findSave(sender);
             }
 
             if (payload === 'apply') {
