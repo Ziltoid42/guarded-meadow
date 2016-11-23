@@ -324,6 +324,14 @@ module.exports = function (senderId, event) {
                 });
             }
 
+            if (payload === 'Plate number') {
+ 
+                sendText(sender, "Good. First, can you send me your motorcycle plate number?");
+                sender.state = 'Plate number';
+                db.findSave(sender);
+                
+            }
+
             
             if (payload === (('honda_dream') || ('honda_wave'))) { //Need to add verification model/plate when more info availlable
                 var buttons = {
@@ -361,7 +369,7 @@ module.exports = function (senderId, event) {
                     sender.motorcycle_condition = payload;
                     sender.state = 'Get motorcycle condition';
                     db.findSave(sender);
-                //continue
+
             }
 
             if (payload === 'poor') { // Prepare a fonction for value calculation when formula ready
