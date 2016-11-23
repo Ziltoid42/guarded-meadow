@@ -17,7 +17,7 @@ module.exports.loanFind = function (str){
     		if((loan > 500) && (loan < 1500))
 				return loan;
 		var loan = str.slice(i, i+4);	
-			else if ((loan > 500) && (loan < 1500))
+			if ((loan > 500) && (loan < 1500))
 				return loan;
 			else
 				i++;
