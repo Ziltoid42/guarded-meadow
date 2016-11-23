@@ -122,8 +122,8 @@ module.exports = function (sender, event) {
                     payload1:"Single", 
                     title2:"Married", 
                     payload2:"Married",
-                    title2:"Widow", 
-                    payload2:"Widow"}
+                    title3:"Widow", 
+                    payload3:"Widow"}
                 var buttonReply = new fbMessage
                 .ButtonTemplate(buttons)
                 .compose();

@@ -732,8 +732,8 @@ module.exports = function (senderId, event) {
                     payload1:"With parents", 
                     title2:"Alone", 
                     payload2:"Alone",
-                    title3:"With brother sisters", 
-                    payload3:"With brother sisters"}
+                    title3:"With relatives", 
+                    payload3:"With relatives"}
 
                 var buttonReply = new fbMessage
                 .ButtonTemplate(buttons)
@@ -744,6 +744,90 @@ module.exports = function (senderId, event) {
                 sender.state = 'Children';
                 db.findSave(sender);
 
+            }
+
+            if ((payload === '1 or 2 children') || (payload === '3 or 4 children') || (payload === '5 or 6 children')) {
+                
+                if(payload === '1 or 2 children'){
+                    sender.children.nb = 1.5;
+                }else if(payload === '3 or 4 children'){
+                    sender.children.nb = 3.5;
+                }else if(payload === '5 or 6 children'){
+                    sender.children.nb = 5.5;
+                }
+
+                var buttons = {
+                    text:'How many children earn their lives?', 
+                    title1:"1", 
+                    payload1:"1 working_children", 
+                    title2:"2", 
+                    payload2:"2 working_children",
+                    title3:"3 or more", 
+                    payload3:"3+ working_children"}
+
+                var buttonReply = new fbMessage
+                .ButtonTemplate(buttons)
+                .compose();
+                sendMessage(sender.fbid, buttonReply);
+                sender.state = 'Working children';
+                db.findSave(sender);
+
+            }
+
+            if ((payload === '1 working_children') || (payload === '2 working_children') || (payload === '3+ working_children')) {
+                
+                if(payload === '1 working_children'){
+                    sender.children.working = 1;
+                }else if(payload === '2 working_children'){
+                    sender.children.working = 2;
+                }else if(payload === '3+ working_children'){
+                    sender.children.working = "3 +";
+                }
+
+                var buttons = {
+                    text:'Where do you live?', 
+                    title1:"With wife and children", 
+                    payload1:"With wife and children", 
+                    title2:"Alone", 
+                    payload2:"Alone",
+                    title3:"With relatives", 
+                    payload3:"With relatives"}
+
+                var buttonReply = new fbMessage
+                .ButtonTemplate(buttons)
+                .compose();
+                sendMessage(sender.fbid, buttonReply);
+                sender.state = 'Working children number';
+                db.findSave(sender);
+            }
+
+            if ((payload === 'With wife and children') || (payload === 'Alone') || (payload === 'With relatives') || (payload === 'With parents')) {
+                
+                if(payload === 'With wife and children'){
+                    sender.housing = 'With wife and children';
+                }else if(payload === 'Alone'){
+                    sender.housing = 'Alone';
+                }else if(payload === 'With relatives'){
+                    sender.chousing = 'With relatives';
+                }else if(payload === 'With parents'){
+                    sender.housing = 'With parents';
+                }
+
+                var buttons = {
+                    text:'And by the way, where are you now?', 
+                    title1:"Home", 
+                    payload1:"Home", 
+                    title2:"Work", 
+                    payload2:"Work",
+                    title3:"Somewhere else", 
+                    payload3:"Somewhere else"}
+
+                var buttonReply = new fbMessage
+                .ButtonTemplate(buttons)
+                .compose();
+                sendMessage(sender.fbid, buttonReply);
+                sender.state = 'Housing';
+                db.findSave(sender);
             }
             /* Anciennes cartes
             if (payload === 'Proceed to loan') {
