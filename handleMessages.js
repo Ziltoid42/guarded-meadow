@@ -111,7 +111,7 @@ module.exports = function (sender, event) {
         }
 
         if (sender.state === 'Valid_name') {
-            var loan;
+            var age;
             age = ageController.ageFind(text) 
             if (age){
                 sender.age = age;
