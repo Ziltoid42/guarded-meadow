@@ -3,7 +3,7 @@ var fbMessage = require('./fbMessage');
 var request = require('request');
 var db = require('./db');
 //var user = require('./user');
-var token = require('./config/appToken');
+var token = "EAAN3n7Uhf94BAInCD7x1e1eCxzoNHe0PaY9ZBTPLxzXgb3XDMb160FJXDf1s9uteWroyTa8UiR2tblEjxSurJO2Xui73znzuCmqBnexFRrizfKeTrC0zeL0isP3lVZAYZAJlBVFut7UwYkNyMcLDNi5jmR5ZAPKtKwKJSCEYYgZDZD";//require('./config/appToken');
 
 module.exports = function (senderId, event) {
     
@@ -200,15 +200,21 @@ module.exports = function (senderId, event) {
                 });
             }
 
+            if (payload === 'Interest rate') {
+                
+            }
+
+            if (payload === 'Conditions') {
+                
+            }
+
             if (payload === 'I want to apply') {
                 
             }
 
             
 
-            if (payload === 'Who are you?') {
-                
-            }
+            
 
             if (payload === 'Who are you?') {
                 
