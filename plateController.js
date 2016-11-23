@@ -1,7 +1,4 @@
-
-module.exports = function () {
-
-
+module.exports = {};
 
 
 function plateFind(str){
