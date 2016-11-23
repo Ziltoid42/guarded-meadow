@@ -667,6 +667,19 @@ module.exports = function (senderId, event) {
                 });
 
             }
+
+            if (payload === 'Valid_name') { //add a function that compares name to plate registration when info availlable
+
+                sendText(sender, `How old are you ${sender.first_name} ?`, 1000)
+                sender.name = sender.first_name;
+                sender.state = 'Valid_name';
+                db.findSave(sender);
+
+            }
+
+            if (payload === 'Invalid_name') {
+
+            }
             /* Anciennes cartes
             if (payload === 'Proceed to loan') {
                 var buttons = {

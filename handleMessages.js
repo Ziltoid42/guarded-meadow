@@ -98,7 +98,7 @@ module.exports = function (sender, event) {
 
         if (sender.state === 'Less') {
             var loan;
-            loan = loanController.loanFind(text) // a refaire
+            loan = loanController.loanFind(text) // a finir
             if (loan){
                 sender.loan_amount = loan;
                 sender.state = "Loan valid";
@@ -106,6 +106,20 @@ module.exports = function (sender, event) {
             }else{
                 sendTextMessage(sender, "Sorry, loan amount must be between 500 and 1500 USD");
                 sender.state = "Loan error";
+                db.findSave(sender);
+            }
+        }
+
+        if (sender.state === 'Valid_name') {
+            var loan;
+            age = ageController.ageFind(text) 
+            if (loan){
+                sender.age = age;
+                sender.state = "valid age";
+                db.findSave(sender);
+            }else{
+                sendTextMessage(sender, "I am sorry but I can only provide a loan to people aged between 20 and 58 years old...");
+                sender.state = "Abort";
                 db.findSave(sender);
             }
         }
