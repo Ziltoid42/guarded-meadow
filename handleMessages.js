@@ -164,25 +164,7 @@ module.exports = function (sender, event) {
 
         }
 
-        if (event.message.attachments[0].payload.coordinates.lat && event.message.attachments[0].payload.coordinates.long && sender.state === 'At work') {
-                
-                sender.work.location.lat = event.message.attachments[0].payload.coordinates.lat;
-                sender.work.location.long = event.message.attachments[0].payload.coordinates.long;
-
-                var buttons = {
-                        text:'Are you self-employed or do you work for a company and get a monthly salary?', 
-                        title1:"Employed by company", 
-                        payload1:"Employed", 
-                        title2:"Self-employed", 
-                        payload2:"Self-employed"}
-
-                    var buttonReply = new fbMessage
-                    .ButtonTemplate(buttons)
-                    .compose();
-                    sendMessage(sender.fbid, buttonReply);
-                    sender.state = 'Work coordinates';
-                    db.findSave(sender);
-            }
+        
 
 
 

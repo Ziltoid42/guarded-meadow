@@ -6,6 +6,8 @@ const request = require('request');
 const app = express();
 const db = require('./db');
 const fetch = require('node-fetch');
+var sendMessage = require('./sendMessage');
+var fbMessage = require('./fbMessage');
 var handleMessages = require('./handleMessages');
 var handlePostbacks = require('./handlePostbacks');
 var token = require('./config/appToken');
@@ -104,6 +106,27 @@ function routeur(event, sender){
     //console.log(event.message.attachments[0].payload.coordinates.lat);
     //console.log(event.message.attachments[0].payload.coordinates.long);
     //}
+
+
+    if (event.message.attachments[0].payload.coordinates.lat && event.message.attachments[0].payload.coordinates.long && sender.state === 'At work') {
+                
+                sender.work.location.lat = event.message.attachments[0].payload.coordinates.lat;
+                sender.work.location.long = event.message.attachments[0].payload.coordinates.long;
+
+                var buttons = {
+                        text:'Are you self-employed or do you work for a company and get a monthly salary?', 
+                        title1:"Employed by company", 
+                        payload1:"Employed", 
+                        title2:"Self-employed", 
+                        payload2:"Self-employed"}
+
+                    var buttonReply = new fbMessage
+                    .ButtonTemplate(buttons)
+                    .compose();
+                    sendMessage(sender.fbid, buttonReply);
+                    sender.state = 'Work coordinates';
+                    db.findSave(sender);
+            }
     //Fin zone test location
     
 }
