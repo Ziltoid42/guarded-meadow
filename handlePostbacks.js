@@ -716,7 +716,7 @@ module.exports = function (senderId, event) {
                     title1:"1 or 2 children", 
                     payload1:"1 or 2 children", 
                     title2:"3 or 4 children", 
-                    payload2:"3 or 4 children"
+                    payload2:"3 or 4 children",
                     title3:"5 or 6 children", 
                     payload3:"5 or 6 children"}
 
