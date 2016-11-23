@@ -113,7 +113,7 @@ module.exports = function (sender, event) {
         if (sender.state === 'Valid_name') {
             var loan;
             age = ageController.ageFind(text) 
-            if (loan){
+            if (age){
                 sender.age = age;
                 sender.state = "valid age";
                 db.findSave(sender);
