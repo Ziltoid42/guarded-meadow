@@ -2,7 +2,6 @@ var sendMessage = require('./sendMessage');
 var fbMessage = require('./fbMessage');
 var request = require('request');
 var db = require('./db');
-//var user = require('./user');
 var token = require('./config/appToken');
 
 module.exports = function (senderId, event) {

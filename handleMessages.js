@@ -2,7 +2,7 @@ var sendMessage = require('./sendMessage');
 var fbMessage = require('./fbMessage');
 var request = require('request');
 var db = require('./db');
-//var user = require('./user');
+var plateController = require('plateController');
 var token = require('./config/appToken');
 
 
@@ -98,10 +98,42 @@ function sleep (time) {
        
 
         if (sender.state === 'Plate number') {
-            sendTextMessage(sender, "Ok thanks! Can you confirm the model of your motorcycle?")
-            sendGenericMessage(sender.fbid)
+            var Plate;
+            plate = plateController.plateFind(text)
+            if (plate){
+                sender.plate = plate;
+                sender.state = "Plate valid";
+                db.findSave(sender);
+            }else{
+                sendText(sender, "Sorry, I cannot find this plate number. Please check if you entered the number correctly. If not, please re-enter the plate number now!", 1000);
+                sender.state = "Plate error";
+                db.findSave(sender);
+            }
+
+            
             //continue
         }
+
+        if (sender.state === 'Plate valid') {
+            sendGenericMessage(sender);
+        }
+
+        if (sender.state === 'Plate error') {
+            var buttons = {
+                    text:"I still cannot find your plate number. Do you want to talk to our staff?", 
+                    title1:"Yes", 
+                    payload1:"Talk to staff", 
+                    title2:"No", 
+                    payload2:"Abort"}
+                var buttonReply = new fbMessage
+                .ButtonTemplate(buttons)
+                .compose();
+                sendMessage(senderId, buttonReply);
+                sender.state = "Talk to staff";
+                db.findSave(sender);
+
+        }
+
         if (text === '28') {
              var buttons = {
                 text:"Please tell me about your personal situation", 
