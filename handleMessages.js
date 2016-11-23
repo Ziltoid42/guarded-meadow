@@ -90,7 +90,7 @@ module.exports = function (sender, event) {
                 var buttonReply = new fbMessage
                 .ButtonTemplate(buttons)
                 .compose();
-                sendMessage(senderId, buttonReply);
+                sendMessage(sender.fbid, buttonReply);
                 sender.state = "Talk to staff";
                 db.findSave(sender);
 
@@ -127,7 +127,7 @@ module.exports = function (sender, event) {
                 var buttonReply = new fbMessage
                 .ButtonTemplate(buttons)
                 .compose();
-                sendMessage(senderId, buttonReply);
+                sendMessage(sender.fbid, buttonReply);
                 db.findSave(sender);
             }else{
                 var buttons = {
@@ -137,7 +137,7 @@ module.exports = function (sender, event) {
                 var buttonReply = new fbMessage
                 .ButtonTemplate(buttons)
                 .compose();
-                sendMessage(senderId, buttonReply);
+                sendMessage(sender.fbid, buttonReply);
                 sender.state = "Abort";
                 db.findSave(sender);
             }
