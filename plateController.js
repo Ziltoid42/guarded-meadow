@@ -33,7 +33,3 @@ function regexPlateCheck (plate){
 		return true;
 	}
 }
-}
-
-valid_plate = plateFind(valid_str);
-console.log(valid_plate);
