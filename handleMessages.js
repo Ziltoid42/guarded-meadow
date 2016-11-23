@@ -98,7 +98,7 @@ function sleep (time) {
        
 
         if (sender.state === 'Plate number') {
-            sendTextMessage(sender.fbid, "Ok thanks! Can you confirm the model of your motorcycle?")
+            sendTextMessage(sender, "Ok thanks! Can you confirm the model of your motorcycle?")
             sendGenericMessage(sender.fbid)
             //continue
         }
