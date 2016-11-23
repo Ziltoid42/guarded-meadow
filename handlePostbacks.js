@@ -731,7 +731,7 @@ module.exports = function (senderId, event) {
                     title1:"With parents", 
                     payload1:"With parents", 
                     title2:"Alone", 
-                    payload2:"Alone"
+                    payload2:"Alone",
                     title3:"With brother sisters", 
                     payload3:"With brother sisters"}
 
