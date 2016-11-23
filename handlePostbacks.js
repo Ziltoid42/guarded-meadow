@@ -358,9 +358,9 @@ module.exports = function (senderId, event) {
                     title1:"Yes", 
                     payload1:"Proceed to loan", 
                     title2:"I need less money", 
-                    payload2:"less", 
+                    payload2:"Less", 
                     title3:"I need more money", 
-                    payload3:"more"}
+                    payload3:"More"}
 
                      var buttonReply = new fbMessage
                     .ButtonTemplate(buttons)
@@ -388,6 +388,63 @@ module.exports = function (senderId, event) {
                     db.findSave(sender);
             }
 
+
+            if (payload === 'Less') {
+                sendText(sender, "Please enter the amount you would like to borrow");
+                sender.state = 'Less';
+                db.findSave(sender);
+
+            }
+
+            if (payload === 'More') {
+                var buttons = {
+                    text:"Sorry, based on your motorcycle, we cannot provide you more than 1,500 USD. Do you want to continue your application for 1,500 USD?", 
+                    title1:"Yes continue", 
+                    payload1:"Term", 
+                    title2:"Stop application", 
+                    payload2:"Abort"}
+
+                     var buttonReply = new fbMessage
+                    .ButtonTemplate(buttons)
+                    .compose();
+                    sendMessage(sender.fbid, buttonReply);
+                    sender.state = 'More';
+                    db.findSave(sender);
+
+            }
+
+            if (payload === 'Term') {
+                var buttons = {
+                    text:"So I understand you want a loan amounting to 1,500 USD. Now tell me, how long would you like the loan for?", 
+                    title1:"6 months", 
+                    payload1:"6", 
+                    title2:"12 months", 
+                    payload2:"12", 
+                    title3:"24 months", 
+                    payload3:"24"}
+
+            }
+
+            if (payload === 'Proceed to loan') {
+                
+                var buttons = {
+                    text:"Ok, this looks good! Based on the information you gave me, you can borrow up to 1,500 USD from Barang Ktchey Microfinance! Should we continue?", 
+                    title1:"Yes", 
+                    payload1:"Proceed to loan", 
+                    title2:"I need less money", 
+                    payload2:"Less", 
+                    title3:"I need more money", 
+                    payload3:"More"}
+
+                     var buttonReply = new fbMessage
+                    .ButtonTemplate(buttons)
+                    .compose();
+                    sendMessage(sender.fbid, buttonReply);
+                    sender.motorcycle_condition = payload;
+                    sender.state = 'Get motorcycle condition';
+                    db.findSave(sender);
+
+            }
             /* Anciennes cartes
             if (payload === 'Proceed to loan') {
                 var buttons = {

@@ -3,6 +3,8 @@ var fbMessage = require('./fbMessage');
 var request = require('request');
 var db = require('./db');
 var plateController = require('./plateController');
+var loanController = require('./loanController');
+var ageController = require('./ageController');
 var token = require('./config/appToken');
 
 
@@ -11,46 +13,7 @@ module.exports = function (sender, event) {
     var text = event.message.text;
 
 
-function receivedDeliveryConfirmation(event, timestamp) {
-  var senderID = event.sender.id;
-  var recipientID = event.recipient.id;
-  var delivery = event.delivery;
-  var watermark = delivery.watermark;
-console.log("Passage dans deliveryconfirmation avant promise");
-  new Promise((resolve, reject) => {
- console.log("Passage dans deliveryconfirmation");
-
-  /*if (messageIDs) {
-    messageIDs.forEach(function(messageID) {
-      console.log("Received delivery confirmation for message ID: %s",
-        messageID);
-    });
-  }*/
-
-
-
-function sleep (time) {
-  return new Promise((resolve) => setTimeout(resolve, time));
-} 
- console.log("Timestamp perso dans fonction comparaison: ", timestamp);
-  console.log("All message before %d were delivered.", watermark);
-    if (timestamp < watermark)
-        resolve(true);
-    else
-        reject(false);
- 
-})
-}
-
-     function sendAction(recipientId, action, options) {
-    return this.sendRequest({
-      recipient: {
-        id: recipientId
-      },
-      sender_action: action
-    });
-  }
-
+    /* TODO
      function sendTypingIndicator(recipientId, milliseconds) {
     const timeout = isNaN(milliseconds) ? 0 : milliseconds;
     console.log("passe par typer");
@@ -63,7 +26,7 @@ function sleep (time) {
         setTimeout(() => sendAction(recipientId, 'typing_off').then((json) => resolve(json)), timeout);
       });
     });
-  }
+  }*/
 
 
     if (text.toLowerCase() === 'test') {
@@ -131,6 +94,20 @@ function sleep (time) {
                 sender.state = "Talk to staff";
                 db.findSave(sender);
 
+        }
+
+        if (sender.state === 'Less') {
+            var loan;
+            loan = loanController.loanFind(text)
+            if (loan){
+                sender.loan_amount = loan;
+                sender.state = "Loan valid";
+                db.findSave(sender);
+            }else{
+                sendText(sender, "Sorry, loan amount must be between 500 and 1500 USD", 1000);
+                sender.state = "Loan error";
+                db.findSave(sender);
+            }
         }
 
         if (text === '28') {
