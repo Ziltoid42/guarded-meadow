@@ -153,7 +153,7 @@ module.exports = function (senderId, event) {
                 payload3:"Conditions"}
 
                 var buttonReply = new fbMessage
-                .ButtonTemplate(result)
+                .ButtonTemplate(buttons)
                 .compose();
                 sendMessage(sender.fbid, buttonReply);
                 sender.state = 'Get info';
@@ -207,7 +207,7 @@ module.exports = function (senderId, event) {
             if (payload === 'Conditions') {
                 
             }
-            
+
             if (payload === 'I want to apply') {
                 
             }
