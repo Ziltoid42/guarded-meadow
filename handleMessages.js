@@ -97,7 +97,7 @@ function sleep (time) {
 
        
 
-        if (sender.state === 'Plate number' {
+        if (sender.state === 'Plate number') {
             var Plate;
             plate = plateController.plateFind(text)
             if (plate){
