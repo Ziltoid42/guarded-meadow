@@ -8,6 +8,7 @@ const db = require('./db');
 const fetch = require('node-fetch');
 var handleMessages = require('./handleMessages');
 var handlePostbacks = require('./handlePostbacks');
+var token = require('./config/appToken');
 //var user = require('user'); //Ajout class user
 
 // Manual port selection
