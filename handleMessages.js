@@ -143,22 +143,7 @@ module.exports = function (sender, event) {
             }
         }
 
-        if (text === '28') {
-             var buttons = {
-                text:"Please tell me about your personal situation", 
-                title1:"Single", 
-                payload1:"single", 
-                title2:"Married", 
-                payload2:"married", 
-                title3:"Widow", 
-                payload3:"widow"}
-            
-            var buttonReply = new fbMessage
-            .ButtonTemplate(buttons)
-            .compose();
-            sendMessage(sender.fbid, buttonReply);
-            //continue
-        }
+        
         if (text === 'location') {
             sendLocationMessage(sender)
 

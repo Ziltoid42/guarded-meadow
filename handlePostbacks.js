@@ -490,7 +490,7 @@ module.exports = function (senderId, event) {
 
             if (payload === '24 months') {
                 var buttons = {
-                    text:"Ok ok. Then if you want 1,500 USD over 6 month, that means you would pay a total of 462 USD total interest including all fees", 
+                    text:"Ok ok. Then if you want 1,500 USD over 24 month, that means you would pay a total of 462 USD total interest including all fees", 
                     title1:"Continue", 
                     payload1:"Installment 24 months", 
                     title2:"Change terms", 
@@ -749,11 +749,11 @@ module.exports = function (senderId, event) {
             if ((payload === '1 or 2 children') || (payload === '3 or 4 children') || (payload === '5 or 6 children')) {
                 
                 if(payload === '1 or 2 children'){
-                    sender.children.nb = 1.5;
+                    sender.children_nb = 1.5;
                 }else if(payload === '3 or 4 children'){
-                    sender.children.nb = 3.5;
+                    sender.children_nb = 3.5;
                 }else if(payload === '5 or 6 children'){
-                    sender.children.nb = 5.5;
+                    sender.children_nb = 5.5;
                 }
 
                 var buttons = {
@@ -777,11 +777,11 @@ module.exports = function (senderId, event) {
             if ((payload === '1 working_children') || (payload === '2 working_children') || (payload === '3+ working_children')) {
                 
                 if(payload === '1 working_children'){
-                    sender.children.working = 1;
+                    sender.children_working = 1;
                 }else if(payload === '2 working_children'){
-                    sender.children.working = 2;
+                    sender.children_working = 2;
                 }else if(payload === '3+ working_children'){
-                    sender.children.working = "3 +";
+                    sender.children_working = "3 +";
                 }
 
                 var buttons = {
