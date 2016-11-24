@@ -855,10 +855,10 @@ module.exports = function (senderId, event) {
                 var buttonReply = new fbMessage
                 .ButtonTemplate(buttons)
                 .compose();
+                sendMessage(sender.fbid, buttonReply);
                 sender.state = 'Is somewhere else';
                 db.findSave(sender);
 
-            
             }
 
             if (payload === 'Work') {
