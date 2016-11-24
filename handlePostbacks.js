@@ -895,7 +895,7 @@ module.exports = function (senderId, event) {
                 db.findSave(sender);
             }
 
-            if ((payload === 'Whole year') || (payload === 'Seasonal job') && (sender.work_situation === 'Employed') ) {
+            if (((payload === 'Whole year') || (payload === 'Seasonal job')) && (sender.work_situation === 'Employed')) {
                 
                 if(payload === 'Whole year'){
                     sender.work_seasonal = false;
@@ -909,7 +909,7 @@ module.exports = function (senderId, event) {
                 db.findSave(sender);
             }
 
-            if ((payload === 'Whole year') || (payload === 'Seasonal job') && (sender.work_situation === 'Self-employed') ) {
+            if (((payload === 'Whole year') || (payload === 'Seasonal job')) && (sender.work_situation === 'Self-employed')) {
                 
                 if(payload === 'Whole year'){
                     sender.work_seasonal = false;
