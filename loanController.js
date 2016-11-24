@@ -27,7 +27,7 @@ module.exports.loanFind = function (str){
 module.exports.amountParse = function (str){
 
 	var amount = amountFind(str);
-	console.log(loan);
+	console.log(amount);
 	if (amount)
 		return amount;
 	else 
