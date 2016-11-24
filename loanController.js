@@ -5,7 +5,7 @@ function amountFind (str){
 
 	var regex = /\d+/g;
 	var matches = str.match(regex);
-	if (matches[1] !== 'undefined')
+	if (matches[1])
 		return false;
 	if(matches[0])
 		return matches[0]
