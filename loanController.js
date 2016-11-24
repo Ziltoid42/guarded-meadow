@@ -23,3 +23,13 @@ module.exports.loanFind = function (str){
 	else 
 		return false;
 }
+
+module.exports.amountParse = function (str){
+
+	var amount = amountFind(str);
+	console.log(loan);
+	if (amount)
+		return amount;
+	else 
+		return false;
+}
