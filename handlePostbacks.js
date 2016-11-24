@@ -931,6 +931,46 @@ module.exports = function (senderId, event) {
                 db.findSave(sender);
             }
 
+            if (payload === 'valid_revenue') {
+                
+                sender.revenue = payload;
+                var buttons = {
+                    text:"How many hours do you work on your business every week?", 
+                    title1:"Less than 25 hours", 
+                    payload1:"25h-",
+                    title2: "25 - 40 hours",
+                    payload2: "25-40h",
+                    title3: "more than 40 hours",
+                    payload3: "40h+"}
+                var buttonReply = new fbMessage
+                .ButtonTemplate(buttons)
+                .compose();
+                sendMessage(sender.fbid, buttonReply);
+                sender.state = "Business hours";
+                db.findSave(sender);
+              
+            }
+
+            if ((payload === '25h-') || (payload === '25-40h') || (payload === '40h+')) {
+                
+                sender.work_hours = payload;
+                sendText(sender, 'While you are at work, I would like to ask you to send me photos of some documents', 1000);
+                sendText(sender, 'I will need you to send me a photo of your salary slip', 2000);
+                var buttons = {
+                        text:"Can you do it now?", 
+                        title1:"Can do now", 
+                        payload1:"Can do now",
+                        title2: "Can do later",
+                        payload2: "Can do later"}
+                    var buttonReply = new fbMessage
+                    .ButtonTemplate(buttons)
+                    .compose();
+                    setTimeout(function() {
+                        sendMessage(sender.fbid, buttonReply);
+                        }, 3000)
+                    sender.state = "Documents send";
+                    db.findSave(sender);
+            }
            
 
 
