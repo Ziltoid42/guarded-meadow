@@ -129,7 +129,7 @@ module.exports = function (sender, event) {
 
         if (sender.state === 'Invalid_name') {
             var name = text;
-            sender.name = sender.name;
+            sender.name = name;
             sender.state = 'Valid_name';
             sendText(sender, `How old are you ${sender.name} ?`, 1000)
             db.findSave(sender);
