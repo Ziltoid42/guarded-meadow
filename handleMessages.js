@@ -166,10 +166,10 @@ module.exports = function (sender, event) {
         }
 
         if (sender.state === 'Work salary') {
-            var work_allowance = text; // DO Parsing on text
+            var work_allowance = loanController.amountParse(text);
 
             // NEED DATABASE TO CHECK DESCRIPTION AGAINST A LIST OF JOBS
-
+            if (work_allowance){
             sender.work_allowance = work_allowance
             var buttons = {
                     text:"How many hours do you work this job every week?", 
@@ -185,14 +185,15 @@ module.exports = function (sender, event) {
                 sendMessage(sender.fbid, buttonReply);
                 sender.state = "Work hours";
                 db.findSave(sender);
-
+            }else{
+              sendText(sender, 'I can only understand if there is only one number, please try again :)', 1000);  
+            }
         }
 
         if (sender.state === 'work_seasonal') {
             var work_salary = loanController.amountParse(text); // DO Parsing on text
             if (work_salary){
 
-                console.log(work_salary); 
                 sender.work_salary = work_salary
                 sendText(sender, 'How much allowance do you get per month?', 1000);
                 sendText(sender, 'Allowances are additional payment you get from your employer, like bonus, transportation fee, heart fee …', 2000);
@@ -208,8 +209,13 @@ module.exports = function (sender, event) {
 
         if (sender.state === 'Work expense') { // FAIRE SIMPLE SOUSTRACTION REVUNU - EXPENSES
             
+            var business_expenses = loanController.amountParse(text);
+            if (business_expenses){
+            sender.business_expenses = business_expenses;
+            var net_business_revenue = sender.business_income - sender.business_expenses;
+            sender.net_business_revenue = net_business_revenue;
             var buttons = {
-                    text:"Ok. From the information you tell me, I estimate that you make around ... from your business every month. Is this correct?", 
+                    text:`Ok. From the information you tell me, I estimate that you make around ${sender.net_business_revenue} from your business every month. Is this correct?`, 
                     title1:"Yes", 
                     payload1:"valid_revenue",
                     title2: "No",
@@ -220,15 +226,18 @@ module.exports = function (sender, event) {
                 sendMessage(sender.fbid, buttonReply);
                 sender.state = "Revenue validation";
                 db.findSave(sender);
+            }else{
+              sendText(sender, 'I can only understand if there is only one number, please try again :)', 1000);  
+            }
 
         }
 
         if (sender.state === 'work_self-employed') {
-            var work_salary = text; // DO Parsing on text
+            var business_income = loanController.amountParse(text) // DO Parsing on text
 
             // NEED DATABASE TO CHECK DESCRIPTION AGAINST A LIST OF JOBS
-
-            sender.work_salary = work_salary
+            if (business_income){
+            sender.business_income = business_income;
             sendText(sender, 'How much do you spend for your business every month?', 1000);
             sendText(sender, 'These expenses may include your stock, your rent fee, payment to employees, payment of electricity bill...', 2000);
             sendText(sender, 'Anything expense related to your business', 3000);
@@ -236,6 +245,9 @@ module.exports = function (sender, event) {
             
             sender.state = "Work expense";
             db.findSave(sender);
+            }else{
+              sendText(sender, 'I can only understand if there is only one number, please try again :)', 1000);  
+            }
 
         }
 
@@ -266,9 +278,9 @@ module.exports = function (sender, event) {
         //
 
           if (text === 'test') {
-             sendTextMessage(sender, 'What is your monthly salary in USD? Please indicate without including any allowance');
+             sendTextMessage(sender, 'What is your business revenu? Please tell me you total revenu in USD before any expense');
                 
-                sender.state = 'work_seasonal';
+                sender.state = 'work_self-employed';
                 db.findSave(sender);
 
             }
