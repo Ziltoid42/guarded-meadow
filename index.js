@@ -128,6 +128,26 @@ function routeur(event, sender){
                     sender.state = 'Work coordinates';
                     db.findSave(sender);
             }
+
+    if (event.message.attachments[0].payload.coordinates.lat && event.message.attachments[0].payload.coordinates.long && sender.state === 'At Home') {
+                
+                sender.home_location_lat = event.message.attachments[0].payload.coordinates.lat;
+                sender.home_location_long = event.message.attachments[0].payload.coordinates.long;
+
+                var buttons = {
+                        text:'Is this your own house or do you rent from someone?', 
+                        title1:"Own house", 
+                        payload1:"Own house", 
+                        title2:"Rented house", 
+                        payload2:"Rented house"}
+
+                    var buttonReply = new fbMessage
+                    .ButtonTemplate(buttons)
+                    .compose();
+                    sendMessage(sender.fbid, buttonReply);
+                    sender.state = 'Home coordinates';
+                    db.findSave(sender);
+            }
     //Fin zone test location
     
 }

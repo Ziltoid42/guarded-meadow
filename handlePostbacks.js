@@ -877,8 +877,6 @@ module.exports = function (senderId, event) {
                 setTimeout(function() {
                     sendLocationMessage(sender);
                     }, 1000)
-                
-
             }
 
             if (payload === 'Home') {
@@ -890,6 +888,45 @@ module.exports = function (senderId, event) {
                     sendLocationMessage(sender);
                     }, 1000)
             }
+
+            if ((payload === 'Own house') || (payload === 'Rented house')) {
+                
+                sender.home_situation = payload;
+                var buttons = {
+                    text:"How long have you been living in this place?", 
+                    title1:"Less than 1 year", 
+                    payload1:"Less than 1 year",
+                    title2: "More than 1 year",
+                    payload2: "More than 1 year"}
+                var buttonReply = new fbMessage
+                .ButtonTemplate(buttons)
+                .compose();
+                sendMessage(sender.fbid, buttonReply);
+                sender.state = "Home occupation duration";
+                db.findSave(sender);
+            }
+
+            if ((payload === 'Less than 1 year') || (payload === 'More than 1 year')) {
+                
+                sender.work_hours = payload;
+                sendText(sender, 'While you are home, I would like to ask you to send me photos of some documents', 1000);
+                sendText(sender, 'I need documents to prove your ID, your address and your income', 2000);
+                var buttons = {
+                        text:"Can you do it now?", 
+                        title1:"Can do now", 
+                        payload1:"Can do now",
+                        title2: "Can do later",
+                        payload2: "Can do later"}
+                    var buttonReply = new fbMessage
+                    .ButtonTemplate(buttons)
+                    .compose();
+                    setTimeout(function() {
+                        sendMessage(sender.fbid, buttonReply);
+                        }, 3000)
+                    sender.state = "Home documents send";
+                    db.findSave(sender);
+            }
+
 
             if ((payload === 'Employed') || (payload === 'Self-employed')) {
                 
@@ -978,7 +1015,7 @@ module.exports = function (senderId, event) {
                     setTimeout(function() {
                         sendMessage(sender.fbid, buttonReply);
                         }, 3000)
-                    sender.state = "Documents send";
+                    sender.state = "Work documents send";
                     db.findSave(sender);
             }
            
