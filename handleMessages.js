@@ -202,6 +202,65 @@ module.exports = function (sender, event) {
 
         }
 
+        if (sender.state === 'Work expense') { // FAIRE SIMPLE SOUSTRACTION REVUNU - EXPENSES
+            
+            var buttons = {
+                    text:"Ok. From the information you tell me, I estimate that you make around ... from your business every month. Is this correct?", 
+                    title1:"Yes", 
+                    payload1:"valid_revenue",
+                    title2: "No",
+                    payload2: "invalid_revenue"}
+                var buttonReply = new fbMessage
+                .ButtonTemplate(buttons)
+                .compose();
+                sendMessage(sender.fbid, buttonReply);
+                sender.state = "Revenue validation";
+                db.findSave(sender);
+
+        }
+
+        if (sender.state === 'work_self-employed') {
+            var work_salary = text; // DO Parsing on text
+
+            // NEED DATABASE TO CHECK DESCRIPTION AGAINST A LIST OF JOBS
+
+            sender.work_salary = work_salary
+            sendText(sender, 'How much do you spend for your business every month?', 1000);
+            sendText(sender, 'These expenses may include your stock, your rent fee, payment to employees, payment of electricity bill...', 2000);
+            sendText(sender, 'Anything expense related to your business', 3000);
+            sendText(sender, 'So, how much is the total amount in USD of your business expenses every month?', 4000);
+            
+            sender.state = "Work expense";
+            db.findSave(sender);
+
+        }
+
+        if (sender.state === 'invalid_revenue') { // FAIRE COMPARAISON REVUNU CALCULE ET DONNE. SI GRO ECART TRIGGER SINON SAVE
+            
+
+            sendText(sender, 'Ok, this is very different from my calculation!', 1000);
+            sendText(sender, 'Can I ask my staff to call you now?', 2000);
+            var buttons = {
+                    text:"He will try to understand the situation with you", 
+                    title1:"Call now", 
+                    payload1:"Call me now",
+                    title2: "Call me in 1 hour",
+                    payload2: "Call 1 hour",
+                    title3: "Call me tomorow",
+                    payload3: "Call tomorow"}
+                var buttonReply = new fbMessage
+                .ButtonTemplate(buttons)
+                .compose();
+                setTimeout(function() {
+                    sendMessage(sender.fbid, buttonReply);
+                    }, 3000)
+                sender.state = "Revenue call";
+                db.findSave(sender);
+
+        }
+
+        //
+
         
         if (text === 'location') {
             sendLocationMessage(sender)

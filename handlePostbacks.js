@@ -923,6 +923,14 @@ module.exports = function (senderId, event) {
                 db.findSave(sender);
             }
 
+            if (payload === 'invalid_revenue') {
+                
+                sendTextMessage(sender, 'Alright, so please tell me how much you estimate you make every month in USD.');
+                
+                sender.state = 'invalid_revenue';
+                db.findSave(sender);
+            }
+
            
 
 
