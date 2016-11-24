@@ -109,7 +109,7 @@ function routeur(event, sender){
     }*/
 
     
-    if (event.message.attachments[0].payload.coordinates.lat && event.message.attachments[0].payload.coordinates.long && sender.state === 'At work') {
+    if ((event.message.attachments[0].payload.coordinates.lat) && (event.message.attachments[0].payload.coordinates.long) && (sender.state === 'At work')) {
                 
                 sender.work_location_lat = event.message.attachments[0].payload.coordinates.lat;
                 sender.work_location_long = event.message.attachments[0].payload.coordinates.long;
@@ -129,7 +129,7 @@ function routeur(event, sender){
                     db.findSave(sender);
             }
 
-    if (event.message.attachments[0].payload.coordinates.lat && event.message.attachments[0].payload.coordinates.long && sender.state === 'At Home') {
+    if ((event.message.attachments[0].payload.coordinates.lat) && (event.message.attachments[0].payload.coordinates.long) && (sender.state === 'At Home')) {
                 
                 sender.home_location_lat = event.message.attachments[0].payload.coordinates.lat;
                 sender.home_location_long = event.message.attachments[0].payload.coordinates.long;
