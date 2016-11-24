@@ -389,7 +389,7 @@ module.exports = function (senderId, event) {
             }
 
 
-            if (payload === 'Less') {
+            if ((payload === 'Less')  || (text === 'test')){
                 sendText(sender, "Please enter the amount you would like to borrow");
                 sender.state = 'Less';
                 db.findSave(sender);
@@ -1043,117 +1043,14 @@ module.exports = function (senderId, event) {
                 db.findSave(sender);
             }
 
-
-           
-
-
-            
-            /* Anciennes cartes
-            if (payload === 'Proceed to loan') {
-                var buttons = {
-                    text:"So I understand you want a loan amounting to 1,500 USD. Now tell me, how long would you like the loan for?", 
-                    title1:"6 months", 
-                    payload1:"6", 
-                    title2:"12 months", 
-                    payload2:"12", 
-                    title3:"24 months", 
-                    payload3:"24"}
-                //continue
-            }
-            if (payload === '6') {
-                var buttons = {
-                    text:"Ok ok. Then if you want 1,500 USD over 6 month, that means you would pay a total of 138 USD total interest including all fees", 
-                    title1:"Continue", 
-                    payload1:"validate_loan", 
-                    title2:"Change term", 
-                    payload2:"change_loan", 
-                    title3:"Stop application", 
-                    payload3:"quit"}
-                //continue
-            }
-            if (payload === 'validate_loan') {
-                var buttons = {
-                    text:"Is your name Grégoire?", 
-                    title1:"Yes", 
-                    payload1:"valid_name", 
-                    title2:"No", 
-                    payload2:"invalid_name"}
-                sendTextMessage(sender, "Great! Let's continue this conversation")
-                sendTextMessage(sender, "By the way, I didn't ask your name!")
-               //continue
-            }  
-            if (payload === 'single') {
-                var buttons = {
-                    text:"Do you have children?", 
-                    title1:"Yes", 
-                    payload1:"valid_children", 
-                    title2:"No", 
-                    payload2:"invalid_children"}
-                //continue
-            } 
-             if (payload === 'valid_children') {
-                var buttons = {
-                    text:"How many children do you have?", 
-                    title1:"1 or 2 children", 
-                    payload1:"2_children", 
-                    title2:"3 or 4 children", 
-                    payload2:"4_children", 
-                    title3:"5 or 6 children", 
-                    payload3:"6_children"}
-                //continue
-            } 
-             if (payload === '2_children') {
-                var buttons = {
-                    text:"How many children earn their lives?", 
-                    title1:"none", 
-                    payload1:"no_earner", 
-                    title2:"1", 
-                    payload2:"1_earner", 
-                    title3:"2", 
-                    payload3:"2_earner"}
-                //continue
-            } 
-            if (payload === 'no_earner') {
-                var buttons = {
-                    text:"Where do you live?", 
-                    title1:"parents", 
-                    payload1:"live_at_parents", 
-                    title2:"Alone", 
-                    payload2:"live_at_self", 
-                    title3:"With brother or sister", 
-                    payload3:"live_at_brothers"}
-                //continue
-            } 
-            if (payload === 'live_at_self') {
-                var buttons = {
-                    text:"And by the way, where are you now?", 
-                    title1:"Home", 
-                    payload1:"at_home", 
-                    title2:"Work", 
-                    payload2:"at_work", 
-                    title3:"Somewhere else", 
-                    payload3:"at_else"}
-                //continue
-            } 
-            if (payload === 'at_home') {
-                sendTextMessage(sender, "Ok, can you please let me know where is your home?")
-                sendTextMessage(sender, "Just click the button below to let me know!")
-                sendLocationMessage(sender)
-                //continue
-            } 
-            if (payload === 'valid_name') {
-                sendTextMessage(sender, "How old are you Grégoire?")
-                //continue
-            } 
-            */
-            if (buttons) //verifier que ça existe en javascript
+            if (buttons) 
             {
             	var buttonReply = new fbMessage
             	.ButtonTemplate(buttons)
             	.compose();
 
         		sendMessage(senderId, buttonReply);
-        		delete buttons; //verifier que ça existe en javascript
+        		delete buttons; 
             }
 
 
