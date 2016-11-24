@@ -28,10 +28,7 @@ module.exports = function (sender, event) {
     });
   }*/
 
-
-    if (text.toLowerCase() === 'test') {
-        
-        //Envoi texte simple via composeur
+  //Envoi texte simple via composeur
         /*var textReply = new fbMessage
             .PlainText("[DEBUG] SenderId: " + senderId + " Message JSON: " + JSON.stringify(message))
             .compose();
@@ -44,21 +41,8 @@ module.exports = function (sender, event) {
             .compose();
 
         sendMessage(senderId, imgReply);
-        */var buttons = {
-            text:"How would you describe the overall condition of your motorcycle?", 
-            title1:"Good condition", 
-            payload1:"good"}
+        */
 
-        var buttonReply = new fbMessage
-            .ButtonTemplate(buttons)
-            .compose();
-            
-        sendTextMessage(sender.fbid, "test ok");
-    
-    }
-
-
-       
 
         if (sender.state === 'Plate number') {
             var Plate;
@@ -96,7 +80,7 @@ module.exports = function (sender, event) {
 
         }
 
-        if (sender.state === 'Less') {
+        if ((sender.state === 'Less') || (text === 'test')) {
             var loan;
             loan = loanController.loanFind(text) // a finir
             if (loan){

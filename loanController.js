@@ -17,6 +17,7 @@ function amountFind (str){
 module.exports.loanFind = function (str){
 
 	var loan = amountFind(str);
+	console.log(loan);
 	if ((loan) && (loan > 500) && (loan < 1500))
 		return loan;
 	else 
