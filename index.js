@@ -102,16 +102,17 @@ function routeur(event, sender){
     }
 
     //zone test location
+    /*
     if (event.message.attachments[0].payload.coordinates.lat && event.message.attachments[0].payload.coordinates.long) {
     console.log(event.message.attachments[0].payload.coordinates.lat);
     console.log(event.message.attachments[0].payload.coordinates.long);
-    }
+    }*/
 
-    /*
+    
     if (event.message.attachments[0].payload.coordinates.lat && event.message.attachments[0].payload.coordinates.long && sender.state === 'At work') {
                 
-                sender.work.location.lat = event.message.attachments[0].payload.coordinates.lat;
-                sender.work.location.long = event.message.attachments[0].payload.coordinates.long;
+                sender.work_location_lat = event.message.attachments[0].payload.coordinates.lat;
+                sender.work_location_long = event.message.attachments[0].payload.coordinates.long;
 
                 var buttons = {
                         text:'Are you self-employed or do you work for a company and get a monthly salary?', 
@@ -126,7 +127,7 @@ function routeur(event, sender){
                     sendMessage(sender.fbid, buttonReply);
                     sender.state = 'Work coordinates';
                     db.findSave(sender);
-            }*/
+            }
     //Fin zone test location
     
 }
