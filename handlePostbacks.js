@@ -895,7 +895,7 @@ module.exports = function (senderId, event) {
                 db.findSave(sender);
             }
 
-            if ((payload === 'Whole year') || (payload === 'Seasonal job')) {
+            if ((payload === 'Whole year') || (payload === 'Seasonal job') && (sender.work_situation === 'Employed') ) {
                 
                 if(payload === 'Whole year'){
                     sender.work_seasonal = false;
@@ -906,6 +906,20 @@ module.exports = function (senderId, event) {
                 sendTextMessage(sender, 'What is your monthly salary in USD? Please indicate without including any allowance');
                 
                 sender.state = 'work_seasonal';
+                db.findSave(sender);
+            }
+
+            if ((payload === 'Whole year') || (payload === 'Seasonal job') && (sender.work_situation === 'Self-employed') ) {
+                
+                if(payload === 'Whole year'){
+                    sender.work_seasonal = false;
+                }else if(payload === 'Seasonal job'){
+                    sender.work_seasonal = true;
+                }
+                
+                sendTextMessage(sender, 'What is your business revenu? Please tell me you total revenu in USD before any expense');
+                
+                sender.state = 'work_self-employed';
                 db.findSave(sender);
             }
 
