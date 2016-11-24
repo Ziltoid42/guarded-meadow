@@ -389,7 +389,7 @@ module.exports = function (senderId, event) {
             }
 
 
-            if ((payload === 'Less')  || (text === 'test')){
+            if (payload === 'Less') {
                 sendText(sender, "Please enter the amount you would like to borrow");
                 sender.state = 'Less';
                 db.findSave(sender);

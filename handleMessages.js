@@ -43,6 +43,8 @@ module.exports = function (sender, event) {
         sendMessage(senderId, imgReply);
         */
 
+       
+
 
         if (sender.state === 'Plate number') {
             var Plate;
@@ -245,11 +247,12 @@ module.exports = function (sender, event) {
 
         //
 
-        
-        if (text === 'location') {
-            sendLocationMessage(sender)
+          if (text === 'test') {
+                sendText(sender, "Please enter the amount you would like to borrow");
+                sender.state = 'Less';
+                db.findSave(sender);
 
-        }
+            }
 
         
 
