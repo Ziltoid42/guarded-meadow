@@ -1019,7 +1019,7 @@ module.exports = function (senderId, event) {
                     db.findSave(sender);
             }
 
-            if ((payload === 'Can do later work') || (payload === 'Can do later home') {
+            if ((payload === 'Can do later work') || (payload === 'Can do later home')) {
 
                 if (payload === 'Can do later home'){
                     sender.state = "At work";
