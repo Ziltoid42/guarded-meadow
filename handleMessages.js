@@ -266,20 +266,10 @@ module.exports = function (sender, event) {
         //
 
           if (text === 'test') {
-                var work_salary = loanController.amountParse(text); // DO Parsing on text
-            if (work_salary){
-
-                console.log(work_salary); 
-                sender.work_salary = work_salary
-                sendText(sender, 'How much allowance do you get per month?', 1000);
-                sendText(sender, 'Allowances are additional payment you get from your employer, like bonus, transportation fee, heart fee …', 2000);
-                sendText(sender, 'Can you tell me how much allowance you get per month in USD?', 3000);
+             sendTextMessage(sender, 'What is your monthly salary in USD? Please indicate without including any allowance');
                 
-                sender.state = "Work salary";
+                sender.state = 'work_seasonal';
                 db.findSave(sender);
-            }else{
-              sendText(sender, 'I can only understand if there is only one number, please try again :)', 1000);  
-            }
 
             }
 
