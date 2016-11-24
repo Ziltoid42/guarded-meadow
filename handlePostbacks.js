@@ -889,8 +889,8 @@ module.exports = function (senderId, event) {
                     sender.work_situation = 'Self-employed';
                 }
                 
-
-                sendText(sender.fbid, 'Could you describe your job in just a few words?', 1000);
+                sendTextMessage(sender, 'Could you describe your job in just a few words?');
+                
                 sender.state = 'Work_situation';
                 db.findSave(sender);
             }
