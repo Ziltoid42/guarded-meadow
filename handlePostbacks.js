@@ -884,7 +884,7 @@ module.exports = function (senderId, event) {
             if ((payload === 'Employed') || (payload === 'Self-employed')) {
                 
                 if(payload === 'Employed'){
-                    sender.work_situation = 'WEmployed';
+                    sender.work_situation = 'Employed';
                 }else if(payload === 'Self-employed'){
                     sender.work_situation = 'Self-employed';
                 }
@@ -894,6 +894,36 @@ module.exports = function (senderId, event) {
                 sender.state = 'Work_situation';
                 db.findSave(sender);
             }
+
+            if ((payload === 'Whole year') || (payload === 'Seasonal job')) {
+                
+                if(payload === 'Whole year'){
+                    sender.work_seasonal = false;
+                }else if(payload === 'Seasonal job'){
+                    sender.work_seasonal = true;
+                }
+                
+                sendTextMessage(sender, 'What is your monthly salary in USD? Please indicate without including any allowance');
+                
+                sender.state = 'work_seasonal';
+                db.findSave(sender);
+            }
+
+            if (payload === 'work_seasonal') {
+                
+                if(payload === 'Whole year'){
+                    sender.work_seasonal = false;
+                    sendTextMessage(sender, 'What is your monthly salary in USD? Please indicate without including any allowance');
+                    sender.state = 'work_seasonal';
+
+                }else if(payload === 'Seasonal job'){
+                    sender.work_seasonal = true;
+                }
+                
+                
+                db.findSave(sender);
+            }
+
 
             
             /* Anciennes cartes

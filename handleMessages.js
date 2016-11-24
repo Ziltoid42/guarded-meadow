@@ -161,7 +161,44 @@ module.exports = function (sender, event) {
                 sendMessage(sender.fbid, buttonReply);
                 sender.state = "Work description";
                 db.findSave(sender);
-           
+
+        }
+
+        if (sender.state === 'work_seasonal') {
+            var work_salary = text; // DO Parsing on text
+
+            // NEED DATABASE TO CHECK DESCRIPTION AGAINST A LIST OF JOBS
+
+            sender.work_salary = work_salary
+            sendText(sender, 'How much allowance do you get per month?', 1000);
+            sendText(sender, 'Allowances are additional payment you get from your employer, like bonus, transportation fee, heart fee …', 2000);
+            sendText(sender, 'Can you tell me how much allowance you get per month in USD?', 3000);
+            
+            sender.state = "Work salary";
+            db.findSave(sender);
+
+        }
+
+        if (sender.state === 'Work salary') {
+            var work_allowance = text; // DO Parsing on text
+
+            // NEED DATABASE TO CHECK DESCRIPTION AGAINST A LIST OF JOBS
+
+            sender.work_allowance = work_allowance
+            var buttons = {
+                    text:"How many hours do you work this job every week?", 
+                    title1:"Less than 25 hours", 
+                    payload1:"25h-",
+                    title2: "25 - 40 hours",
+                    payload2: "25-40h",
+                    title3: "more than 40 hours",
+                    payload3: "40h+"}
+                var buttonReply = new fbMessage
+                .ButtonTemplate(buttons)
+                .compose();
+                sendMessage(sender.fbid, buttonReply);
+                sender.state = "Work hours";
+                db.findSave(sender);
 
         }
         
