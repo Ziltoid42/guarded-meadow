@@ -164,21 +164,6 @@ module.exports = function (sender, event) {
 
         }
 
-        if (sender.state === 'work_seasonal') {
-            var work_salary = text; // DO Parsing on text
-
-            // NEED DATABASE TO CHECK DESCRIPTION AGAINST A LIST OF JOBS
-
-            sender.work_salary = work_salary
-            sendText(sender, 'How much allowance do you get per month?', 1000);
-            sendText(sender, 'Allowances are additional payment you get from your employer, like bonus, transportation fee, heart fee …', 2000);
-            sendText(sender, 'Can you tell me how much allowance you get per month in USD?', 3000);
-            
-            sender.state = "Work salary";
-            db.findSave(sender);
-
-        }
-
         if (sender.state === 'Work salary') {
             var work_allowance = text; // DO Parsing on text
 
@@ -201,6 +186,22 @@ module.exports = function (sender, event) {
                 db.findSave(sender);
 
         }
+
+        if (sender.state === 'work_seasonal') {
+            var work_salary = text; // DO Parsing on text
+
+            // NEED DATABASE TO CHECK DESCRIPTION AGAINST A LIST OF JOBS
+
+            sender.work_salary = work_salary
+            sendText(sender, 'How much allowance do you get per month?', 1000);
+            sendText(sender, 'Allowances are additional payment you get from your employer, like bonus, transportation fee, heart fee …', 2000);
+            sendText(sender, 'Can you tell me how much allowance you get per month in USD?', 3000);
+            
+            sender.state = "Work salary";
+            db.findSave(sender);
+
+        }
+
         
         if (text === 'location') {
             sendLocationMessage(sender)
