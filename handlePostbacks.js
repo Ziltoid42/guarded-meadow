@@ -909,20 +909,7 @@ module.exports = function (senderId, event) {
                 db.findSave(sender);
             }
 
-            if (payload === 'work_seasonal') {
-                
-                if(payload === 'Whole year'){
-                    sender.work_seasonal = false;
-                    sendTextMessage(sender, 'What is your monthly salary in USD? Please indicate without including any allowance');
-                    sender.state = 'work_seasonal';
-
-                }else if(payload === 'Seasonal job'){
-                    sender.work_seasonal = true;
-                }
-                
-                
-                db.findSave(sender);
-            }
+           
 
 
             
