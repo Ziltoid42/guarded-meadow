@@ -687,7 +687,9 @@ module.exports = function (senderId, event) {
             }
 
             if (payload === 'Invalid_name') {
-
+                sendText(sender, `If your name is not ${sender.first_name} can you write down your real name?`, 1000);
+                sender.state = 'Invalid_name';
+                db.findSave(sender);
             }
 
             if ((payload === 'Married') || (payload === 'Single') || (payload === 'Widow')) {
