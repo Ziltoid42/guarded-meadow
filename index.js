@@ -142,7 +142,7 @@ app.post('/webhook/', function (req, res) {
     let event = req.body.entry[0].messaging[i];
     let senderId = event.sender.id;
     let recipient = event.recipient.id;
-    var sender =  {name: 'dédé', fbid: senderId, recipient: recipient};
+    var sender =  {fbid: senderId, recipient: recipient};
 
     //Get profile
     var founduser = new db.findfbidtest(sender)

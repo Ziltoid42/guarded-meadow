@@ -881,6 +881,16 @@ module.exports = function (senderId, event) {
 
             }
 
+            if (payload === 'Home') {
+
+                sendTextMessage(sender, 'Ok, can you please let me know where is your work?');
+                sender.state = 'At home';
+                db.findSave(sender);
+                setTimeout(function() {
+                    sendLocationMessage(sender);
+                    }, 1000)
+            }
+
             if ((payload === 'Employed') || (payload === 'Self-employed')) {
                 
                 if(payload === 'Employed'){

@@ -178,8 +178,7 @@ console.log("hors de la promise promise: ", founduser);
 //fin test
 module.exports.findSave = function (object) {
 //function insert(object){
-    object.name = 'julien';
-    object.prout = 'caca';
+
     var database = null;
     open()
     .then((db)=>{
