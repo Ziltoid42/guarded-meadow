@@ -43,7 +43,7 @@ module.exports = function (sender, event) {
         sendMessage(senderId, imgReply);
         */
 
-       
+
 
 
         if (sender.state === 'Plate number') {
@@ -88,7 +88,22 @@ module.exports = function (sender, event) {
             if (loan){
                 sender.loan_amount = loan;
                 sender.state = "Loan valid";
-                db.findSave(sender);
+                `Is your name ${sender.first_name}`
+                var buttons = {
+                    text:`So I understand you want a loan amounting to ${sender.loan_amount} USD. Now tell me, how long would you like the loan for?`, 
+                    title1:"6 months", 
+                    payload1:"6 months", 
+                    title2:"12 months", 
+                    payload2:"12 months", 
+                    title3:"24 months", 
+                    payload3:"24 months"}
+
+                     var buttonReply = new fbMessage
+                    .ButtonTemplate(buttons)
+                    .compose();
+                    sendMessage(sender.fbid, buttonReply);
+                    sender.state = 'Term';
+                    db.findSave(sender);
             }else{
                 sendTextMessage(sender, "Sorry, loan amount must be between 500 and 1500 USD");
                 sender.state = "Loan error";
