@@ -845,39 +845,20 @@ module.exports = function (senderId, event) {
 
             if (payload === 'Somewhere else') {
                 
-                var promise = new Promise(function(resolve, reject) {
-                resolve(sendText(sender, "I need you to be at home or at work to continue this application", 1000))});
-
-                var send = promise
-                .then(()=>{ 
-
                 var buttons = {
-                    text:`Is your name ${sender.first_name}`, 
+                    text:"I need you to be at home or at work to continue this application", 
                     title1:"At home already", 
                     payload1:"Home", 
                     title2:"At work already", 
                     payload2:"Work"}
-                return buttons;
-                })
-                .then((result)=>{
-                    var buttonReply = new fbMessage
-                .ButtonTemplate(result)
+
+                var buttonReply = new fbMessage
+                .ButtonTemplate(buttons)
                 .compose();
-                setTimeout(function() {
-                    sendMessage(sender.fbid, buttonReply);
-                    }, 2000)
-                return true;
-                 })
-                .then(()=>{
-                    sender.state = 'Is somewhere else';
-                    return sender;
-                 })
-                .then((sender)=>{
-                    db.findSave(sender);
-                    return true;
-                 }).catch((err)=>{
-                    console.error(err)
-                });
+                sender.state = 'Is somewhere else';
+                db.findSave(sender);
+
+            
             }
 
             if (payload === 'Work') {
