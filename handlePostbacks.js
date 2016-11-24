@@ -1,8 +1,17 @@
 var sendMessage = require('./sendMessage');
-var fbMessage = require('./fbMessage');
+var fbMessage = require('./fbMessage'); // Unsatisfying card handler needs redo
 var request = require('request');
 var db = require('./db');
 var token = require('./config/appToken');
+
+//Where most of the app runs, most cards of the flow are here if they do not need user input
+/*
+    Warning: started to code using promises for good pratice in expectation of a reliable facebook
+    delivery system. Switched to timers when realised it's not yet the case. Needs to switch when it is
+
+    App still needs to refactor cards handlers into separate files for translation and ease of use
+
+*/
 
 module.exports = function (senderId, event) {
     

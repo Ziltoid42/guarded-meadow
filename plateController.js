@@ -1,5 +1,7 @@
 module.exports = {};
 
+//Simple Data Parsing functions to extract plate numbers and verify if valid. Needs exact platenumber format
+
 module.exports.plateFind = function (str){
 
 	str = str.replace(/\s+/g, '');

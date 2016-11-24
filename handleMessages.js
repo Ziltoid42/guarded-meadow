@@ -7,6 +7,7 @@ var loanController = require('./loanController');
 var ageController = require('./ageController');
 var token = require('./config/appToken');
 
+//User data parsing happens here, functions expect user input, parse it, classify it, save it, then serves next card
 
 module.exports = function (sender, event) {
     
@@ -28,25 +29,7 @@ module.exports = function (sender, event) {
     });
   }*/
 
-  //Envoi texte simple via composeur
-        /*var textReply = new fbMessage
-            .PlainText("[DEBUG] SenderId: " + senderId + " Message JSON: " + JSON.stringify(message))
-            .compose();
-
-        sendMessage(senderId, textReply);*/
-
-        //Envoi image via composeur
-        /*var imgReply = new fbMessage
-            .Image("https://img1.n3rdabl3.co.uk/wp-content/images/uploads/2016/06/32461_berserk.jpg")
-            .compose();
-
-        sendMessage(senderId, imgReply);
-        */
-
-
-
-
-        if (sender.state === 'Plate number') {
+        if (sender.state === 'Plate number') { //catch platenumber
             var Plate;
             plate = plateController.plateFind(text)
             if (plate){
@@ -82,9 +65,9 @@ module.exports = function (sender, event) {
 
         }
 
-        if (sender.state === 'Less') {
+        if (sender.state === 'Less') { // catch manual loan amount
             var loan;
-            loan = loanController.loanFind(text) // a finir
+            loan = loanController.loanFind(text) 
             if (loan){
                 sender.loan_amount = loan;
                 sender.state = "Loan valid";
@@ -111,7 +94,7 @@ module.exports = function (sender, event) {
             }
         }
 
-        if (sender.state === 'Valid_name') {
+        if (sender.state === 'Valid_name') { //catch age and reject if invalid
             var age;
             age = ageController.ageFind(text) 
             if (age){
@@ -144,7 +127,7 @@ module.exports = function (sender, event) {
             }
         }
 
-        if (sender.state === 'Work_situation') {
+        if (sender.state === 'Work_situation') { // catch work description no parsing yet because nothing to compare with
             var work_description = text; // DO Parsing on text
 
             // NEED DATABASE TO CHECK DESCRIPTION AGAINST A LIST OF JOBS
@@ -165,7 +148,7 @@ module.exports = function (sender, event) {
 
         }
 
-        if (sender.state === 'Work salary') {
+        if (sender.state === 'Work salary') { //catch allowance
             var work_allowance = loanController.amountParse(text);
 
             // NEED DATABASE TO CHECK DESCRIPTION AGAINST A LIST OF JOBS
@@ -190,7 +173,7 @@ module.exports = function (sender, event) {
             }
         }
 
-        if (sender.state === 'work_seasonal') {
+        if (sender.state === 'work_seasonal') { //catch salary
             var work_salary = loanController.amountParse(text); // DO Parsing on text
             if (work_salary){
 
@@ -207,35 +190,39 @@ module.exports = function (sender, event) {
 
         }
 
-        if (sender.state === 'Work expense') { // FAIRE SIMPLE SOUSTRACTION REVUNU - EXPENSES
+        if (sender.state === 'Work expense') { // calculates net business income
             
             var business_expenses = loanController.amountParse(text);
             if (business_expenses){
             sender.business_expenses = business_expenses;
             var net_business_revenue = sender.business_income - sender.business_expenses;
             sender.net_business_revenue = net_business_revenue;
-            var buttons = {
-                    text:`Ok. From the information you tell me, I estimate that you make around ${sender.net_business_revenue} from your business every month. Is this correct?`, 
-                    title1:"Yes", 
-                    payload1:"valid_revenue",
-                    title2: "No",
-                    payload2: "invalid_revenue"}
-                var buttonReply = new fbMessage
-                .ButtonTemplate(buttons)
-                .compose();
-                sendMessage(sender.fbid, buttonReply);
-                sender.state = "Revenue validation";
-                db.findSave(sender);
+                if(net_business_revenue > 0){
+                    var buttons = {
+                        text:`Ok. From the information you tell me, I estimate that you make around ${sender.net_business_revenue} from your business every month. Is this correct?`, 
+                        title1:"Yes", 
+                        payload1:"valid_revenue",
+                        title2: "No",
+                        payload2: "invalid_revenue"}
+                    var buttonReply = new fbMessage
+                    .ButtonTemplate(buttons)
+                    .compose();
+                    sendMessage(sender.fbid, buttonReply);
+                    sender.state = "Revenue validation";
+                    db.findSave(sender);
+                }else{
+                   sendText(sender, "Sorry we can't lend money to a business that looses money :(", 1000); 
+                }
             }else{
               sendText(sender, 'I can only understand if there is only one number, please try again :)', 1000);  
             }
 
         }
 
-        if (sender.state === 'work_self-employed') {
+        if (sender.state === 'work_self-employed') { // NEED DATABASE TO CHECK DESCRIPTION AGAINST A LIST OF JOBS
             var business_income = loanController.amountParse(text) // DO Parsing on text
 
-            // NEED DATABASE TO CHECK DESCRIPTION AGAINST A LIST OF JOBS
+            
             if (business_income){
             sender.business_income = business_income;
             sendText(sender, 'How much do you spend for your business every month?', 1000);
@@ -253,6 +240,8 @@ module.exports = function (sender, event) {
 
         if (sender.state === 'invalid_revenue') { // FAIRE COMPARAISON REVUNU CALCULE ET DONNE. SI GRO ECART TRIGGER SINON SAVE
             
+            var given_business_income = loanController.amountParse(text)
+            sender.given_business_income = given_business_income;
 
             sendText(sender, 'Ok, this is very different from my calculation!', 1000);
             sendText(sender, 'Can I ask my staff to call you now?', 2000);
@@ -275,7 +264,7 @@ module.exports = function (sender, event) {
 
         }
 
-        //
+        // test unitaire
 
           if (text === 'test') {
              sendTextMessage(sender, 'What is your business revenu? Please tell me you total revenu in USD before any expense');

@@ -1,19 +1,19 @@
-'use strict'
+'use strict' //for trying
 
 const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
 const app = express();
 const db = require('./db');
-const fetch = require('node-fetch');
+const fetch = require('node-fetch'); //unused
 var sendMessage = require('./sendMessage');
 var fbMessage = require('./fbMessage');
 var handleMessages = require('./handleMessages');
 var handlePostbacks = require('./handlePostbacks');
-var token = require('./config/appToken');
+var token = require('./config/appToken'); //should be stocked here
 //var user = require('user'); //Ajout class user
 
-// Manual port selection
+// Manual port selection for heroku 
 app.set('port', (process.env.PORT || 5000));
 
 // Parse application/x-www-form-urlencoded
@@ -31,8 +31,7 @@ app.get('/webhook/', function (req, res) {
   }
 });
 
-
-// Spin up the server
+// Spin up the server for console logs
 app.listen(app.get('port'), function(){
     console.log('Running on port', app.get('port')) 
 });
@@ -53,6 +52,7 @@ app.listen(app.get('port'), function(){
     });
   }
 
+  //catch messenger API info names/pic/locale/timezone/ect
    function getUserProfile(user) {
     const url = `https://graph.facebook.com/v2.6/${user.fbid}?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=${token}`;
     return fetch(url)
@@ -62,7 +62,7 @@ app.listen(app.get('port'), function(){
 
 
 
-
+//doesn't work as advertised
 function receivedDeliveryConfirmation(event, timestamp) {
   var senderID = event.sender.id;
   var recipientID = event.recipient.id;
@@ -81,9 +81,11 @@ function receivedDeliveryConfirmation(event, timestamp) {
 })
 }
 
-
+// decides wich file will treat data depending on what facebook sends
 function routeur(event, sender){
-   if (event.message && event.message.text) {
+    
+    //Messaging_text 
+    if (event.message && event.message.text) {
     
         handleMessages(sender, event); //fonction routing text
 
@@ -101,14 +103,7 @@ function routeur(event, sender){
         //receivedDeliveryConfirmation(event);
     }
 
-    //zone test location
-    /*
-    if (event.message.attachments[0].payload.coordinates.lat && event.message.attachments[0].payload.coordinates.long) {
-    console.log(event.message.attachments[0].payload.coordinates.lat);
-    console.log(event.message.attachments[0].payload.coordinates.long);
-    }*/
-
-    
+    //Messaging_localisation Sends anoying error messages because didn't have time to figure out how to isset in javascript
     if ((event.message.attachments[0].payload.coordinates.lat) && (event.message.attachments[0].payload.coordinates.long) && (sender.state === 'At work')) {
                 
                 sender.work_location_lat = event.message.attachments[0].payload.coordinates.lat;
@@ -148,11 +143,10 @@ function routeur(event, sender){
                     sender.state = 'Home coordinates';
                     db.findSave(sender);
             }
-    //Fin zone test location
     
 }
 
-
+//basic messenger code
 app.post('/webhook/', function (req, res) {
 
   let messaging_events = req.body.entry[0].messaging;
@@ -169,7 +163,7 @@ app.post('/webhook/', function (req, res) {
     .then((result)=>{
         sender = result;
       return getUserProfile(result); 
-    })
+    }) //initiate user
     .then((result)=>{
         sender.first_name = result.first_name;
         sender.last_name = result.last_name;
@@ -178,7 +172,7 @@ app.post('/webhook/', function (req, res) {
         sender.timezone = result.timezone;
         sender.gender = result.gender;
         return sender;
-    })
+    })//pass it to app
     .then((result)=>{
         routeur(event, result);
     })
@@ -188,12 +182,12 @@ app.post('/webhook/', function (req, res) {
 
   }
 
-  res.sendStatus(200);
+  res.sendStatus(200); //Notify sent
 
 })
 
 
-    //fonction pour test
+    //function for test
     function sendTextMessage(sender, text) {
     let messageData = { text:text }
     request({
@@ -215,5 +209,5 @@ app.post('/webhook/', function (req, res) {
 
 
 app.use(function(req, res){
-   res.sendStatus(400);
+   res.sendStatus(400); //notify fail
 });

@@ -1,4 +1,17 @@
+//Envoi texte simple via composeur
+        /*var textReply = new fbMessage
+            .PlainText("[DEBUG] SenderId: " + senderId + " Message JSON: " + JSON.stringify(message))
+            .compose();
 
+        sendMessage(senderId, textReply);*/
+
+        //Envoi image via composeur
+        /*var imgReply = new fbMessage
+            .Image("https://img1.n3rdabl3.co.uk/wp-content/images/uploads/2016/06/32461_berserk.jpg")
+            .compose();
+
+        sendMessage(senderId, imgReply);
+        */
 
 
 function composeMessage () {

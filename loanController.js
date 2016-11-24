@@ -1,8 +1,11 @@
 module.exports = {};
 
+//Simple Data Parsing functions to extract numbers and classify. Needs more work
+
 function amountFind (str){
 
-
+	str = str.replace(/\s+/g, '');
+	str = str.toUpperCase(str);
 	var regex = /\d+/g;
 	var matches = str.match(regex);
 	if (matches[1])
