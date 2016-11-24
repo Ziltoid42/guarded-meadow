@@ -333,7 +333,7 @@ module.exports = function (senderId, event) {
             }
 
             
-            if (payload === ('honda_dream' || 'honda_wave')) { //Need to add verification model/plate when more info availlable
+            if ((payload === 'honda_dream') || (payload ==='honda_wave')) { //Need to add verification model/plate when more info availlable
                 var buttons = {
                     text:"How would you describe the overall condition of your motorcycle?", 
                     title1:"Good condition", 
@@ -916,7 +916,7 @@ module.exports = function (senderId, event) {
                         title1:"Can do now", 
                         payload1:"Can do now",
                         title2: "Can do later",
-                        payload2: "Can do later"}
+                        payload2: "Can do later home"}
                     var buttonReply = new fbMessage
                     .ButtonTemplate(buttons)
                     .compose();
@@ -1008,7 +1008,7 @@ module.exports = function (senderId, event) {
                         title1:"Can do now", 
                         payload1:"Can do now",
                         title2: "Can do later",
-                        payload2: "Can do later"}
+                        payload2: "Can do later work"}
                     var buttonReply = new fbMessage
                     .ButtonTemplate(buttons)
                     .compose();
@@ -1018,6 +1018,32 @@ module.exports = function (senderId, event) {
                     sender.state = "Work documents send";
                     db.findSave(sender);
             }
+
+            if ((payload === 'Can do later work') || (payload === 'Can do later home') {
+
+                if (payload === 'Can do later home'){
+                    sender.state = "At work";
+                    sendText(sender, "Ok, you can send me your documentation later, don't worry!", 1000);
+                    sendText(sender, 'Now I will need you to go to your workplace to continue this application', 2000);
+                    sendText(sender, 'Because i need you to send me your workplace location', 3000);
+                    sendText(sender, 'Please click the answer below when you arrive at your workplace!', 4000);
+                    setTimeout(function() {
+                    sendLocationMessage(sender);
+                    }, 5000)
+                }else if (payload === 'Can do later work'){
+                    sender.state = "At Home";
+                    sendText(sender, "Ok, you can send me your documentation later, don't worry!", 1000);
+                    sendText(sender, 'Now I will need you to go to your home to continue this application', 2000);
+                    sendText(sender, 'Because i need you to send me your home location', 3000);
+                    sendText(sender, 'Please click the answer below when you arrive at your home!', 4000);
+                    setTimeout(function() {
+                    sendLocationMessage(sender);
+                    }, 5000)
+                }
+                db.findSave(sender);
+            }
+
+
            
 
 
