@@ -874,7 +874,10 @@ module.exports = function (senderId, event) {
                 sendTextMessage(sender, 'Ok, can you please let me know where is your work?');
                 sender.state = 'At work';
                 db.findSave(sender);
-                sendLocationMessage(sender)
+                setTimeout(function() {
+                    sendLocationMessage(sender);
+                    }, 1000)
+                
 
             }
 
