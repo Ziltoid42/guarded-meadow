@@ -143,6 +143,27 @@ module.exports = function (sender, event) {
             }
         }
 
+        if (sender.state === 'Work_situation') {
+            var work_description = text; // DO Parsing on text
+
+            // NEED DATABASE TO CHECK DESCRIPTION AGAINST A LIST OF JOBS
+
+            sender.work_description = work_description
+            var buttons = {
+                    text:"Is this your work during the whole year or is it a seasonal job?", 
+                    title1:"Whole year", 
+                    payload1:"Whole year",
+                    title2: "Seasonal job",
+                    payload2: "Seasonal job"}
+                var buttonReply = new fbMessage
+                .ButtonTemplate(buttons)
+                .compose();
+                sendMessage(sender.fbid, buttonReply);
+                sender.state = "Work description";
+                db.findSave(sender);
+           
+
+        }
         
         if (text === 'location') {
             sendLocationMessage(sender)

@@ -881,6 +881,20 @@ module.exports = function (senderId, event) {
 
             }
 
+            if ((payload === 'Employed') || (payload === 'Self-employed')) {
+                
+                if(payload === 'Employed'){
+                    sender.work_situation = 'WEmployed';
+                }else if(payload === 'Self-employed'){
+                    sender.work_situation = 'Self-employed';
+                }
+                
+
+                sendText(sender.fbid, 'Could you describe your job in just a few words?', 1000);
+                sender.state = 'Work_situation';
+                db.findSave(sender);
+            }
+
             
             /* Anciennes cartes
             if (payload === 'Proceed to loan') {
