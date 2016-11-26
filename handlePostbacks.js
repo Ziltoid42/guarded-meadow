@@ -495,16 +495,17 @@ module.exports = function (senderId, event) {
                     .ButtonTemplate(buttons)
                     .compose();
                     sendMessage(sender.fbid, buttonReply);
-                    sender.state = '6 months';
+                    sender.totalIntrest = totalIntrest;
+                    sender.state = 'months number';
                     db.findSave(sender);
 
             }
 
             if (payload === 'Installments') {
 
-                var totalIntrest = (sender.loan_amount*sender.installment*interestRate+30);
-                var totalLoan = (sender.loan_amount + totalIntrest);
-                var monthlyPayments = (totalLoan/sender.installment);
+                
+                var totalLoan = (sender.loan_amount + sender.totalIntrest);
+                var monthlyPayments = (totalLoan / sender.installment);
 
                 sendText(sender, "In order to get the loan, you will have to pay 30 USD first", 1000);
                 sendText(sender, `Then, you will pay a monthly installment of ${monthlyPayments} USD`, 2000)
