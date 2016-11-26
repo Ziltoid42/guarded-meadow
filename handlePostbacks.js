@@ -482,7 +482,7 @@ module.exports = function (senderId, event) {
                     sender.installment = 24;
                 }
 
-                var totalIntrest = (sender.loan_amount*sender.installment*interestRate+30);
+                var totalIntrest = Math.round((sender.loan_amount*sender.installment*interestRate+30));
 
                 var buttons = {
                     text:`Ok ok. Then if you want ${sender.loan_amount} USD over ${sender.installment} month, that means you would pay a total of ${totalIntrest} USD total interest including all fees`, 
@@ -504,8 +504,8 @@ module.exports = function (senderId, event) {
             if (payload === 'Installments') {
 
                 
-                var totalLoan = (Number(sender.loan_amount) + Number(sender.totalIntrest));
-                var monthlyPayments = (Number(totalLoan) / Number(sender.installment));
+                var totalLoan = Math.round((Number(sender.loan_amount) + Number(sender.totalIntrest)));
+                var monthlyPayments = Math.round((Number(totalLoan) / Number(sender.installment)));
 
                 sendText(sender, "In order to get the loan, you will have to pay 30 USD first", 1000);
                 sendText(sender, `Then, you will pay a monthly installment of ${monthlyPayments} USD`, 2000)
