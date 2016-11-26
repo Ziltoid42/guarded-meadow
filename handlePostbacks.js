@@ -487,7 +487,7 @@ module.exports = function (senderId, event) {
                 var buttons = {
                     text:`Ok ok. Then if you want ${sender.loan_amount} USD over ${sender.installment} month, that means you would pay a total of ${totalIntrest} USD total interest including all fees`, 
                     title1:"Continue", 
-                    payload1:"Installment 6 months", 
+                    payload1:"Installments", 
                     title2:"Change terms", 
                     payload2:"Term"}
 
@@ -498,6 +498,36 @@ module.exports = function (senderId, event) {
                     sender.state = '6 months';
                     db.findSave(sender);
 
+            }
+
+            if (payload === 'Installments') {
+
+                var totalIntrest = (sender.loan_amount*sender.installment*interestRate+30);
+                var totalLoan = (sender.loan_amount + totalIntrest);
+                var monthlyPayments = (totalLoan/sender.installment);
+
+                sendText(sender, "In order to get the loan, you will have to pay 30 USD first", 1000);
+                sendText(sender, `Then, you will pay a monthly installment of ${monthlyPayments} USD`, 2000)
+                
+                var buttons = {
+                    text:`So total payment will be ${totalLoan} USD for this loan`, 
+                    title1:"Continue", 
+                    payload1:"Installment validation", 
+                    title2:"Change terms", 
+                    payload2:"Term"}
+              
+                var buttonReply = new fbMessage
+                .ButtonTemplate(buttons)
+                .compose();
+                setTimeout(function() {
+                    sendMessage(sender.fbid, buttonReply);
+                }, 3000)
+                sender.state = 'Installments';
+                sender.totalIntrest = totalIntrest;
+                sender.totalLoan = totalLoan;
+                sender.monthlyPayments = monthlyPayments;
+                db.findSave(sender);
+                 
             }
 /*
             if (payload === '12 months') {
@@ -533,7 +563,7 @@ module.exports = function (senderId, event) {
                     db.findSave(sender);
 
             }
-*/
+
             if (payload === 'Installment 6 months') {
 
                  var promise = new Promise(function(resolve, reject) {
@@ -648,18 +678,10 @@ module.exports = function (senderId, event) {
                     console.error(err)
                 });
             }
-
-            if ((payload === 'Installment validation 6 months') || (payload === 'Installment validation 12 months') || (payload === 'Installment validation 24 months')) {
+*/
+            if (payload === 'Installment validation') {
                 
-                if(payload === 'Installment validation 6 months'){
-                    sender.installment = 6;
-                }else if(payload === 'Installment validation 12 months'){
-                    sender.installment = 12;
-                }else if(payload === 'Installment validation 24 months'){
-                    sender.installment = 24;
-                }
-
-
+              
                 var promise = new Promise(function(resolve, reject) {
                 resolve(sendText(sender, "Great! Let's continue this conversation", 1000))});
 
