@@ -504,8 +504,8 @@ module.exports = function (senderId, event) {
             if (payload === 'Installments') {
 
                 
-                var totalLoan = (sender.loan_amount + sender.totalIntrest);
-                var monthlyPayments = (totalLoan / sender.installment);
+                var totalLoan = (Number(sender.loan_amount) + Number(sender.totalIntrest));
+                var monthlyPayments = (Number(totalLoan) / Number(sender.installment));
 
                 sendText(sender, "In order to get the loan, you will have to pay 30 USD first", 1000);
                 sendText(sender, `Then, you will pay a monthly installment of ${monthlyPayments} USD`, 2000)
