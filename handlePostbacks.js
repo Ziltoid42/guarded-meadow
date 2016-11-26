@@ -17,6 +17,7 @@ module.exports = function (senderId, event) {
     
     var payload = event.postback.payload;
     var sender = senderId;
+    var interestRate = 0.012;
 
     //if (payload === /* Payload d'une des cartes faire fonction qui fetch dans la lib*/) {
     	//enregistrer les infos en bdd
@@ -443,6 +444,12 @@ module.exports = function (senderId, event) {
 
             }
 
+            /*
+            formule
+            1.2% * capital * nombre de mois
+
+            */
+
             if (payload === 'Term') {
                 var buttons = {
                     text:"So I understand you want a loan amounting to 1,500 USD. Now tell me, how long would you like the loan for?", 
@@ -463,9 +470,22 @@ module.exports = function (senderId, event) {
 
             }
 
-            if (payload === '6 months') {
+            if ((payload === '6 months') || (payload === '12 months') || (payload === '24 months')) {
+
+                if (payload === '6 months') {
+                    sender.installment = 6;
+                }
+                if (payload === '12 months') {
+                    sender.installment = 12;
+                }
+                if (payload === '24 months') {
+                    sender.installment = 24;
+                }
+
+                var totalIntrest = (sender.loan_amount*sender.installment*interestRate+30);
+
                 var buttons = {
-                    text:"Ok ok. Then if you want 1,500 USD over 6 month, that means you would pay a total of 138 USD total interest including all fees", 
+                    text:`Ok ok. Then if you want ${sender.loan_amount} USD over ${sender.installment} month, that means you would pay a total of ${totalIntrest} USD total interest including all fees`, 
                     title1:"Continue", 
                     payload1:"Installment 6 months", 
                     title2:"Change terms", 
@@ -479,7 +499,7 @@ module.exports = function (senderId, event) {
                     db.findSave(sender);
 
             }
-
+/*
             if (payload === '12 months') {
                 var buttons = {
                     text:"Ok ok. Then if you want 1,500 USD over 12 month, that means you would pay a total of 246 USD total interest including all fees", 
@@ -513,7 +533,7 @@ module.exports = function (senderId, event) {
                     db.findSave(sender);
 
             }
-
+*/
             if (payload === 'Installment 6 months') {
 
                  var promise = new Promise(function(resolve, reject) {
