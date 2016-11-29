@@ -1,6 +1,6 @@
 var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
-var MONGOLAB_URI = 'greg:1186sousou@ds151707.mlab.com:51707';//a virer
+var MONGOLAB_URI = 'login:password@ds151707.mlab.com:51707';//a virer
 var uristring= 'mongodb://'+MONGOLAB_URI+'/heroku_x563fr8q';
 var url = uristring;
 
